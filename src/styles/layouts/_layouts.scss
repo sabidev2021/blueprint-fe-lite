@@ -1,0 +1,51 @@
+@import 'src/styles/variables/variables';
+@import "src/styles/vendor/variables";
+@import "src/styles/vendor/mixins/focused";
+
+@import "backoffice/sidebar-menu";
+@import "backoffice/responsive";
+@import "backoffice/typography";
+@import "backoffice/footer";
+@import "backoffice/fonts";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: $scale;
+}
+
+body {
+    font-family: $font-family-primary;
+    color: var(--text-color);
+    background-color: var(--surface-ground);
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.layout-main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    padding: 7rem 2rem 2rem 3rem;
+    transition: margin-left $transitionDuration;
+}
+
+.layout-main {
+    flex: 1 1 auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}

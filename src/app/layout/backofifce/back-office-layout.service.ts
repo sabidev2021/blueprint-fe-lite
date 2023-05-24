@@ -1,0 +1,128 @@
+import {Injectable} from '@angular/core';
+import {SabiBaseService} from "@core/base/sabi-base.service";
+import {DbLocalService} from "@core/dblocal/db-local.service";
+import {HttpClientService} from "@core/http/http-client.service";
+import {Subject} from 'rxjs';
+
+export interface AppConfig {
+    inputStyle: string;
+    colorScheme: string;
+    theme: string;
+    ripple: boolean;
+    menuMode: string;
+    scale: number;
+}
+
+interface LayoutState {
+    staticMenuDesktopInactive: boolean;
+    overlayMenuActive: boolean;
+    profileSidebarVisible: boolean;
+    configSidebarVisible: boolean;
+    staticMenuMobileActive: boolean;
+    menuHoverActive: boolean;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class BackOfficeLayoutService extends SabiBaseService<any> {
+
+    config: AppConfig = {
+        ripple: false,
+        inputStyle: 'outlined',
+        menuMode: 'static',
+        colorScheme: 'light',
+        theme: 'lara-light-indigo',
+        scale: 14,
+    };
+
+    state: LayoutState = {
+        staticMenuDesktopInactive: false,
+        overlayMenuActive: false,
+        profileSidebarVisible: false,
+        configSidebarVisible: false,
+        staticMenuMobileActive: false,
+        menuHoverActive: false
+    };
+
+    private configUpdate = new Subject<AppConfig>();
+    private overlayOpen = new Subject<any>();
+
+    configUpdate$ = this.configUpdate.asObservable();
+    overlayOpen$ = this.overlayOpen.asObservable();
+
+    constructor(http: HttpClientService, dbLocal: DbLocalService) {
+        super('', '', http, dbLocal)
+    }
+
+    onMenuToggle() {
+        if (this.isOverlay()) {
+            this.state.overlayMenuActive = !this.state.overlayMenuActive;
+            if (this.state.overlayMenuActive) {
+                this.overlayOpen.next(null);
+            }
+        }
+
+        if (this.isDesktop()) {
+            this.state.staticMenuDesktopInactive = !this.state.staticMenuDesktopInactive;
+        } else {
+            this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
+            if (this.state.staticMenuMobileActive) {
+                this.overlayOpen.next(null);
+            }
+        }
+    }
+
+    showProfileSidebar() {
+        this.state.profileSidebarVisible = !this.state.profileSidebarVisible;
+        if (this.state.profileSidebarVisible) {
+            this.overlayOpen.next(null);
+        }
+    }
+
+    showConfigSidebar() {
+        this.state.configSidebarVisible = true;
+    }
+
+    isOverlay() {
+        return this.config.menuMode === 'overlay';
+    }
+
+    isDesktop() {
+        return window.innerWidth > 991;
+    }
+
+    isMobile() {
+        return !this.isDesktop();
+    }
+
+    onConfigUpdate() {
+        this.configUpdate.next(this.config);
+    }
+
+    get sideMenu(): boolean {
+        return this.db.get<boolean>('sidemenu') == null ? false : <boolean>this.db.get<boolean>('sidemenu')
+    }
+
+    set sideMenu(value: boolean) {
+        this.db.save('sidemenu', value)
+    }
+
+    get header(): boolean {
+        return this.db.get<boolean>('header') == null ? false : <boolean>this.db.get<boolean>('header')
+    }
+
+    set header(value: boolean) {
+        this.db.save('header', value)
+    }
+
+    get footer(): boolean {
+        return this.db.get<boolean>('footer') == null ? false : <boolean>this.db.get<boolean>('footer')
+    }
+
+    set footer(value: boolean) {
+        this.db.save('footer', value)
+    }
+
+}

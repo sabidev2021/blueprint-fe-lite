@@ -1,0 +1,71 @@
+button {
+  margin-right: .5rem;
+  border-radius: 4px;
+}
+
+.message {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+
+  .message-summary {
+    font-weight: 600;
+  }
+
+  .message-detail {
+    font-weight: 400;
+  }
+
+  .message-space {
+    margin-bottom: 8px;
+  }
+}
+
+:host ::ng-deep {
+  .p-toast-message-sabi-info {
+    background-color: #F8FAFC;
+    border: 1px solid #94A3B8;
+    border-radius: 4px;
+    color: #0F172A;
+
+    .p-toast-icon-close {
+      color: #64748B;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-toast-message-sabi-success {
+    background-color: #EAF5DC;
+    border: 1px solid #8CC63E;
+    border-radius: 4px;
+    color: #0F172A;
+    .p-toast-icon-close {
+      color: #8CC63E;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-toast-message-sabi-warn {
+    background-color: #FEF5E7;
+    border: 1px solid #D97706;
+    border-radius: 4px;
+    color: #0F172A;
+    .p-toast-icon-close {
+      color: #F59E0B;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-toast-message-sabi-error {
+    background-color: #FEECEF;
+    border: 1px solid #F43F5E;
+    border-radius: 4px;
+    color: #0F172A;
+    .p-toast-icon-close {
+      color: #F43F5E;
+    }
+  }
+}

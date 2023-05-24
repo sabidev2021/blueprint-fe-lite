@@ -1,0 +1,12 @@
+/*
+    ============
+        Link
+    ============
+*/
+
+@import "colors";
+
+$link-color: $primary-color-700;
+$link-decoration: none;
+$link-hover-color: lighten($primary-color-700, 20%);
+$link-hover-decoration: underline;

@@ -1,0 +1,11 @@
+<div class="layout-wrapper" [ngClass]="containerClass">
+    <header-backoffice *ngIf="header"></header-backoffice>
+    <sidebar-left-backoffice *ngIf="sideMenu"></sidebar-left-backoffice>
+    <div [ngClass]="(header && sideMenu ? 'layout-main-container' : '')">
+        <main class="layout-main" [@routeAnimations]="prepareRoute(outlet)">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </main>
+        <footer-backoffice *ngIf="footer"></footer-backoffice>
+    </div>
+    <div class="layout-mask"></div>
+</div>

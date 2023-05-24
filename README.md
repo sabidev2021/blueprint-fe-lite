@@ -1,29 +1,73 @@
-# README #
+![Scheme](./src/assets/backoffice/logo/logo-sabi.svg)
 
-This README would normally document whatever steps are necessary to get your application up and running.
+# BLUEPRINT-FE-LaaS
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* As a reference in making multiple applications example (sahabatbisnis.core, sahabatbisnis.warehouse, sahabatbisnis.bookkeeper).
+* As a basis for the design of new applications
 
-### How do I get set up? ###
+**How to Running:**
+```sh
+  npm run start : build config-local ( localhost env )
+```
+```sh
+  npm run build:dev : build config-dev
+```
+```sh
+  npm run build:staging : build config-staging
+```
+```sh
+  npm run build:production : build config-production
+```
+```sh
+  "scripts": {
+    "start": "ng serve --configuration local",
+    "start:dev": "ng serve --configuration development",
+    "start:staging": "ng serve --configuration staging",
+    "build": "ng build",
+    "build:dev": "ng build --configuration development",
+    "build:staging": "ng build --configuration staging",
+    "build:production": "ng build --configuration production --stats-json",
+  }
+```
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Configuration Environment (API, Keycloak, Menu etc):
 
-### Contribution guidelines ###
+```sh
+  Go to folder blueprint-fe /src/ environments
+```
 
-* Writing tests
-* Code review
-* Other guidelines
+```sh
+  You can see at inside folder a files configuration options :
+  1. environment.dev.ts
+  2. environment.local.ts
+  3. environment.prod.ts
+  4. environment.staging.ts
+```
 
-### Who do I talk to? ###
+### Development server
 
-* Repo owner or admin
-* Other community or team contact
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+### Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+### Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+### Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+### Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

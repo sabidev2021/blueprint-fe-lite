@@ -1,0 +1,92 @@
+<div class="col-12 col-lg-12 col-md-12">
+    <h2>Dialog</h2>
+    <p>Dialog is used to allow users to make a range of selections (zero, one, or multiple) or to indicate whether users agree to specific terms and services.</p>
+    <a [href]="url" target="_blank">Dialog Design Sytems</a>
+</div>
+<div class="mt-5">
+    <p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Show" style="padding-right: 10px"></p-button>
+    <p-dialog header="Header" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayBasic=false" label="Yes" styleClass="p-button-text"></p-button>
+            <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>
+        </ng-template>
+    </p-dialog>
+
+    <p-button (click)="showBasicDialog2()" icon="pi pi-external-link" label="Long Content"></p-button>
+    <p-dialog header="Long Content" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
+            qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
+            quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+            vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+            similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+            cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
+            eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayBasic2=false" label="Yes" class="p-button-text"></p-button>
+            <p-button icon="pi pi-times" (click)="displayBasic2=false" label="No"></p-button>
+        </ng-template>
+    </p-dialog>
+
+    <h5>Modal</h5>
+    <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button>
+    <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false" [resizable]="false">
+        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayModal=false" label="Yes" class="p-button-text"></p-button>
+            <p-button icon="pi pi-times" (click)="displayModal=false" label="No"></p-button>
+        </ng-template>
+    </p-dialog>
+
+    <h5>Maximizable</h5>
+    <p-button (click)="showMaximizableDialog()" icon="pi pi-external-link" label="Show"></p-button>
+    <p-dialog header="Godfather I" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
+              [draggable]="false" [resizable]="false">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Yes" class="p-button-text"></p-button>
+            <p-button icon="pi pi-times" (click)="displayMaximizable=false" label="No"></p-button>
+        </ng-template>
+    </p-dialog>
+
+    <h5>Position</h5>
+    <div class="grid gap-3">
+        <p-button (click)="showPositionDialog('left')" icon="pi pi-arrow-right" label="Left" styleClass="p-button-warning"></p-button>
+        <p-button (click)="showPositionDialog('right')" icon="pi pi-arrow-left" label="Right" styleClass="p-button-warning"></p-button>
+        <p-button (click)="showPositionDialog('top-left')" icon="pi pi-arrow-down" label="TopLeft" styleClass="p-button-warning"></p-button>
+        <p-button (click)="showPositionDialog('top')" icon="pi pi-arrow-down" label="Top" styleClass="p-button-warning"></p-button>
+        <p-button (click)="showPositionDialog('top-right')" icon="pi pi-arrow-down" label="TopRight" styleClass="p-button-warning"></p-button>
+        <p-button (click)="showPositionDialog('bottom-left')" icon="pi pi-arrow-up" label="BottomLeft" styleClass="p-button-warning"></p-button>
+        <p-button (click)="showPositionDialog('bottom')" icon="pi pi-arrow-up" label="Bottom" styleClass="p-button-warning"></p-button>
+        <p-button (click)="showPositionDialog('bottom-right')" icon="pi pi-arrow-up" label="BottomRight" styleClass="p-button-warning"></p-button>
+    </div>
+
+    <p-dialog header="Godfather I" [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false" [resizable]="false">
+        <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+            His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+            Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+            kind and benevolent to those who give respect,
+            but given to ruthless violence whenever anything stands against the good of the family.</p>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayPosition=false" label="Yes" class="p-button-text"></p-button>
+            <p-button icon="pi pi-times" (click)="displayPosition=false" label="No"></p-button>
+        </ng-template>
+    </p-dialog>
+</div>

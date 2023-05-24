@@ -1,0 +1,16 @@
+/*
+  =======================
+      BUTTONS SABI
+  =======================
+*/
+
+@mixin button-variant($bg-colors, $colors, $cursor) {
+  background-color: $bg-colors !important;
+  color: $colors !important;
+  cursor: $cursor;
+}
+
+@mixin btn-smallest($width, $height) {
+  width: $width;
+  height: $height;
+}

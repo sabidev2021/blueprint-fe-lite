@@ -1,0 +1,63 @@
+@import "src/styles/variables/variables";
+
+.sabi-placeholder {
+  display: block;
+  margin-top: 50px;
+  min-height: 300px;
+
+  .heading-placeholder {
+    font-size: $font-size-primary;
+    font-style: normal;
+    font-weight: $font-weight-bold;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: $sc-light-black;
+  }
+
+  .subheading-placeholder {
+    display: block;
+    font-style: normal;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-tertiary;
+    line-height: 162%;
+    text-align: center;
+    color: $sc-light-black;
+    margin-top: -30px;
+  }
+
+  .placeholder-info {
+    padding: 20px;
+  }
+
+  img.placeholder-img {
+    display: flex;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.dot {
+  background-color: black;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+.placeholder-action {
+  display: flex;
+
+  .cta-placeholder__menu {
+    .btn-placeholder {
+      width: auto;
+      min-width: 80px;
+      margin-right: 16px;
+    }
+  }
+}
+

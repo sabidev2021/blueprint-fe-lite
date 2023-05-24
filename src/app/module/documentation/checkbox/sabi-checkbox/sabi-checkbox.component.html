@@ -1,0 +1,33 @@
+<div class="col-12 col-lg-12 col-md-12">
+    <h2>Checkbox</h2>
+    <p>Checkbox is used to allow users to make a range of selections (zero, one, or multiple) or to indicate whether users agree to specific terms and services.</p>
+    <a [href]="url" target="_blank">Checkbox Design Sytems</a>
+</div>
+<h5>Basic</h5>
+<div class="field-checkbox">
+    <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
+    <label for="binary">{{checked}}</label>
+</div>
+<h5>Multiple</h5>
+<div class="field-checkbox">
+    <p-checkbox name="group1" value="New York" [(ngModel)]="selectedCities" inputId="ny"></p-checkbox>
+    <label for="ny">New York</label>
+</div>
+<div class="field-checkbox">
+    <p-checkbox name="group1" value="San Francisco" [(ngModel)]="selectedCities" inputId="sf"></p-checkbox>
+    <label for="sf">San Francisco</label>
+</div>
+<div class="field-checkbox">
+    <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="selectedCities" inputId="la"></p-checkbox>
+    <label for="la">Los Angeles</label>
+</div>
+<div class="field-checkbox">
+    <p-checkbox name="group1" value="Chicago" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+    <label for="ch">Chicago</label>
+</div>
+
+<h5>Dynamic Values, Preselection, Value Binding and Disabled Option</h5>
+<div *ngFor="let category of categories" class="field-checkbox">
+    <p-checkbox name="group2" value="category" [value]="category"  [(ngModel)]="selectedCategories" [inputId]="category.key" [disabled]="category.key === 'R'"></p-checkbox>
+    <label [for]="category.key">{{category.name}}</label>
+</div>

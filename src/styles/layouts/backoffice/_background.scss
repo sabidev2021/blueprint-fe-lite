@@ -1,0 +1,30 @@
+@import '../../variables/variables';
+@import '../../mixins/background-variant';
+
+.bg--primary {
+  @include bg-variant($bg-primary);
+}
+
+.bg--secondary {
+  @include bg-variant($bg-secondary);
+}
+
+.bg--positive {
+  @include bg-variant($bg-positive);
+}
+
+.bg--negative {
+  @include bg-variant($bg-negative);
+}
+
+.bg--neutral {
+  @include bg-variant($bg-neutral);
+}
+
+.bg--claret {
+  @include bg-variant($sc-claret-red);
+}
+
+.bg--brownrust {
+  @include bg-variant($sc-brown-rust);
+}

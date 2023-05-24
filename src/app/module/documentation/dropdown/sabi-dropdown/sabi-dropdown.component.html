@@ -1,0 +1,10 @@
+<div class="col-12 col-lg-12 col-md-12 mb-5">
+    <h2>Dropdown</h2>
+    <p>Use dropdown to to display simple datasets that do not need to be filtered or edited.</p>
+    <a [href]="url" target="_blank" >Dropdown Design Sytems</a>
+</div>
+<div class="mt-5">
+    <p-card>
+        <p-dropdown class="sabi-dropdown" [options]="cities" [(ngModel)]="selectedCity" placeholder="Label" optionLabel="name"></p-dropdown>
+    </p-card>
+</div>

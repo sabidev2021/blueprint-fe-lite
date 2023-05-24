@@ -1,0 +1,137 @@
+<div class="sabi-card mb-3">
+    <h2>SABI BLUEPRINTS</h2>
+    <h4>Getting Started</h4>
+    <p>Blueprints FE LaaS is an application template for Angular and is distributed as a CLI project. Current versions is
+        Angular v15 with PrimeNG v15. In case package project is not installed already, use the command below to set
+        it up.</p>
+
+    <pre class="app-code"><code>npm install</code></pre>
+
+    <p>Open Dialog Dynamic Test -> <span>Click</span></p>
+    <button type="button" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show" class="mb-2"></button>
+
+    <p>After successfully installing dependency of the packages, go to cd to the directory,
+        see environment .</p>
+    <p>The application should run at <span class="font-semibold">http://localhost:4200/</span>, you may now start
+        with the development of your application.</p>
+
+    <h5>Important CLI Commands</h5>
+    <p>Following commands are derived from CLI.</p>
+
+    <pre class="app-code">
+        <code>
+        "start": "ng serve --configuration local",
+        "start:staging": "ng serve --configuration staging",
+        "start:dev": "ng serve --configuration development",
+        "build": "ng build",
+        "build:dev": "ng build --configuration development",
+        "build:staging": "ng build --configuration staging",
+        "build:production": "ng build --configuration production --stats-json",
+        "watch": "ng build --watch --configuration development",
+        "stats": "webpack-bundle-analyzer dist/app/stats.json",
+        "test": "ng test",
+        "sass-lint": "./node_modules/sass-lint/bin/sass-lint.js -c src/sass-lint.yml -v -q",
+        "lint": "npm run sass-lint && ng lint"
+        </code>
+    </pre>
+
+    <h4>Structure</h4>
+    <p>Blueprint FE LaaS consists of 3 main parts; the application layout, layout assets and PrimeNG component theme assets.
+        Layout is placed inside the <span class="text-primary font-medium">src/app/layout/backoffice</span> folder,
+        and the assets are in the <span class="text-primary font-medium">src/styles/layout</span> folder.
+    </p>
+
+    <h5>Default Configuration</h5>
+    <p>Initial layout configuration can be defined at the main app component by injecting the <span
+            class="text-primary font-medium">BackofficeLayoutService</span>, this step is optional and only necessary when
+        initially, it is required to configure the layout service with the matching values
+        to avoid sync issues. </p>
+
+    <pre class="app-code">
+        <code>
+            import &#123; Component, OnInit &#125;; from '@angular/core';
+            import &#123; NavigationEnd, Router &#125; from '@angular/router';
+            import &#123; AuthService &#125; from '@core/auth/auth.service';
+            import &#123; SabiLogService &#125; from "@core/logs/sabi-log.service";
+            import &#123; GoogleTagManagerService &#125;; from 'angular-google-tag-manager';
+            import &#123; PrimeNGConfig &#125; from "primeng/api";
+            import &#123; BackOfficeLayoutService &#125; from "@app/layout/backofifce/back-office-layout.service";
+
+            @Component(&#123;
+            selector: 'app-root',
+                templateUrl: './app.component.html',
+            )&#125;
+
+            export class AppComponent implements OnInit &#123;
+
+                    constructor(
+                        private auth: AuthService,
+                        private log: SabiLogService,
+                        private router: Router,
+                        private gtmService: GoogleTagManagerService,
+                        private primengConfig: PrimeNGConfig,
+                        private layoutService: BackOfficeLayoutService
+                    ) &#123; &#125;
+
+
+                ngOnInit(): void  &#123;
+                    this.initPrimeConfig()
+                &#125;
+
+                initPrimeConfig() &#123;
+                    this.primengConfig.ripple = true;
+                    //optional configuration with the default configuration
+                    this.layoutService.config = &#123;
+                        ripple: false, //toggles ripple on and off
+                        inputStyle: 'outlined', //default style for input elements
+                        menuMode: 'static', //layout mode of the menu, valid values are "static" and "overlay"
+                        colorScheme: 'light', //color scheme of the template, valid values are "light" and "dark"
+                        theme: 'lara-light-blue', //default component theme for PrimeNG
+                        scale: 14 //size of the body font size to scale the whole application
+                    &#125;
+                &#125;
+            &#125;
+        </code>
+    </pre>
+
+    <h5>Menu</h5>
+    <p>Menu is a separate component defined in <span class="text-primary font-medium">src/app/layout/backoffice/sidebar-left.service.ts</span>
+        file and based on PrimeNG MenuModel API. In order to define the menuitems,
+        navigate to this file and define your own model as a nested structure.
+    </p>
+
+    <pre class="app-code">
+        <code>
+        import &#123; OnInit &#125; from '@angular/core';
+        import &#123; Injectable, OnInit &#125; from '@angular/core';
+        import &#123; Observable, of, Subject &#125; from 'rxjs';
+        import &#123; menuItem, MenuChangeEvent &#125; from "./model/menu-item.model";
+
+        export class SidebarLeftService implements OnInit &#123;
+            private menuSource = new Subject<`MenuChangeEvent`>();
+            private resetSource = new Subject();
+
+            menuSource$ = this.menuSource.asObservable();
+            resetSource$ = this.resetSource.asObservable();
+
+            model: menuItem[] = [];
+
+            ngOnInit() &#123;
+                this.model = [
+                    &#123;
+                        label: 'Home',
+                        items: [
+                            &#123;
+                                label: 'Dashboard',
+                                icon: 'pi pi-fw pi-home',
+                                routerLink: ['/']
+                            &#125;
+                        ]
+                    &#125;,
+                    //...
+                ];
+            &#125;
+        &#125;
+    </code>
+</pre>
+</div>

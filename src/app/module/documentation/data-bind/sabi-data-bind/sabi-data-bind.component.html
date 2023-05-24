@@ -1,0 +1,29 @@
+<div class="col-12 col-lg-12 col-md-12">
+    <h2>Data Bind</h2>
+    <p>data bind</p>
+    <a [href]="url" target="_blank">Data Bind Design Sytems</a>
+</div>
+<div class="mt-5">
+    <p-card>
+        <div class="grid">
+            <div class="col-12 md:col-4">
+                <label>Credit Card</label>
+            </div>
+            <div class="col-12 md:col-4">
+                <label>KTP</label>
+            </div>
+            <div class="col-12 md:col-4">
+                <label>NPWP</label>
+            </div>
+            <div class="col-12 md:col-4">
+                <span>{{ cc | masking:7:3 }}</span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span>{{ ktp | masking:14:0 }}</span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span>{{ npwp | masking:11:0 }}</span>
+            </div>
+        </div>
+    </p-card>
+</div>

@@ -1,0 +1,95 @@
+<div class="col-12 col-lg-12 col-md-12">
+    <h2>Shimmer Loading</h2>
+    <p>Shimmer Loading</p>
+    <a [href]="url" target="_blank">Shimmer Loading Design Sytems</a>
+</div>
+<div class="mt-5">
+    <p-card>
+        <div class="grid mb-4">
+            <div class="col-12">
+                <label class="mb-3"><h5>Table example</h5></label>
+                <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td><p-skeleton></p-skeleton></td>
+                            <td><p-skeleton></p-skeleton></td>
+                            <td><p-skeleton></p-skeleton></td>
+                            <td><p-skeleton></p-skeleton></td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12 md:col-6">
+                <label class="mb-3"><h5>Card example</h5></label>
+                <div class="border-round border-1 surface-border p-4 surface-card">
+                    <div class="flex mb-3">
+                        <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                        <div>
+                            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height=".5rem"></p-skeleton>
+                        </div>
+                    </div>
+                    <p-skeleton width="100%" height="150px"></p-skeleton>
+                    <div class="flex justify-content-between mt-3">
+                        <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                        <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6">
+                <label class="mb-3"><h5>List example</h5></label>
+                <div class="border-round border-1 surface-border p-4 surface-card">
+                    <ul class="m-0 p-0 list-none">
+                        <li class="mb-3">
+                            <div class="flex">
+                                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                                <div style="flex: 1">
+                                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex">
+                                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                                <div style="flex: 1">
+                                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="mb-3">
+                            <div class="flex">
+                                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                                <div style="flex: 1">
+                                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex">
+                                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                                <div style="flex: 1">
+                                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>

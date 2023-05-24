@@ -1,0 +1,22 @@
+<div class="col-12 col-lg-12 col-md-12">
+    <h2>Image Crop</h2>
+    <p>Image crop are used to perform individual or business actions on upload image.</p>
+</div>
+<div class="mt-5">
+    <p-card>
+        <input type="file" (change)="fileChangeEvent($event)" />
+
+        <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="false"
+                [aspectRatio]="3 / 3"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+
+        <img [src]="croppedImage" style="max-width: 100%;" alt="cropped image"/>
+    </p-card>
+</div>

@@ -1,0 +1,32 @@
+<div class="col-12 col-lg-12 col-md-12">
+    <h2>Date Picker</h2>
+    <p>Date Picker allows for the selection of a single date or a range of dates from a calendar.</p>
+    <a [href]="url" target="_blank">Date Picker Design Sytems</a>
+</div>
+<div class="mt-5">
+    <p-card>
+        <div class="p-fluid grid formgrid">
+            <div class="field col-12 md:col-6">
+                <label>Tanggal</label>
+                <p-calendar class="sabi-datepicker" [(ngModel)]="date" placeholder="DD/MM/YYYY" dateFormat="dd/mm/yy"></p-calendar>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label>Tanggal <i>(selected Range)</i></label>
+                <p-calendar class="sabi-datepicker" [(ngModel)]="dateRange" selectionMode="range" placeholder="DD/MM/YYYY - DD/MM/YYYY" dateFormat="dd/mm/yy"></p-calendar>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label>Tanggal <i>(min date is today)</i></label>
+                <p-calendar class="sabi-datepicker" [minDate]="minDate" [(ngModel)]="dateRangeTwo" selectionMode="range" placeholder="DD/MM/YYYY - DD/MM/YYYY" dateFormat="dd/mm/yy"></p-calendar>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label>Tanggal <i>(month)</i></label>
+                <p-calendar class="sabi-datepicker" view="month" [(ngModel)]="month" placeholder="MM/YYYY" dateFormat="mm/yy"></p-calendar>
+            </div>
+
+            <div class="field col-12 md:col-6">
+                <label>Tanggal <i>(year)</i></label>
+                <p-calendar class="sabi-datepicker" view="year" [(ngModel)]="year" placeholder="YYYY" dateFormat="yy"></p-calendar>
+            </div>
+        </div>
+    </p-card>
+</div>

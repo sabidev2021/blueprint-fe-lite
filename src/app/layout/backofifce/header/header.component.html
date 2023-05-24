@@ -1,0 +1,43 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" href="/">
+        <img [src]="(imgPath +'/logo/logo-sabi.svg')" alt="sahabat-bisnis" width="150" height="auto"/>
+    </a>
+
+    <button #menu_button class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <i class="pi pi-bars"></i>
+    </button>
+
+    <button #topbar_menu_button class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div #topbar_menu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <button class="p-link layout-topbar-button" (click)="showMenuNotif.toggle($event)">
+            <i class="pi pi-bell"></i>
+            <span>Notifikasi</span>
+            <p-overlayPanel #showMenuNotif styleClass="dropmenu-header">
+                <ng-template pTemplate="span">
+                    <app-notification-menu
+                            (click)="$event.stopPropagation();"
+                    >
+                    </app-notification-menu>
+                </ng-template>
+            </p-overlayPanel>
+        </button>
+
+        <button class="p-link layout-topbar-button" (click)="showMenuProfile.toggle($event)">
+            <i class="pi pi-user"></i>
+            <span>Profile</span>
+            <p-overlayPanel #showMenuProfile styleClass="dropmenu-header">
+                <ng-template pTemplate="span">
+                    <a class="flex user_menu--name p-link" [routerLink]="'/manage-profile'">
+                        <i class="pi pi-user mr-2 mt-1"></i> {{username}}
+                    </a>
+                    <a class="flex user_menu--logout" href="#" (click)="logout()">
+                        <i class="pi pi-sign-in mr-2 mt-1"></i> Logout
+                    </a>
+                </ng-template>
+            </p-overlayPanel>
+        </button>
+    </div>
+</div>

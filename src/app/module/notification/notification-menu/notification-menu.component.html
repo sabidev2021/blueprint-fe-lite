@@ -1,0 +1,23 @@
+<div class="notification-menu">
+    <h2>Notifikasi</h2>
+    <p-tabView class="sabi-tabs">
+        <p-tabPanel header="All">
+            <ng-template pTemplate="header">
+                <i class="pi pi-inbox mr-2"></i> All
+            </ng-template>
+            <app-notification-all></app-notification-all>
+        </p-tabPanel>
+        <p-tabPanel header="Read">
+            <ng-template pTemplate="header">
+                <i class="pi pi-check-square mr-2"></i> Read
+            </ng-template>
+            <app-notification-read></app-notification-read>
+        </p-tabPanel>
+        <p-tabPanel header="Unread">
+            <ng-template pTemplate="header">
+                <i class="pi pi-exclamation-circle mr-2"></i> Unread
+            </ng-template>
+            <app-notification-unread></app-notification-unread>
+        </p-tabPanel>
+    </p-tabView>
+</div>

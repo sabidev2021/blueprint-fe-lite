@@ -1,0 +1,9 @@
+/*
+  ===========================
+    BACKGROUND VARIANT SABI
+  ===========================
+*/
+
+@mixin bg-variant($color) {
+  background-color: $color !important;
+}
