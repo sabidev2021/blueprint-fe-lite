@@ -1,8 +1,8 @@
 @import 'variables/variables';
 @import 'mixins/fonts';
 
-@include font-face(Inter, '/assets/backoffice/fonts/Inter/inter-v12-latin-300', 300, normal, eot woff2 woff ttf);
-@include font-face(Inter, '/assets/backoffice/fonts/Inter/inter-v12-latin-regular', 400, normal, eot woff2 woff ttf);
-@include font-face(Inter, '/assets/backoffice/fonts/Inter/inter-v12-latin-500', 500, normal, eot woff2 woff ttf);
-@include font-face(Inter, '/assets/backoffice/fonts/Inter/inter-v12-latin-600',600, normal, eot woff2 woff ttf);
-@include font-face(Inter, '/assets/backoffice/fonts/Inter/inter-v12-latin-700',700, normal, eot woff2 woff ttf);
+@include font-face(Inter, '/assets/fonts/Inter/inter-v12-latin-300', 300, normal, eot woff2 woff ttf);
+@include font-face(Inter, '/assets/fonts/Inter/inter-v12-latin-regular', 400, normal, eot woff2 woff ttf);
+@include font-face(Inter, '/assets/fonts/Inter/inter-v12-latin-500', 500, normal, eot woff2 woff ttf);
+@include font-face(Inter, '/assets/fonts/Inter/inter-v12-latin-600',600, normal, eot woff2 woff ttf);
+@include font-face(Inter, '/assets/fonts/Inter/inter-v12-latin-700',700, normal, eot woff2 woff ttf);

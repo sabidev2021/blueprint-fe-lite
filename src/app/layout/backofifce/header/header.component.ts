@@ -32,7 +32,7 @@ export class HeaderBackofficeComponent implements OnInit {
     @ViewChild('topbar_menu_button') topbarMenuButton!: ElementRef;
     @ViewChild('topbar_menu') menu!: ElementRef;
 
-    @Input() imgPath = "./assets/backoffice/";
+    @Input() imgPath = "./assets/";
     @Input() imgFileName = "/logo/logo-sabi.png";
     @Input() iconUser = this.imgPath + "/icon/avatar/user-dummy.svg";
     @Input() iconBoardTask = "/icon/navbar/board-task.svg";

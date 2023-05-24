@@ -1,4 +1,4 @@
-![Scheme](./src/assets/backoffice/logo/logo-sabi.svg)
+![Scheme](src/assets/logo/logo-sabi.svg)
 
 # BLUEPRINT-FE-LaaS
 
