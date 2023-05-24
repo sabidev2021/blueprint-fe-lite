@@ -8,7 +8,6 @@ import {RouterModule} from '@angular/router';
 import {BackOfficeLayoutRoutingModule} from "@app/layout/backofifce/back-office-layout-routing.module";
 import {HeaderClassicComponent} from "@app/layout/backofifce/header-classic/header-classic.component";
 import {ManageProfileService} from "@app/module/manage-profile/manage-profile.service";
-import {NotificationModule} from '@app/module/notification/notification.module';
 import {TooltipModule} from "primeng/tooltip";
 import {RippleModule} from "primeng/ripple";
 import {SabiMenuItemComponent} from './menu-item/sabi-menu-item/sabi-menu-item.component';
@@ -29,7 +28,6 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
         CommonModule,
         RouterModule,
         BackOfficeLayoutRoutingModule,
-        NotificationModule,
         TooltipModule,
         RippleModule,
         DividerModule,

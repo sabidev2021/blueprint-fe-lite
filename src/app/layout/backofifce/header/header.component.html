@@ -12,19 +12,6 @@
     </button>
 
     <div #topbar_menu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <button class="p-link layout-topbar-button" (click)="showMenuNotif.toggle($event)">
-            <i class="pi pi-bell"></i>
-            <span>Notifikasi</span>
-            <p-overlayPanel #showMenuNotif styleClass="dropmenu-header">
-                <ng-template pTemplate="span">
-                    <app-notification-menu
-                            (click)="$event.stopPropagation();"
-                    >
-                    </app-notification-menu>
-                </ng-template>
-            </p-overlayPanel>
-        </button>
-
         <button class="p-link layout-topbar-button" (click)="showMenuProfile.toggle($event)">
             <i class="pi pi-user"></i>
             <span>Profile</span>
