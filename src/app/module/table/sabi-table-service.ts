@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Borrower} from "@app/module/documentation/table/sabi-table/model/customer.model";
+import {Borrower} from "@app/module/table/model/customer.model";
 import {SabiBaseService} from "@core/base/sabi-base.service";
 import {DbLocalService} from "@core/dblocal/db-local.service";
 import {environment as env} from "@env/environment.dev";

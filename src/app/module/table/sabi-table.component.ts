@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Borrower} from "@app/module/documentation/table/sabi-table/model/customer.model";
-import {SabiTableService} from "@app/module/documentation/table/sabi-table-service";
+import {Borrower} from "@app/module/table/model/customer.model";
+import {SabiTableService} from "@app/module/table/sabi-table-service";
 import {PrimeNGConfig} from "primeng/api";
 import {Table} from "primeng/table";
 import {environment as env} from "@env/environment.dev";

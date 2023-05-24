@@ -27,11 +27,11 @@ const appRoutes: Routes = [
       loadChildren: () => import('./module/input/input.module').then(m => m.InputModule),
       data: {animation: 'input'}
     },
-    {
-        path: 'documentation',
-        loadChildren: () => import('./module/documentation/documentation.module').then(m => m.DocumentationModule),
-        data: {animation: 'dashboard'}
-    },
+  {
+    path: 'table',
+    loadChildren: () => import('./module/table/sabi-table.module').then(m => m.SabiTableModule),
+    data: {animation: 'table'}
+  },
     {
         path: 'manage-profile',
         loadChildren: () => import('./module/manage-profile/manage-profile.module').then(m => m.ManageProfileModule),
