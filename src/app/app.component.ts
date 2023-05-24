@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {AuthService} from '@core/auth/auth.service';
 import {SabiLogService} from "@core/logs/sabi-log.service";
-import {GoogleTagManagerService} from 'angular-google-tag-manager';
 import {PrimeNGConfig} from "primeng/api";
 import {BackOfficeLayoutService} from "@app/layout/backofifce/back-office-layout.service";
 
@@ -17,32 +16,18 @@ export class AppComponent implements OnInit {
         private auth: AuthService,
         private log: SabiLogService,
         private router: Router,
-        private gtmService: GoogleTagManagerService,
         private primengConfig: PrimeNGConfig,
         private layoutService: BackOfficeLayoutService
     ) {
     }
 
     ngOnInit(): void {
-        this.initGTM()
         this.initLogging()
         this.initPrimeConfig()
     }
 
     initLogging() {
         this.log.info(this.auth);
-    }
-
-    initGTM() {
-        this.router.events.forEach(item => {
-            if (item instanceof NavigationEnd) {
-                const gtmTag = {
-                    event: 'page',
-                    pageName: item.url
-                };
-                this.gtmService.pushTag(gtmTag).then(r => r);
-            }
-        }).then(r => r)
     }
 
     initPrimeConfig() {

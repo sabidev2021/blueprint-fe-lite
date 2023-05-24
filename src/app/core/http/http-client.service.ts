@@ -27,7 +27,6 @@ export class HttpClientService {
   }
 
   private initHttpClient(service: string) {
-    this.validateToken()
     this.setDomainUrl(service);
   }
 
@@ -51,13 +50,6 @@ export class HttpClientService {
       case env.services_name.salesDashboardService.title:
         this.domainUrl = env.services_name.salesDashboardService.baseUrl;
         break;
-    }
-  }
-
-  validateToken() {
-    if (this.auth.isTokenExpired()) {
-      console.log("Http service detect token has expired")
-      this.auth.updateToken().then(r => r)
     }
   }
 

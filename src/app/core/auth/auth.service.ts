@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {KeycloakEventType, KeycloakService} from "keycloak-angular";
 import {DbLocalService} from '../dblocal/db-local.service';
 import {SabiLogService} from "@core/logs/sabi-log.service";
 import {environment} from "@env/environment.dev";
@@ -78,35 +77,22 @@ export class AuthService {
     return this._env;
   }
 
-  constructor(private keycloak: KeycloakService, private db: DbLocalService, private log: SabiLogService) {
-    this.keycloak.keycloakEvents$.subscribe({
-      next: (e) => {
-        if (e.type == KeycloakEventType.OnTokenExpired) {
-          console.log('Token has expired need to refresh')
-          if (this.keycloak.isTokenExpired())
-            this.updateToken()
-        }
-      }
-    });
+  constructor(private db: DbLocalService, private log: SabiLogService) {
   }
 
   initializeUserOptions(): void {
-    this._jwtResult = this.getJwtResult()
-    this._user = this.keycloak.getUsername();
-    this._email = this.keycloak.getUsername();
-    this._name = this._jwtResult.name
-    this._roles = this.keycloak.getUserRoles();
-    this._accessAllowed = this._jwtResult;
-    this._beId = this._jwtResult.beId == undefined ? '' : this._jwtResult.beId;
-    this._beName = this._jwtResult.beName == undefined ? '' : this._jwtResult.beName;
-    this._userId = this._jwtResult.sub
-    this._workplaceId = this._jwtResult.workplaceId == undefined ? '' : this._jwtResult.workplaceId;
-    this._verified = this._jwtResult.email_verified;
+    this._jwtResult = '';
+    this._user = 'username';
+    this._email = 'username.email@mailinator.com';
+    this._name = 'user name'
+    this._roles = ['role'];
+    this._accessAllowed = true;
+    this._beId = '';
+    this._beName = '';
+    this._userId = ''
+    this._workplaceId = '';
+    this._verified = '';
     this.db.save(this.ACTIVE_USER, this._user);
-  }
-
-  isAccessAllowed(): boolean {
-    return this._accessAllowed;
   }
 
   saveTokenLocally(token: string) {
@@ -114,33 +100,10 @@ export class AuthService {
     this.initializeUserOptions()
   }
 
-  public async updateToken() {
-    await this.keycloak.updateToken(-1)
-      .then(async (refreshed) => {
-        if (refreshed) {
-          const tk = await this.keycloak.getToken()
-          this.saveTokenLocally(tk)
-          this.log.info("Token was successfully refreshed");
-        } else {
-          console.info("Token is still valid");
-        }
-      }).catch(() => {
-        this.log.warning("Failed to refresh the token, or the session has expired");
-        this.logout('/').then(() => {
-          this.log.info("user has forced to logout")
-        })
-      })
-  }
-
   public login(redirectUrl: string) {
-    this.keycloak.login({
-      redirectUri: redirectUrl,
-    })
+    console.log('redirectUrl : ', redirectUrl);
   }
 
-  public loginDefault(): void {
-    this.keycloak.login();
-  }
 
   public async logout(redirectUrl: string) {
     try {
@@ -153,12 +116,12 @@ export class AuthService {
     } finally {
       this.db.clear()
       this.log.info("Db local has destroyed")
-      await this.keycloak.logout(redirectUrl)
+      console.log('redirectUrl : ', redirectUrl)
     }
   }
 
   public register(): void {
-    this.keycloak.register();
+    console.log('register');
   }
 
   getJwtResult() {
@@ -180,7 +143,7 @@ export class AuthService {
   }
 
   isTokenExpired() {
-    return this.keycloak.isTokenExpired()
+    console.log('token expired');
   }
 
 }

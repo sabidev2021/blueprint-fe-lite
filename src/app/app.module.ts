@@ -1,9 +1,7 @@
-import {APP_INITIALIZER, ErrorHandler, NgModule,} from '@angular/core';
+import {ErrorHandler, NgModule,} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from '@core/auth/auth.service';
-import {initializeKeycloak} from "@core/auth/keycloak.init";
-import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HttpErrorHandler} from "@core/http/http-error-handler.service";
 import {HttpClientService} from "@core/http/http-client.service";
@@ -24,19 +22,12 @@ import {environment} from "@env/environment.dev";
             warnOnNgModelWithFormControl: 'never'
         }),
         AppRoutingModule,
-        KeycloakAngularModule,
         HttpClientModule,
         BackOfficeLayoutModule
     ],
     providers: [
         AuthService,
         HttpClient,
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeKeycloak,
-            multi: true,
-            deps: [KeycloakService],
-        },
         HttpClientService,
         HttpErrorHandler,
         {
