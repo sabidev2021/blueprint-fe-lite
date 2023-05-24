@@ -23,6 +23,7 @@ export class SidebarLeftService implements OnInit {
         {
             label: 'UI Components',
             items: [
+                {label: 'Input', icon: 'pi pi-fw pi-clone', routerLink: ['/input']},
                 {label: 'Accordion', icon: 'pi pi-fw pi-clone', routerLink: ['/documentation/accordion']},
                 {label: 'Alert', icon: 'pi pi-fw pi-clone', routerLink: ['/documentation/alerts']},
                 {label: 'Avatar', icon: 'pi pi-fw pi-clone', routerLink: ['/documentation/avatar']},

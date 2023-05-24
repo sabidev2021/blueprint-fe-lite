@@ -23,6 +23,11 @@ const appRoutes: Routes = [
         data: {animation: 'dashboard'}
     },
     {
+      path: 'input',
+      loadChildren: () => import('./module/input/input.module').then(m => m.InputModule),
+      data: {animation: 'input'}
+    },
+    {
         path: 'documentation',
         loadChildren: () => import('./module/documentation/documentation.module').then(m => m.DocumentationModule),
         data: {animation: 'dashboard'}
