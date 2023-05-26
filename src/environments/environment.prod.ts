@@ -48,6 +48,15 @@ export const environment = {
       title: '',
       baseUrl: '',
     }
+  },
+  firebaseConfig: {
+    apiKey: "AIzaSyCd2BPoMP9EnO37M8x22e7q5FrrBfPDIbM",
+    authDomain: "sabi-dev-test.firebaseapp.com",
+    projectId: "sabi-dev-test",
+    storageBucket: "sabi-dev-test.appspot.com",
+    messagingSenderId: "138002012724",
+    appId: "1:138002012724:web:f3ba94552a54f616908861",
+    measurementId: "G-JPFS2B2W47"
   }
 };
 

@@ -11,6 +11,10 @@ import {AppErrorHandler} from "@core/handler/app-error-handler";
 import {BackOfficeLayoutModule} from "@app/layout/backofifce/back-office-layout.module";
 import {BackOfficeLayoutService} from "@app/layout/backofifce/back-office-layout.service";
 import {environment} from "@env/environment.dev";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+
 
 @NgModule({
     declarations: [
@@ -23,7 +27,10 @@ import {environment} from "@env/environment.dev";
         }),
         AppRoutingModule,
         HttpClientModule,
-        BackOfficeLayoutModule
+        BackOfficeLayoutModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireStorageModule
     ],
     providers: [
         AuthService,

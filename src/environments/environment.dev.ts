@@ -77,6 +77,15 @@ export const environment = {
     dropdown: 'https://www.figma.com/file/oMZVXvbVmSbTwQFZkN1sY6/Design-System---Sabi-LaaS?node-id=1742%3A3285&t=9HeVqyUboFtk0eDn-0',
     datepicker: 'https://www.figma.com/file/oMZVXvbVmSbTwQFZkN1sY6/Design-System---Sabi-LaaS?node-id=1793%3A4296&t=9HeVqyUboFtk0eDn-0',
   },
+  firebaseConfig: {
+    apiKey: "AIzaSyCd2BPoMP9EnO37M8x22e7q5FrrBfPDIbM",
+    authDomain: "sabi-dev-test.firebaseapp.com",
+    projectId: "sabi-dev-test",
+    storageBucket: "sabi-dev-test.appspot.com",
+    messagingSenderId: "138002012724",
+    appId: "1:138002012724:web:f3ba94552a54f616908861",
+    measurementId: "G-JPFS2B2W47"
+  }
 };
 
 /*
