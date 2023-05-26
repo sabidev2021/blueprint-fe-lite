@@ -8,7 +8,7 @@ import {FormsModule} from "@angular/forms";
 import {DropdownModule} from "primeng/dropdown";
 import {SliderModule} from "primeng/slider";
 import {ProgressBarModule} from "primeng/progressbar";
-import {SabiTableService} from "@app/module/table/sabi-table-service";
+import {SabiTableService} from "@app/module/table/service/sabi-table-service";
 import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
