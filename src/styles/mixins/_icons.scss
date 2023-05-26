@@ -1,0 +1,166 @@
+/*
+  ==================
+      ICONS SABI
+  ==================
+*/
+
+$relative_path: "../../assets/backoffice/icon/";
+
+$icons: (
+  trash: "trash.svg",
+  cross: "cross.svg",
+  save-diskette: "diskette.svg",
+  paper-line: "paper.svg"
+);
+
+@mixin icons-list($map) {
+  @each $icon-name, $icon in $map {
+    @if not map-has-key($map, $icon-name) {
+      @warn "'#{$icon-name}' is not a valid icon name";
+    } @else {
+      &--#{$icon-name}::before {
+        content: $icon;
+      }
+    }
+  }
+}
+
+.search {
+  background-image: url($relative_path +'general/search.svg');
+  background-repeat: no-repeat;
+}
+
+.pencil {
+  background-image: url($relative_path + 'general/pencil.svg');
+  background-repeat: no-repeat;
+}
+
+.trash {
+  background-image: url($relative_path + 'general/trash.svg');
+  background-repeat: no-repeat;
+}
+
+.trianggle-bottom {
+  background-image: url($relative_path + 'general/triangle-bottom-black.svg');
+  background-repeat: no-repeat;
+}
+
+.trianggle-bottom-white {
+  background-image: url($relative_path + 'general/triangle-bottom-white.svg');
+  background-repeat: no-repeat;
+}
+
+.plus {
+  background-image: url($relative_path + 'general/plus.svg');
+  background-repeat: no-repeat;
+}
+
+.paperline {
+  background-image: url($relative_path + 'general/paper-line.svg');
+  background-repeat: no-repeat;
+}
+
+.paperline-green {
+  background-image: url($relative_path + 'general/paper-line-green.svg');
+  background-repeat: no-repeat;
+}
+
+.diskete {
+  background-image: url($relative_path + 'general/save-disket.svg');
+  background-repeat: no-repeat;
+}
+
+.chainlink {
+  background-image: url($relative_path + 'general/chainlink.svg');
+  background-repeat: no-repeat;
+}
+
+.date {
+  background-image: url($relative_path + 'general/date.svg');
+  background-repeat: no-repeat;
+}
+
+.draft {
+  background-image: url($relative_path + 'general/draft.svg');
+  background-repeat: no-repeat;
+}
+
+.doc-download {
+  background-image: url($relative_path + 'general/doc-download.svg');
+  background-repeat: no-repeat;
+}
+
+.cross-cancel {
+  background-image: url($relative_path + 'general/cross-cancel.svg');
+  background-repeat: no-repeat;
+}
+
+.cross-cancel-secondary {
+  background-image: url($relative_path + 'general/rounded-cross.svg');
+  background-repeat: no-repeat;
+}
+
+.accept {
+  background-image: url($relative_path + 'general/accept.svg');
+  background-repeat: no-repeat;
+}
+
+.accept-circle-secondary {
+  background-image: url($relative_path + 'general/accept-secondary.svg');
+  background-repeat: no-repeat;
+}
+
+.messages {
+  background-image: url($relative_path + 'general/messages.svg');
+  background-repeat: no-repeat;
+}
+
+.whatsapp {
+  background-image: url($relative_path + 'general/whatsapp.svg');
+  background-repeat: no-repeat;
+}
+
+.mail {
+  background-image: url($relative_path + 'general/mail.svg');
+  background-repeat: no-repeat;
+}
+
+.credit-card {
+  background-image: url($relative_path + 'general/credit-card.svg');
+  background-repeat: no-repeat;
+}
+
+.chevron-left-group {
+  background-image: url($relative_path + 'pagination/chevron-left-group.svg');
+  background-repeat: no-repeat;
+}
+
+.chevron-right-group {
+  background-image: url($relative_path + 'pagination/chevron-right-group.svg');
+  background-repeat: no-repeat;
+}
+
+.chevron-left {
+  background-image: url($relative_path + 'pagination/chevron-left.svg');
+  background-repeat: no-repeat;
+}
+
+.chevron-right {
+  background-image: url($relative_path + 'pagination/chevron-right.svg');
+  background-repeat: no-repeat;
+}
+
+.arrow-right {
+  background-image: url($relative_path + 'general/arrow-right.svg');
+  background-repeat: no-repeat;
+}
+
+.eye {
+  background-image: url($relative_path + 'general/eye.svg');
+  background-repeat: no-repeat;
+}
+
+.arrow-bottom-solid {
+  background-image: url($relative_path + 'general/arrow-bottom-solid.svg');
+  background-repeat: no-repeat;
+}

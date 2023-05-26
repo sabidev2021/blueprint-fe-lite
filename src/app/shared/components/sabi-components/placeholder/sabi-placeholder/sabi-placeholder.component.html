@@ -1,0 +1,64 @@
+<div class="sabi-placeholder">
+    <div class="row">
+        <div class="col-4">
+            <img [src]="(imgPath + imageName + '.svg')" class="placeholder-img" alt="placeholder-{{ imageName }}"/>
+            <span class="subheading-placeholder">
+                <p class="mt-4">{{ subTitle }}</p>
+            </span>
+        </div>
+        <div class="col-8 placeholder-info">
+            <h2 class="heading-placeholder mb-2">{{ title }}</h2>
+            <div class="placeholder-text" *ngIf="description.length > 0">
+                <p class="p-0 adjust-width">{{ description }}</p>
+            </div>
+            <div *ngIf="dotText.length > 0" class="d-flex flex-column">
+                <p><b class="dot"></b>{{dotText}}</p>
+                <p><b class="dot"></b>{{dotText2}}</p>
+            </div>
+            <div class="placeholder-text mb-2" *ngIf="description === ''  && title !== ''">
+                <svg width="310" height="8" viewBox="0 0 310 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect opacity="0.6" width="310" height="8" rx="3" fill="#42638E"/>
+                </svg>
+            </div>
+            <h2 *ngIf="title2 !== ''" class="heading-placeholder mb-2">{{ title2 }}</h2>
+            <div *ngIf="description2 !== ''" class="placeholder-text">
+                <p class="p-0 adjust-width">{{ description2 }} </p>
+            </div>
+            <div class="placeholder-text mb-2" *ngIf="description2 === '' && title2 !== ''">
+                <svg width="310" height="8" viewBox="0 0 310 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect opacity="0.6" width="310" height="8" rx="3" fill="#42638E"/>
+                </svg>
+            </div>
+            <h2 *ngIf="title3 !== ''" class="heading-placeholder mb-2">{{ title3 }}</h2>
+            <div *ngIf="description3 !== ''" class="placeholder-text">
+                <p class="p-0 adjust-width">{{ description3 }} </p>
+            </div>
+            <div class="placeholder-text" *ngIf="description3 === '' && title3 !== ''">
+                <svg width="310" height="8" viewBox="0 0 310 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect opacity="0.6" width="310" height="8" rx="3" fill="#42638E"/>
+                </svg>
+            </div>
+            <div class="row placeholder-action">
+                <div class="col-12 d-inline-flex">
+                    <div *ngIf="ctaLeftName.length > 0 && href.length === 0">
+                        <div class="cta-placeholder__menu d-flex justify-content-start mt-5" *ngIf="href.length <= 0">
+                            <button (click)="onButtonClick()"
+                                    class="btn btn-placeholder btn--primary btn-font-size--12 d-flex"> {{ ctaLeftName }} </button>
+                        </div>
+                    </div>
+                    <div *ngIf="ctaRightName.length > 0">
+                        <div class="cta-placeholder__menu d-flex justify-content-start mt-5" *ngIf="href.length <= 0">
+                            <button (click)="onButtonClick()"
+                                    class="btn btn-placeholder btn--primary btn-font-size--12 d-flex"> {{ ctaRightName }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-placeholder__menu d-flex justify-content-start mt-5"
+                 *ngIf="href.length > 0 && ctaLeftName.length > 0">
+                <a [routerLink]="[ href ]" [queryParams]="query"
+                   class="btn btn--primary btn-font-size--12 d-flex"> {{ ctaLeftName}} </a>
+            </div>
+        </div>
+    </div>
+</div>

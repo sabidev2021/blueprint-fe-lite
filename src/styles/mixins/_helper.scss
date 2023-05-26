@@ -1,0 +1,21 @@
+/*
+  =======================
+      Helper SABI
+  =======================
+*/
+
+$width-sizes: 30, 50, 120, 150;
+
+@each $size in $width-sizes {
+  .mx-w-#{$size} {
+    width: #{$size}px;
+    max-width: #{$size}px;
+  }
+}
+
+@each $size in $width-sizes {
+  .mx-h-#{$size} {
+    height: #{$size}px;
+    max-height: #{$size}px;
+  }
+}

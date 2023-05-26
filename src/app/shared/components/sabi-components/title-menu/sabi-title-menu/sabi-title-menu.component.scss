@@ -1,0 +1,19 @@
+@import "src/styles/variables/variables";
+
+.heading-module {
+  .title {
+    font-style: normal;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-secondary;
+    line-height: 22px;
+    margin-bottom: 8px;
+  }
+
+  .module-heading__sub {
+    font-style: normal;
+    font-weight: $font-weight-300;
+    font-size: $font-size-tertiary;
+    color: $sc-light-black;
+    line-height: 16px;
+  }
+}

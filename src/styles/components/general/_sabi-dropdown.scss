@@ -1,0 +1,18 @@
+@import "variables/variables";
+
+.sabi-dropdown {
+  > .p-dropdown {
+    border-radius: 4px;
+    border-color: #E2E8F0;
+    &:hover {
+      border-color: #94A3B8;
+    }
+    @media screen and (min-width: 600px) {
+      min-width: 256px;
+    }
+
+    @media screen and (max-width: 599px) {
+      min-width: 100%;
+    }
+  }
+}

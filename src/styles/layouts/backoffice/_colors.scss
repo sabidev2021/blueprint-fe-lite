@@ -1,0 +1,18 @@
+@import '../../variables/variables';
+@import '../../mixins/colors';
+
+.color-primary {
+  @include colors-variants($color-primary);
+}
+
+.color-secondary {
+  @include colors-variants($color-secondary);
+}
+
+.color-positive {
+  @include colors-variants($color-positive);
+}
+
+.color-negative {
+  @include colors_variants($color-negative);
+}

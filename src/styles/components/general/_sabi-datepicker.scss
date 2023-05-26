@@ -1,0 +1,19 @@
+@import 'variables/variables';
+
+.sabi-datepicker {
+  > .p-calendar {
+    > .p-datepicker {
+      table {
+        td > span.p-highlight {
+          background: $primary-color-50;
+          color: $primary-color-500;
+          border-radius: 4px;
+        }
+
+        td.p-datepicker-today > span {
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

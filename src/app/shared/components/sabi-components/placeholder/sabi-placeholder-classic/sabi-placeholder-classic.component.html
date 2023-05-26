@@ -1,0 +1,44 @@
+<div class="sabi-payment-placeholder mt-4">
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center mb-0">
+                <img alt="payment-ilustration"
+                     class="mb-0"
+                     height="200"
+                     src="assets/backoffice/icon/general/pendanaan.svg"
+                     width="200"
+                />
+            </div>
+            <div class="font-weight-normal mb-1 mt-0" *ngIf="isAcceptedDocStatus(docStatus!)">
+                <div class="cta-placeholder-single" *ngIf="isShowPaymentCta; else senderInfo">
+                    <p class="heading-payment text-center">
+                        Kamu belum memiliki histori Pembayaran
+                    </p>
+                    <p class="heading-payment__sub text-center font-weight-light">
+                        Yuk bayar Tagihanmu sekarang!
+                    </p>
+                    <button (click)="onClickPayNow()" class="btn btn--primary btn-paynow btn-font-size--12">
+                        Bayar Tagihan Sekarang
+                    </button>
+                </div>
+                <ng-template #senderInfo>
+                    <div class="cta-placeholder-single">
+                        <p class="heading-payment text-center">
+                            Mitra bisnismu belum melakukan pembayaran
+                        </p>
+                        <p class="heading-payment__sub text-center">Silahkan hubungi mitra bisnismu untuk segera
+                            melakukan pembayaran <br/> sebelum jatuh tempo</p>
+                    </div>
+                </ng-template>
+            </div>
+            <div class="cta-placeholder-single" *ngIf="!isAcceptedDocStatus(docStatus!)">
+                <p class="heading-payment text-center">
+                    Kamu belum memiliki histori Pembayaran
+                </p>
+                <p class="heading-payment__sub text-center font-weight-light">
+                    Silahkan setujui tagihan terlebih dahulu
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

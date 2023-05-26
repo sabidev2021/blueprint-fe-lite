@@ -1,0 +1,43 @@
+<div class="sabi-content-file-transfer" [ngClass]="renderContentClass">
+    <button type="button"
+            (click)="onTriggerInput()"
+            [ngClass]="isRenderErorrAndLoading "
+            mat-stroked-button
+    >
+        <div *ngIf="loader; else isLoadingFalse" class="text-loader">
+            Loading...
+        </div>
+        <ng-template #isLoadingFalse>
+            <img [ngClass]="retrievedImage ? 'icon-file__extension mr-1' : 'icon-file__uploader mr-1'"
+                 [src]="retrievedImage ? renderIconExtension(fileIcon) : uploadIcon"
+                 alt="icon-file"
+                 width="25"
+            />
+            <span [ngClass]="isRenderHeadingFileTransfer">
+                {{ retrievedImage ? 'Terunggah' : title }}
+            </span>
+            <input (change)="onSelectFile($event)"
+                   [accept]="accept"
+                   [name]="inputName +'-'+ inputIndex"
+                   hidden
+                   type="file"
+            />
+        </ng-template>
+    </button>
+    <a class="sabi-file__downloader"
+        [ngClass]="featureDownload != false ? '' : 'd-none'"
+        (click)="onDownloadFile()"
+        *ngIf="isDisableDownloader"
+    >
+        <span class="sabi-file__downloader__headings">Unduh</span>
+    </a>
+</div>
+<div *ngIf="isDeleteAction" class="cta-action-remove">
+    <span (click)="onRemoveFile()" class="badge-rounded">
+        <svg fill="none" height="8" viewBox="0 0 9 8" width="9" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M4.912 3.984L8.144 8H6.576L4.144 4.96L1.728 8H0.144L3.376 3.984L0.336 0.208H1.904L4.144 3.04L6.384 0.208H7.968L4.912 3.984Z"
+                fill="white"/>
+        </svg>
+    </span>
+</div>

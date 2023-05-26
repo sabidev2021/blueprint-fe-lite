@@ -1,0 +1,49 @@
+<!--<section class="container-modal">-->
+<!--    <div class="ilustration-content"-->
+<!--         *ngIf="pathImg.length > 0"-->
+<!--         style="{{ data.style }}"-->
+<!--    >-->
+<!--        <img-->
+<!--            [src]="pathImg"-->
+<!--            alt="modal-ilustrations"-->
+<!--        >-->
+<!--    </div>-->
+<!--    <h1 mat-dialog-title-->
+<!--        [innerHtml]="titleModal"-->
+<!--    >-->
+<!--        {{ data.dialogHeader }}-->
+<!--    </h1>-->
+<!--    <mat-dialog-content-->
+<!--        *ngIf="contentModal.length > 0"-->
+<!--        class="modal-content"-->
+<!--        [innerHtml]="contentModal"-->
+<!--    >-->
+<!--    </mat-dialog-content>-->
+<!--    <mat-dialog-actions class="modal-cta">-->
+<!--        <div class="row multiple-cta" *ngIf="type =='multiple-cta'">-->
+<!--            <div class="col-sm-6 col-md-6 col-lg-6 p-0">-->
+<!--                <button class="btn btn-cta btn&#45;&#45;default space-right btn-font-size&#45;&#45;12"-->
+<!--                        (click)="closeDialog()"-->
+<!--                >-->
+<!--                    {{ data.cancelButtonLabel }}-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="col-sm-6 col-md-6 col-lg-6 p-0">-->
+<!--                <button class="btn btn&#45;&#45;primary btn-cta space-left btn-font-size&#45;&#45;12"-->
+<!--                        (click)="handleDialogSubmit()"-->
+<!--                        [mat-dialog-close]="state.isAsyncOperationRunning$ | async"-->
+<!--                >-->
+<!--                    {{ data.confirmButtonLabel }}-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="single-cta" *ngIf="type === 'single-cta'">-->
+<!--            <button class="btn btn&#45;&#45;primary btn-cta btn-font-size&#45;&#45;12"-->
+<!--                    (click)="handleDialogSubmit()"-->
+<!--                    [mat-dialog-close]="state.isAsyncOperationRunning$ | async"-->
+<!--            >-->
+<!--&lt;!&ndash;                {{ data.confirmButtonLabel }}&ndash;&gt;-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </mat-dialog-actions>-->
+<!--</section>-->

@@ -1,0 +1,35 @@
+@import "../styles/variables/variables";
+
+$bg-notifier-danger: $sc-claret-red-light;
+
+.sabi-danger-notifier {
+  display: flex;
+  flex-direction: row;
+  background-color: $bg-notifier-danger;
+  border-radius: 4px;
+  min-height: 45px;
+  width: 100%;
+  height: auto;
+
+  .panel-notifier {
+    display: flex;
+    align-items: center;
+  }
+
+  img.img-notifier {
+    position: relative;
+    top: -1px;
+  }
+
+  p.description-notifier {
+    display: contents;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-tertiary;
+    line-height: 22px;
+    color: $sc-light-black;
+    margin-left: -5px;
+  }
+}
+
