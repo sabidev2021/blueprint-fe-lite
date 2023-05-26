@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {environment as env} from "@env/environment.dev";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable()
@@ -7,11 +6,11 @@ import {HttpClient} from "@angular/common/http";
 export class SabiTableService {
     constructor(
       private http: HttpClient) {
-        // super(env.services_name.mockoonBorrowerService.title, 'borrower', httpClient, db);
     }
 
     public getData() {
-        return this.http.get<any>(env.services_name.mockoonBorrowerService.baseUrl);
-    }
+      const baseUrl = 'https://63180c0cf6b281877c61c3fa.mockapi.io/borrower';
+      return this.http.get<any>(baseUrl);
+  }
 
 }
