@@ -1,10 +1,7 @@
 <div class="col-12 col-lg-12 col-md-12 mb-5">
     <h2>Table</h2>
-    <p>Use table to to display simple datasets that do not need to be filtered or edited.</p>
-    <a [href]="url" target="_blank">Table Design Sytems</a>
 </div>
-
-<p-table #dt [value]="borrowers"
+<p-table #dt [value]="tableData"
          [(selection)]="selectedCustomers"
          dataKey="id"
          [rowHover]="true"
