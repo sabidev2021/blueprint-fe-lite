@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {collection, getDocs, getFirestore, query, where} from "firebase/firestore";
 
 @Injectable({
@@ -7,8 +7,7 @@ import {collection, getDocs, getFirestore, query, where} from "firebase/firestor
 export class QueryService {
   firestore = getFirestore();
 
-  constructor(
-  ) {
+  constructor() {
   }
 
   async queryLessThan(path: string, key: string, value: string | number | boolean) {
