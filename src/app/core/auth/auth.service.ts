@@ -2,6 +2,14 @@ import {Injectable} from '@angular/core';
 import {DbLocalService} from '../dblocal/db-local.service';
 import {SabiLogService} from "@core/logs/sabi-log.service";
 import {environment} from "@env/environment.dev";
+import {User} from "@core/auth/user";
+import {Observable, map, of} from "rxjs";
+
+const USERS = [
+  new User(1, 'dendy', 'admin123', 'ADMIN'),
+  new User(2, 'user', 'user', 'USER'),
+];
+let usersObservable = of(USERS);
 
 @Injectable({
   providedIn: 'root'
@@ -146,4 +154,54 @@ export class AuthService {
     console.log('token expired');
   }
 
+  // baru boss
+  private redirectUrl: string = '/';
+  private loginUrl: string = '/login';
+  private isloggedIn: boolean = false;
+  private loggedInUser!: User;
+
+  getAllUsers(): Observable<User[]> {
+    return usersObservable;
+  }
+
+  isUserAuthenticated(username: string, password: string): Observable<boolean> {
+    return this.getAllUsers().pipe(map((users: any) => {
+      console.log('users : ', users);
+      console.log('mahesh');
+      console.log('m123');
+      let user = users.find(
+        (user:any) => user.username == username && user.password == password
+      );
+      console.log(user, 'username : ', username);
+      console.log(user, 'password : ', password);
+      if (user) {
+        console.log('user : ', user);
+        this.isloggedIn = true;
+        this.loggedInUser = user;
+      } else {
+        console.log('else user : ', user);
+        this.isloggedIn = false;
+      }
+      return this.isloggedIn;
+    }));
+  }
+  isUserLoggedIn(): boolean {
+    return this.isloggedIn;
+  }
+  getRedirectUrl(): string {
+    return this.redirectUrl;
+  }
+  setRedirectUrl(url: string): void {
+    this.redirectUrl = url;
+  }
+  getLoginUrl(): string {
+    return this.loginUrl;
+  }
+  getLoggedInUser(): User {
+    return this.loggedInUser;
+  }
+  logoutUser(): void {
+    localStorage.clear();
+    this.isloggedIn = false;
+  }
 }

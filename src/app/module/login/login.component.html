@@ -1,0 +1,9 @@
+<h3>Login Form</h3>
+<div *ngIf="invalidCredentialMsg" style="color:red;font-size: 20px">{{invalidCredentialMsg}}</div>
+<div>
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+    <p>User Name: <input formControlName="username"></p>
+    <p>Password: <input type="password" formControlName="password"></p>
+    <p><button type="submit">Submit</button></p>
+  </form>
+</div>

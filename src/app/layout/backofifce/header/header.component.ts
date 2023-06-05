@@ -1,12 +1,12 @@
 import {Component, HostListener, Input, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger,} from '@angular/animations';
 import {AuthService} from "@core/auth/auth.service";
-import {environment} from "@env/environment.dev";
 import {Location} from "@angular/common";
 import {ManageProfileService} from "@app/module/manage-profile/manage-profile.service";
 import {DbLocalService} from "@core/dblocal/db-local.service";
 import {DashboardTrackerService} from "@app/module/dashboard/services/dashboard-tracker.service";
 import {BackOfficeLayoutService} from "@app/layout/backofifce/back-office-layout.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'header-backoffice',
@@ -49,6 +49,7 @@ export class HeaderBackofficeComponent implements OnInit {
         private profile: ManageProfileService,
         private db: DbLocalService,
         private tracker: DashboardTrackerService,
+        private router: Router,
         public layoutService: BackOfficeLayoutService,
     ) {
     }
@@ -62,12 +63,14 @@ export class HeaderBackofficeComponent implements OnInit {
     }
 
     public logout() {
-        this.auth.logout(`${environment.services_name.landingService.baseUrl}`)
-            .then(r => r)
-            .catch(() => {
-                    this.tracker.onLogoutMessage({message: 'Oops terjadi kesalahan sistem'})
-                }
-            )
+      this.auth.logoutUser();
+      this.router.navigate([ this.auth.getLoginUrl() ]);
+      // this.auth.logout(`${environment.services_name.landingService.baseUrl}`)
+        //     .then(r => r)
+        //     .catch(() => {
+        //             this.tracker.onLogoutMessage({message: 'Oops terjadi kesalahan sistem'})
+        //         }
+        //     )
     }
 
     private getUsername() {

@@ -10,6 +10,7 @@ const appRoutes: Routes = [
     {
         path: '',
         loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard],
         data: {animation: ''}
     },
     {
@@ -20,7 +21,13 @@ const appRoutes: Routes = [
     {
         path: 'dashboard',
         loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard],
         data: {animation: 'dashboard'}
+    },
+    {
+      path: 'login',
+      loadChildren: () => import('./module/login/login.module').then(m => m.LoginModule),
+      data: {animation: 'login'}
     },
     {
       path: 'input',

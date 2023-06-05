@@ -14,6 +14,7 @@ import {environment} from "@env/environment.dev";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {LoggedinService} from "@core/auth/logged-in.service";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
         {
             provide: 'googleTagManagerId',
             useValue: environment.analytics.gtm.code
-        }
+        },
+        LoggedinService
     ],
     bootstrap: [AppComponent]
 })

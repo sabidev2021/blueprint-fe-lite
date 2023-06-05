@@ -4,6 +4,7 @@ import {AuthService} from '@core/auth/auth.service';
 import {SabiLogService} from "@core/logs/sabi-log.service";
 import {PrimeNGConfig} from "primeng/api";
 import {BackOfficeLayoutService} from "@app/layout/backofifce/back-office-layout.service";
+import {LoggedinService} from "@core/auth/logged-in.service";
 
 @Component({
     selector: 'app-root',
@@ -12,12 +13,15 @@ import {BackOfficeLayoutService} from "@app/layout/backofifce/back-office-layout
 
 export class AppComponent implements OnInit {
 
+    isLoggedIn!: boolean;
+
     constructor(
         private auth: AuthService,
         private log: SabiLogService,
         private router: Router,
         private primengConfig: PrimeNGConfig,
-        private layoutService: BackOfficeLayoutService
+        private layoutService: BackOfficeLayoutService,
+        public loggedInService: LoggedinService,
     ) {
     }
 
@@ -41,5 +45,22 @@ export class AppComponent implements OnInit {
             theme: 'lara-light-blue',         //default component theme for PrimeNG
             scale: 14                           //size of the body font size to scale the whole application
         };
+    }
+
+    login(): void {
+      console.log('login')
+      this.loggedInService.login()
+        .subscribe((isLoggedIn) => {
+          this.isLoggedIn = isLoggedIn;
+          this.router.navigate(['/login']);
+        });
+    }
+
+    logout(): void {
+      this.loggedInService.logout()
+        .subscribe((isLoggedIn) => {
+          this.isLoggedIn = isLoggedIn;
+          this.router.navigate(['/']);
+        });
     }
 }
