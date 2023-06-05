@@ -1,5 +1,4 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_SNACK_BAR_DATA, MatSnackBar} from "@angular/material/snack-bar";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sabi-toast',
@@ -7,14 +6,5 @@ import {MAT_SNACK_BAR_DATA, MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./sabi-toast.component.scss']
 })
 export class SabiToastComponent {
-
-  constructor(
-      @Inject(MAT_SNACK_BAR_DATA) public data: string,
-      public snackBar: MatSnackBar
-  ) { }
-
-  public dismissToast() :void {
-    this.snackBar.dismiss()
-  }
 
 }

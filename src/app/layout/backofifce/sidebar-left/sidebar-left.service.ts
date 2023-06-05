@@ -22,7 +22,7 @@ export class SidebarLeftService implements OnInit {
             ]
         },
         {
-            label: 'Research',
+            label: 'Optical Character Recognition',
             items: [
                 {label: 'Ocr', icon: 'pi pi-fw pi-clone', routerLink: ['/ocr']},
             ]

@@ -1,1 +1,222 @@
-<p>sabi-ocr works!</p>
+<div class="col-12">
+    <app-sabi-breadcrumbs></app-sabi-breadcrumbs>
+    <h2>Optical Character Recognition ( OCR )</h2>
+    <p>Optical Character Recognition ( OCR ) Translation is used to image optical processing to extracting a image to
+        text.</p>
+</div>
+<div class="col-12 ocr-container">
+    <div class="grid live-interface-core mt-4">
+        <div class="col-7 pr-6">
+            <app-sabi-ocr-uploader
+                    (onClear)="onUploadClear()"
+                    (onErrorUpload)="onErrorUploadFinish($event)"
+                    (onFinishUpload)="onLogoUploadFinish($event)"
+                    [serviceName]="serviceName"
+            >
+            </app-sabi-ocr-uploader>
+        </div>
+        <div class="col-5">
+            <h5 class="mb-5">Extraction Data Kartu Tanda Penduduk ( KTP )</h5>
+            <div class="grid mt-3">
+                <div class="col-6">
+                    <div class="panel-extracted-data">
+                        <div class="card">
+                            <div class="field">
+                                <label for="nik">NIK</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="nik"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="nik"
+                                           pInputText
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="name">Nama</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="name"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="name"
+                                           pInputText
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="birth-date">Tempat / Tanggal Lahir</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="birth_date"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="birth-date"
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="gender">Jenis Kelamin</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="gender"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="gender"
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="blood_type">Golongan Darah</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="blood_type"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="blood_type"
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="rt">RT / RW</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="rt_rw"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="rt"
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="village">Kel / Desa</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="village"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="village"
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="subdistrict">Kecamatan</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="subdistrict"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="subdistrict"
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="field">
+                        <label for="religion">Agama</label>
+                        <ng-container *ngIf="!isLoading; else isHaveLoading">
+                            <input [(ngModel)]="religion"
+                                   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                   id="religion"
+                                   type="text"
+                            />
+                        </ng-container>
+                        <ng-template #isHaveLoading>
+                            <p-skeleton width="75%"></p-skeleton>
+                        </ng-template>
+                    </div>
+                    <div class="field">
+                        <label for="marital status">Status Perkawinan</label>
+                        <ng-container *ngIf="!isLoading; else isHaveLoading">
+                            <input [(ngModel)]="martial_status"
+                                   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                   id="marital status"
+                                   type="text"
+                            />
+                        </ng-container>
+                        <ng-template #isHaveLoading>
+                            <p-skeleton width="75%"></p-skeleton>
+                        </ng-template>
+                    </div>
+                    <div class="field">
+                        <label for="work">Pekerjaan</label>
+                        <ng-container *ngIf="!isLoading; else isHaveLoading">
+                            <input [(ngModel)]="work"
+                                   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                   id="work"
+                                   type="text"
+                            />
+                        </ng-container>
+                        <ng-template #isHaveLoading>
+                            <p-skeleton width="75%"></p-skeleton>
+                        </ng-template>
+                    </div>
+                    <div class="field">
+                        <label for="citizenship">Kewarganegaraan</label>
+                        <ng-container *ngIf="!isLoading; else isHaveLoading">
+                            <input [(ngModel)]="citizenship"
+                                   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                   id="citizenship"
+                                   type="text"
+                            />
+                        </ng-container>
+                        <ng-template #isHaveLoading>
+                            <p-skeleton width="75%"></p-skeleton>
+                        </ng-template>
+                    </div>
+                    <div class="field">
+                        <label for="valid-until">Berlaku Hingga</label>
+                        <ng-container *ngIf="!isLoading; else isHaveLoading">
+                            <input [(ngModel)]="valid_until"
+                                   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                   id="valid-until"
+                                   type="text"
+                            />
+                        </ng-container>
+                        <ng-template #isHaveLoading>
+                            <p-skeleton width="75%"></p-skeleton>
+                        </ng-template>
+                    </div>
+                </div>
+                <p>When upload image it will create preview and converting by service OCR to detect text in the
+                    image.</p>
+                <p [ngClass]="!isValidKtp ? 'mt-1 block text-center text-red-400' : 'hidden'">File not valid a identity
+                    ID ( KTP ), Please an input a valid files</p>
+            </div>
+            <div [ngClass]="resultText !== '' && resultText !== undefined ? 'flex' : 'hidden'"
+                 class="mt-6 p-3 bg-black-alpha-10 mr-0 ml-0">
+                <p class="text-red-500">{{resultText}}</p>
+            </div>
+        </div>
+        <div class="container-konva">
+            <ko-stage [config]="configStage">
+                <ko-layer>
+                    <ko-circle (click)="handleClick($event)" [config]="configCircle"></ko-circle>
+                </ko-layer>
+            </ko-stage>
+        </div>
+        <div class="flex col-12 mt-6 flex flex-row-reverse flex-wrap">
+            <button (click)="onConvertFile()" [disabled]="isDisableSubmit" class="btn-primary" label="Converting" pButton pRipple
+                    type="button"></button>
+        </div>
+    </div>
+</div>
