@@ -1,6 +1,6 @@
-import {Component, EventEmitter, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
 import {ErrorUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/ErrorUploaded.model";
 import {FinishUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/FinishUploaded.model";
@@ -15,7 +15,7 @@ import {KonvaComponent} from "ng2-konva";
     templateUrl: './sabi-ocr.component.html',
     styleUrls: ['./sabi-ocr.component.scss']
 })
-export class SabiOcrComponent {
+export class SabiOcrComponent implements OnInit {
     uploadedFiles: File[] = [];
     serviceName: string = 'sabi-ocr-service';
     resultText!: string;
@@ -38,9 +38,9 @@ export class SabiOcrComponent {
     valid_until!: string;
     blood_type!: string;
     list: Array<any> = [];
-    configStage: Observable<Object> = of({
-        width: window.innerWidth,
-        height: window.innerHeight,
+    public configStage = new BehaviorSubject({
+        width: 200,
+        height: 200,
         draggable: false,
     });
     @ViewChild('stage') stage!: KonvaComponent;
@@ -55,6 +55,18 @@ export class SabiOcrComponent {
     ) {
         this.ocrService.isLogger()
             .subscribe((value: LoggerStatusModel) => console.info(value));
+    }
+
+    ngOnInit() {
+        this.iniStageCanvas()
+    }
+
+    iniStageCanvas() {
+        this.configStage.next({
+            width: 900,
+            height: 500,
+            draggable: false
+        });
     }
 
     drawCanvas(imageUrl: string) {
