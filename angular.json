@@ -29,7 +29,8 @@
             "allowedCommonJsDependencies": [
               "keycloak-js",
               "base64-js",
-              "js-sha256"
+              "js-sha256",
+              "ng2-konva"
             ],
             "assets": [
               "src/favicon.ico",
