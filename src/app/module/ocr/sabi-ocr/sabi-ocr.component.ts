@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, ViewChild} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {Observable, of} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
@@ -8,6 +8,7 @@ import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrW
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
+import {KonvaComponent} from "ng2-konva";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -36,6 +37,16 @@ export class SabiOcrComponent {
     citizenship!: string;
     valid_until!: string;
     blood_type!: string;
+    list: Array<any> = [];
+    configStage: Observable<any> = of({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+    @ViewChild('stage') stage!: KonvaComponent;
+    @ViewChild('layer') layer!: KonvaComponent;
+    @ViewChild('dragLayer') dragLayer!: KonvaComponent;
+
+    public configImage: EventEmitter<Object> = new EventEmitter();
 
     constructor(
         private toastService: ToastService,
@@ -45,19 +56,15 @@ export class SabiOcrComponent {
             .subscribe((value: LoggerStatusModel) => console.info(value));
     }
 
-    public configStage: Observable<any> = of({
-        width: 200,
-        height: 200
-    });
-
-    public configCircle: Observable<any> = of({
-        x: 100,
-        y: 100,
-        radius: 70,
-        fill: 'red',
-        stroke: 'black',
-        strokeWidth: 4
-    });
+    drawCanvas(imageUrl: string) {
+        const imageOcr = new Image();
+        imageOcr.onload = () => {
+            this.configImage.emit({
+                image: imageOcr
+            });
+        };
+        imageOcr.src = imageUrl
+    }
 
     onLogoUploadFinish(event: FinishUploadedModel) {
         this.uploadedFiles = event.data
@@ -65,6 +72,14 @@ export class SabiOcrComponent {
             this.isSubmited = false;
             this.toastService.success('Success upload a file KTP')
         }
+        this.ocrService.createFileToBlob(this.uploadedFiles)
+            .then((result: (Awaited<PromiseLike<any>>)) => {
+                this.blobUrl = result[0].data
+                this.drawCanvas(this.blobUrl)
+            }).catch((err) => {
+                console.error(err)
+            }
+        )
     }
 
     onErrorUploadFinish(event: ErrorUploadedModel) {
@@ -369,10 +384,9 @@ export class SabiOcrComponent {
         this.citizenship = '';
         this.valid_until = '';
         this.blood_type = '';
-    }
-
-    public handleClick(component: any) {
-        console.log('Hello Circle', component);
+        this.configImage.emit({
+            image: ''
+        });
     }
 
     get isDisableSubmit() {

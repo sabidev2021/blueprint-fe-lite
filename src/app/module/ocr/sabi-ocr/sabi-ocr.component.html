@@ -207,10 +207,10 @@
                 <p class="text-red-500">{{resultText}}</p>
             </div>
         </div>
-        <div class="container-konva">
-            <ko-stage [config]="configStage">
-                <ko-layer>
-                    <ko-circle (click)="handleClick($event)" [config]="configCircle"></ko-circle>
+        <div class="container-konva col-6">
+            <ko-stage #stage [config]="configStage">
+                <ko-layer #layer>
+                    <ko-image [config]="configImage"></ko-image>
                 </ko-layer>
             </ko-stage>
         </div>
