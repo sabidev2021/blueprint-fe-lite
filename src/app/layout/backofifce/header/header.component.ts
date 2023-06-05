@@ -71,6 +71,6 @@ export class HeaderBackofficeComponent implements OnInit {
     }
 
     private getUsername() {
-        return this.username = this.auth.getJwtResult().name
+        return this.username = 'Sabi Ranger'
     }
 }
