@@ -17,10 +17,16 @@ export class SidebarLeftService implements OnInit {
             label: 'Home',
             items: [
                 {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
-              {label: 'Input', icon: 'pi pi-fw pi-clone', routerLink: ['/input']},
-              {label: 'Table', icon: 'pi pi-fw pi-clone', routerLink: ['/table']},
+                {label: 'Input', icon: 'pi pi-fw pi-clone', routerLink: ['/input']},
+                {label: 'Table', icon: 'pi pi-fw pi-clone', routerLink: ['/table']},
             ]
         },
+        {
+            label: 'Research',
+            items: [
+                {label: 'Ocr', icon: 'pi pi-fw pi-clone', routerLink: ['/ocr']},
+            ]
+        }
     ];
 
     ngOnInit() {
