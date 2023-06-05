@@ -207,16 +207,16 @@
                 <p class="text-red-500">{{resultText}}</p>
             </div>
         </div>
+        <div class="flex col-12 mt-6 flex flex-row-reverse flex-wrap">
+            <button (click)="onConvertFile()" [disabled]="isDisableSubmit" class="btn-primary" label="Converting" pButton pRipple
+                    type="button"></button>
+        </div>
         <div class="container-konva col-6">
             <ko-stage #stage [config]="configStage">
                 <ko-layer #layer>
                     <ko-image [config]="configImage"></ko-image>
                 </ko-layer>
             </ko-stage>
-        </div>
-        <div class="flex col-12 mt-6 flex flex-row-reverse flex-wrap">
-            <button (click)="onConvertFile()" [disabled]="isDisableSubmit" class="btn-primary" label="Converting" pButton pRipple
-                    type="button"></button>
         </div>
     </div>
 </div>

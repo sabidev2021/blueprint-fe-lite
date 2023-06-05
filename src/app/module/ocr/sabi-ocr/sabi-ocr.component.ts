@@ -38,9 +38,10 @@ export class SabiOcrComponent {
     valid_until!: string;
     blood_type!: string;
     list: Array<any> = [];
-    configStage: Observable<any> = of({
+    configStage: Observable<Object> = of({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
+        draggable: false,
     });
     @ViewChild('stage') stage!: KonvaComponent;
     @ViewChild('layer') layer!: KonvaComponent;
@@ -72,14 +73,6 @@ export class SabiOcrComponent {
             this.isSubmited = false;
             this.toastService.success('Success upload a file KTP')
         }
-        this.ocrService.createFileToBlob(this.uploadedFiles)
-            .then((result: (Awaited<PromiseLike<any>>)) => {
-                this.blobUrl = result[0].data
-                this.drawCanvas(this.blobUrl)
-            }).catch((err) => {
-                console.error(err)
-            }
-        )
     }
 
     onErrorUploadFinish(event: ErrorUploadedModel) {
@@ -115,6 +108,7 @@ export class SabiOcrComponent {
                 .then((result: OcrModel | any) => {
                     this.isValidateIdentity(result)
                     this.mappingDataExtracted(result)
+                    this.drawCanvas(this.blobUrl)
                     this.isLoading = false;
                     this.isSubmited = false;
                 }).catch((err) => {
