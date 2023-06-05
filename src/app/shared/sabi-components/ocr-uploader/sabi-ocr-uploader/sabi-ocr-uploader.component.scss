@@ -1,0 +1,94 @@
+@import "../../../../../styles/variables/variables";
+
+.sabi-ocr-uploader {
+    width: 100% !important;
+    min-height: 400px !important;
+    background: $sc-white;
+    color: $sc-dark-grey;
+    border: 3px dashed rgba(196, 196, 196, 0.88) !important;
+
+    .label-file {
+        display: flex;
+        flex-direction: row-reverse;
+        text-align: center;
+        animation: fadeInAnimation ease-in-out 1.0s;
+        h2 {
+            font-size: $font-size-secondary;
+            color: $sc-dark-grey
+        }
+        img.ilustration-uploader {
+            position: relative;
+            top: -6px;
+            margin-right: 8px;
+        }
+    }
+
+    &.error-dropbox {
+        border: 3px dashed #f44336 !important;
+    }
+
+    .preview-box__uploader {
+        display: flex;
+        max-width: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        min-height: 100%;
+        padding: 3px;
+        z-index: 100;
+        cursor: pointer;
+        object-fit: cover;
+        animation: fadeInAnimation ease-in-out 0.5s;
+    }
+
+    @keyframes fadeInAnimation {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+}
+
+.cta-remove-files {
+    display: flex;
+    justify-content: flex-end;
+    .badge-rounded {
+        position: relative;
+        top: -476px !important;
+        z-index: 100;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border-radius: 20px;
+        color: $sc-white;
+        background-color: #1E263E !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+.information-placeholder {
+    display: block;
+    border: 3px solid #cbcbcb;
+    padding: 20px;
+    margin-top: -3px;
+    border-radius: 3px;
+    & > p.sub-information {
+        display: block;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        font-weight: $font-weight-500;
+        cursor: pointer;
+        font-style: italic;
+    }
+
+    &.error-dropbox {
+        border: 3px dashed #f44336 !important;
+    }
+}
+
