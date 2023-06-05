@@ -2,12 +2,12 @@ import {Component} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {Observable, of} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
-import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 import {ErrorUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/ErrorUploaded.model";
 import {FinishUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/FinishUploaded.model";
 import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
+import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 
 @Component({
     selector: 'app-sabi-ocr',

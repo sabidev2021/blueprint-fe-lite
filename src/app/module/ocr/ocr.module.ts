@@ -30,7 +30,7 @@ import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
         BreadcrumbsModule
     ],
     providers: [
-        ToastService,
+        ToastService
     ]
 })
 export class OcrModule {

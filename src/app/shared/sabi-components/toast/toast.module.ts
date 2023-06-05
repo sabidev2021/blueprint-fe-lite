@@ -16,7 +16,7 @@ import {MessageService} from "primeng/api";
         ToastPrimeModule
     ],
     providers: [
-        MessageService,
+        MessageService
     ]
 })
 export class ToastModule {
