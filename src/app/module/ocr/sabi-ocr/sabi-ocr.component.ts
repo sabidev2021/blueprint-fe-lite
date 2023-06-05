@@ -108,7 +108,9 @@ export class SabiOcrComponent {
                 .then((result: OcrModel | any) => {
                     this.isValidateIdentity(result)
                     this.mappingDataExtracted(result)
-                    this.drawCanvas(this.blobUrl)
+                    if (this.isValidKtp) {
+                        this.drawCanvas(this.blobUrl)
+                    }
                     this.isLoading = false;
                     this.isSubmited = false;
                 }).catch((err) => {
