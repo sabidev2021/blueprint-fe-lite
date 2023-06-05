@@ -15,7 +15,7 @@ import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 
 export class SabiOcrUploaderComponent implements AfterViewInit {
 
-    @Input() imgPath = "./assets/backoffice/icon/";
+    @Input() imgPath = "./assets/icon/";
     @Input() imgName = "general/unggah.svg";
     @Input() title = "Unggah Gambar";
     @Input() accept = "*";
