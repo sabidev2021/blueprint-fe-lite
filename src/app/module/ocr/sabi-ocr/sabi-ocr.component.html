@@ -211,10 +211,11 @@
             <button (click)="onConvertFile()" [disabled]="isDisableSubmit" class="btn-primary" label="Converting" pButton pRipple
                     type="button"></button>
         </div>
-        <div class="container-konva col-6">
+        <div class="container-konva">
             <ko-stage #stage [config]="configStage">
                 <ko-layer #layer>
                     <ko-image [config]="configImage"></ko-image>
+                    <ko-rect [config]="configRect"></ko-rect>
                 </ko-layer>
             </ko-stage>
         </div>
