@@ -176,17 +176,13 @@ export class SabiOcrComponent implements OnInit {
         // console.log(value.lines)
         value.lines.forEach((value: OcrLinesModel) => {
             console.log(value.text.replaceAll(/(\r\n|\n|\r\|&;\$%@"<>—\(\)\+)/gm, " ").trim().split(" "))
-            if (value.text.includes('/')) {
-                console.log(value.text.split(" "))
-            }
-            if (value.text.includes('NIK')) {
-                const labelNik = value.text.replaceAll(value.text, `NIK : ${value.text.replace(":", " ").split(" ")[1]}`);
-                console.log(labelNik)
-            }
-            if (value.text.includes('AGAMA')) {
-                const labelReligion = value.text.replaceAll(value.text, `AGAMA : ${value.text.replace(":", " ").split(" ")[1]}`);
-                console.log(labelReligion)
-            }
+            // if (value.text.includes('/')) {
+            //     console.log(value.text.split(" "))
+            // }
+            // if (value.text.includes('AGAMA')) {
+            //     const labelReligion = value.text.replaceAll(value.text, `AGAMA : ${value.text.replace(":", " ").split(" ")[1]}`);
+            //     console.log(labelReligion)
+            // }
             this.groupNik(value)
             this.groupName(value)
             this.groupBirthDate(value)
@@ -207,8 +203,8 @@ export class SabiOcrComponent implements OnInit {
     groupNik(words: OcrLinesModel) {
         if (words.text.includes('NIK')) {
             const sanitazi = this.sanitaziWords('nik', words, ':', 1)
-            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.nik = sanitazi.replaceAll(/[^a-zA-Z0-9]/g, " ")
+            if (sanitazi) {
+                this.nik = sanitazi.replace(/[^0-9]/g, "").trim()
             } else {
                 this.nik = '-';
             }
@@ -218,8 +214,9 @@ export class SabiOcrComponent implements OnInit {
     groupName(words: OcrLinesModel) {
         if (words.text.includes('Nama')) {
             const sanitazi = this.sanitaziWords('name', words, ':', 1)
-            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.name = sanitazi.replace(/[^a-zA-Z]/g, " ")
+            if (sanitazi) {
+                console.log(sanitazi)
+                this.name = sanitazi.replace(/[^a-zA-Z]/gm, " ")
             } else {
                 this.name = '-';
             }
@@ -366,10 +363,10 @@ export class SabiOcrComponent implements OnInit {
             return characters.text.replace('.', ':').split(`${separator}`)[position]
         }
         if (field == 'name') {
-            if (characters.text.includes(':')) {
-                return characters.text.replace(characters.text, ':').split(`${separator}`)[position]
+            if (characters.text.includes('.')) {
+                return characters.text.replace('.', ':').split(`${separator}`)[position]
             }
-            return characters.text.replace('.', ':').split(`${separator}`)[position]
+            return characters.text.split(`${separator}`)[position]
         }
         if (field == 'birth_date') {
             return characters.text.replace('.', ':').split(`${separator}`)[position]
@@ -387,7 +384,10 @@ export class SabiOcrComponent implements OnInit {
             return characters.text.replace('.', ':').split(`${separator}`)[position]
         }
         if (field == 'religion') {
-            return characters.text.replace(/[^A-Z]/gm, ':').split(`${separator}`)[position]
+            if (characters.text.includes('/[^A-Z]/gm')) {
+                return characters.text.replace(/[^A-Z]/gm, ':').split(`${separator}`)[position]
+            }
+            return characters.text.split(`${separator}`)[position]
         }
         if (field == 'work') {
             return characters.text.replace('.', ':').split(`${separator}`)[position]
