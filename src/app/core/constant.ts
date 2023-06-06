@@ -75,9 +75,16 @@ export const OCR_CONFIG = {
     }
 }
 
-export const OCR_WORDS_DOTS_TWO = {
-    'i' : ':',
-    'T' : ':',
-    't' : ':',
-    '1' : ':',
+export const OCR_MARTIAL_STATUS_CLASSIFICATION = {
+    BELUM_KAWIN: 'BELUM_KAWIN',
+    KAWIN: 'KAWIN',
+    CERAI_HIDUP: 'CERAI_HIDUP',
+    CERAI_MATI: 'CERAI_MATI'
+}
+
+export const OCR_BLOOD_TYPE_CLASSIFICATION = {
+    A: 'A',
+    B: 'B',
+    AB: 'AB',
+    O: 'O'
 }
