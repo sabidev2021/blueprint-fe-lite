@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
 import {ErrorUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/ErrorUploaded.model";
 import {FinishUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/FinishUploaded.model";
@@ -16,6 +16,11 @@ import {KonvaComponent} from "ng2-konva";
     styleUrls: ['./sabi-ocr.component.scss']
 })
 export class SabiOcrComponent implements OnInit {
+
+    @ViewChild('stage') stage!: KonvaComponent;
+    @ViewChild('layer') layer!: KonvaComponent;
+    @ViewChild('dragLayer') dragLayer!: KonvaComponent;
+
     uploadedFiles: File[] = [];
     serviceName: string = 'sabi-ocr-service';
     resultText!: string;
@@ -43,11 +48,15 @@ export class SabiOcrComponent implements OnInit {
         height: 200,
         draggable: false,
     });
-    @ViewChild('stage') stage!: KonvaComponent;
-    @ViewChild('layer') layer!: KonvaComponent;
-    @ViewChild('dragLayer') dragLayer!: KonvaComponent;
-
     public configImage: EventEmitter<Object> = new EventEmitter();
+    public configRect = new BehaviorSubject({
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+        stroke: '',
+        strokeWidth: 0
+    });
 
     constructor(
         private toastService: ToastService,
@@ -77,6 +86,17 @@ export class SabiOcrComponent implements OnInit {
             });
         };
         imageOcr.src = imageUrl
+    }
+
+    drawLineMarker() {
+        this.configRect.next({
+            x: 150,
+            y: 70,
+            width: 340,
+            height: 30,
+            stroke: 'red',
+            strokeWidth: 2
+        });
     }
 
     onLogoUploadFinish(event: FinishUploadedModel) {
@@ -122,6 +142,7 @@ export class SabiOcrComponent implements OnInit {
                     this.mappingDataExtracted(result)
                     if (this.isValidKtp) {
                         this.drawCanvas(this.blobUrl)
+                        this.drawLineMarker()
                     }
                     this.isLoading = false;
                     this.isSubmited = false;
