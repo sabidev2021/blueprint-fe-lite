@@ -416,6 +416,14 @@ export class SabiOcrComponent implements OnInit {
         this.configImage.emit({
             image: ''
         });
+        this.configRect.next({
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+            stroke: '',
+            strokeWidth: 0
+        });
     }
 
     get isDisableSubmit() {
