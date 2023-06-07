@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration local",
-    "start:staging": "ng serve --configuration staging",
     "start:dev": "ng serve --configuration development",
+    "start:staging": "ng serve --configuration staging",
     "build": "ng build",
     "build:dev": "ng build --configuration development",
     "build:staging": "ng build --configuration staging",

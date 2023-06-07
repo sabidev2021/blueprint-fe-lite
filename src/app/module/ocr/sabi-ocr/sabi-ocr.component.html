@@ -50,7 +50,20 @@
                                 </ng-template>
                             </div>
                             <div class="field">
-                                <label for="birth-date">Tempat / Tanggal Lahir</label>
+                                <label for="birth-place">Tempat</label>
+                                <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                    <input [(ngModel)]="birth_place"
+                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                           id="birth-place"
+                                           type="text"
+                                    />
+                                </ng-container>
+                                <ng-template #isHaveLoading>
+                                    <p-skeleton width="75%"></p-skeleton>
+                                </ng-template>
+                            </div>
+                            <div class="field">
+                                <label for="birth-date">Tanggal Lahir</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
                                     <input [(ngModel)]="birth_date"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -89,9 +102,9 @@
                                 </ng-template>
                             </div>
                             <div class="field">
-                                <label for="rt">RT / RW</label>
+                                <label for="rt">RT</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="rt_rw"
+                                    <input [(ngModel)]="rt"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="rt"
                                            type="text"
@@ -102,7 +115,7 @@
                                 </ng-template>
                             </div>
                             <div class="field">
-                                <label for="village">Kel / Desa</label>
+                                <label for="village">Kelurahan / Desa</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
                                     <input [(ngModel)]="village"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
@@ -189,6 +202,19 @@
                             <input [(ngModel)]="valid_until"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="valid-until"
+                                   type="text"
+                            />
+                        </ng-container>
+                        <ng-template #isHaveLoading>
+                            <p-skeleton width="75%"></p-skeleton>
+                        </ng-template>
+                    </div>
+                    <div class="field">
+                        <label for="rt">RW</label>
+                        <ng-container *ngIf="!isLoading; else isHaveLoading">
+                            <input [(ngModel)]="rw"
+                                   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                   id="RW"
                                    type="text"
                             />
                         </ng-container>
