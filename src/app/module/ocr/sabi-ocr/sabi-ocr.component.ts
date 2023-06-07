@@ -8,6 +8,7 @@ import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrW
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
+import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
 import {KonvaComponent} from "ng2-konva";
 
 @Component({
@@ -21,29 +22,15 @@ export class SabiOcrComponent implements OnInit {
     @ViewChild('layer') layer!: KonvaComponent;
     @ViewChild('dragLayer') dragLayer!: KonvaComponent;
 
+    loggerStats: LoggerStatusModel = new LoggerStatusModel();
+    identityModel: IdentityKtpModel = new IdentityKtpModel();
     uploadedFiles: File[] = [];
     serviceName: string = 'sabi-ocr-service';
     resultText!: string;
     blobUrl: string = '';
-    loggerStats: LoggerStatusModel = new LoggerStatusModel();
     isLoading: boolean = false;
     isSubmited: boolean = false;
     isValidKtp: boolean = true;
-    nik!: string;
-    name!: string;
-    birth_place!: string;
-    birth_date!: string;
-    gender!: string;
-    rt!: string;
-    rw!: string;
-    village!: string;
-    subdistrict!: string;
-    religion!: string;
-    martial_status!: string;
-    work!: string;
-    citizenship!: string;
-    valid_until!: string;
-    blood_type!: string;
     list: Array<any> = [];
     public configStage = new BehaviorSubject({
         width: 200,
@@ -198,9 +185,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('NIK')) {
             const sanitazi = this.sanitaziWords('nik', words, ':', 1)
             if (sanitazi) {
-                this.nik = sanitazi.replace(/[^0-9]/g, "").trim()
+                this.identityModel.nik = sanitazi.replace(/[^0-9]/g, "").trim();
             } else {
-                this.nik = '-';
+                this.identityModel.nik = '-';
             }
         }
     }
@@ -209,10 +196,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('Nama')) {
             const sanitazi = this.sanitaziWords('name', words, ':', 1)
             if (sanitazi) {
-                console.log(sanitazi)
-                this.name = sanitazi.replace(/[^a-zA-Z]/gm, " ")
+                this.identityModel.name = sanitazi.replace(/[^a-zA-Z]/gm, " ");
             } else {
-                this.name = '-';
+                this.identityModel.name = '-';
             }
         }
     }
@@ -221,9 +207,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('Tempat')) {
             const sanitazi = this.sanitaziWords('birth_date', words, ':', 1)
             if (sanitazi) {
-                this.birth_date = sanitazi.split(" ")[2]
+                this.identityModel.birth_date = sanitazi.split(" ")[2];
             } else {
-                this.birth_date = '-';
+                this.identityModel.birth_date = '-';
             }
         }
     }
@@ -232,9 +218,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('Tempat')) {
             const sanitazi = this.sanitaziWords('birth_place', words, ':', 1)
             if (sanitazi) {
-                this.birth_place = sanitazi.replace(/[^A-Z]/g, " ")
+                this.identityModel.birth_place = sanitazi.replace(/[^A-Z]/g, " ");
             } else {
-                this.birth_place = '-';
+                this.identityModel.birth_place = '-';
             }
         }
     }
@@ -243,11 +229,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('Jenis')) {
             const sanitazi = this.sanitaziWords('gender', words, ':', 1)
             if (sanitazi) {
-                const filterChar = sanitazi.replace(/[^A-Z]/g, " ").trim()
-                console.log(filterChar.split(" "))
-                this.gender = filterChar
+                this.identityModel.gender = sanitazi.replace(/[^A-Z]/g, " ").trim();
             } else {
-                this.gender = '-';
+                this.identityModel.gender = '-';
             }
         }
     }
@@ -255,10 +239,10 @@ export class SabiOcrComponent implements OnInit {
     groupBloodType(words: OcrLinesModel) {
         if (words.text.includes('Gol')) {
             const sanitazi = this.sanitaziWords('blood_type', words, ':', 3)
-            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.blood_type = sanitazi.replace(/[^A-Z]/gm, " ")
+            if (sanitazi) {
+                this.identityModel.blood_type = sanitazi.replace(/[^A-Z]/gm, " ");
             } else {
-                this.blood_type = '-';
+                this.identityModel.blood_type = '-';
             }
         }
     }
@@ -266,10 +250,10 @@ export class SabiOcrComponent implements OnInit {
     groupRt(words: OcrLinesModel) {
         if (words.text.includes('RT')) {
             const sanitazi = this.sanitaziWords('rt', words, ':', 1)
-            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.rt = sanitazi.replace(/[^A-Z]/gm, " ")
+            if (sanitazi) {
+                this.identityModel.rt = sanitazi.replace(/[^A-Z]/gm, " ");
             } else {
-                this.rt = '-';
+                this.identityModel.rt = '-';
             }
         }
     }
@@ -277,10 +261,10 @@ export class SabiOcrComponent implements OnInit {
     groupRw(words: OcrLinesModel) {
         if (words.text.includes('RW')) {
             const sanitazi = this.sanitaziWords('rw', words, ':', 1)
-            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.rt = sanitazi.replace(/[^A-Z]/gm, " ")
+            if (sanitazi) {
+                this.identityModel.rw = sanitazi.replace(/[^A-Z]/gm, " ");
             } else {
-                this.rt = '-';
+                this.identityModel.rw = '-';
             }
         }
     }
@@ -289,10 +273,10 @@ export class SabiOcrComponent implements OnInit {
     groupVillage(words: OcrLinesModel) {
         if (words.text.includes('Kel/Desa')) {
             const sanitazi = this.sanitaziWords('village', words, ':', 2)
-            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.village = sanitazi.replace(/^[A-Z]/g, '')
+            if (sanitazi) {
+                this.identityModel.village = sanitazi.replace(/^[A-Z]/g, " ");
             } else {
-                this.village = '-';
+                this.identityModel.village = '-';
             }
         }
     }
@@ -301,9 +285,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('Kecamatan')) {
             const sanitazi = this.sanitaziWords('subdistrict', words, ':', 1)
             if (sanitazi) {
-                this.subdistrict = sanitazi.replace(/[^A-Z]+/gm, "")
+                this.identityModel.subdistrict = sanitazi.replace(/[^A-Z]+/gm, " ");
             } else {
-                this.subdistrict = '-';
+                this.identityModel.subdistrict = '-';
             }
         }
     }
@@ -312,10 +296,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('Agama')) {
             const sanitazi = this.sanitaziWords('religion', words, ':', 1)
             if (sanitazi) {
-                console.log(sanitazi)
-                this.religion = sanitazi.replace(/([^A-Z][^\w ]|_|,|;)/g, " ")
+                this.identityModel.religion = sanitazi.replace(/([^A-Z][^\w ]|_|,|;)/g, " ")
             } else {
-                this.religion = '-';
+                this.identityModel.religion = '-';
             }
 
         }
@@ -324,10 +307,10 @@ export class SabiOcrComponent implements OnInit {
     groupMartialStatus(words: OcrLinesModel) {
         if (words.text.includes('Status')) {
             const sanitazi = this.sanitaziWords('martial_status', words, ':', 1)
-            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.martial_status = sanitazi.replaceAll(/[^A-Z]/g, " ")
+            if (sanitazi) {
+                this.identityModel.martial_status = sanitazi.replaceAll(/[^A-Z]/g, " ");
             } else {
-                this.martial_status = '-';
+                this.identityModel.martial_status = '-';
             }
         }
     }
@@ -336,9 +319,9 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('Pekerjaan')) {
             const sanitazi = this.sanitaziWords('work', words, ':', 1)
             if (sanitazi) {
-                this.work = sanitazi.replace(/[^0-9a-zA-Z]+/gm, " ")
+                this.identityModel.work = sanitazi.replace(/[^0-9a-zA-Z]+/gm, " ");
             } else {
-                this.work = '-';
+                this.identityModel.work = '-';
             }
         }
     }
@@ -348,19 +331,19 @@ export class SabiOcrComponent implements OnInit {
             const sanitazi = this.sanitaziWords('citizenship', words, ':', 1)
             if (sanitazi) {
                 if (sanitazi.includes('WNI')) {
-                    this.citizenship = sanitazi.replace(sanitazi, "WNI")
+                    this.identityModel.citizenship = sanitazi.replace(sanitazi, "WNI")
                 } else {
-                    this.citizenship = sanitazi.replace(/[^A-Z]/g, "")
+                    this.identityModel.citizenship = sanitazi.replace(/[^A-Z]/g, "")
                 }
             } else {
-                this.citizenship = '-';
+                this.identityModel.citizenship = '-';
             }
         }
     }
 
     groupValidUntil(words: OcrLinesModel) {
         if (words.text.includes('Berlaku')) {
-            this.valid_until = words.text.split(':')[1]
+            this.identityModel.valid_until = words.text.split(':')[1]
         }
     }
 
@@ -424,21 +407,7 @@ export class SabiOcrComponent implements OnInit {
     }
 
     clearOcrResult() {
-        this.nik = '';
-        this.name = '';
-        this.birth_date = '';
-        this.birth_place = '';
-        this.gender = '';
-        this.rt = '';
-        this.rw = '';
-        this.village = '';
-        this.subdistrict = '';
-        this.religion = '';
-        this.martial_status = '';
-        this.work = '';
-        this.citizenship = '';
-        this.valid_until = '';
-        this.blood_type = '';
+        this.identityModel =  new IdentityKtpModel()
         this.configImage.emit({
             image: ''
         });
