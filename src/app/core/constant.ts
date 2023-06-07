@@ -72,19 +72,35 @@ export const OCR_CONFIG = {
     LANG: {
         EN: 'eng',
         ID: 'ind'
+    },
+    MARTIAL_STATUS_CLASSIFICATION: {
+        BELUM_KAWIN: 'BELUM KAWIN',
+        KAWIN: 'KAWIN',
+        CERAI_HIDUP: 'CERAI_HIDUP',
+        CERAI_MATI: 'CERAI MATI'
+    },
+    BLOOD_TYPE_CLASSIFICATION: {
+        A: 'A',
+        B: 'B',
+        AB: 'AB',
+        O: 'O'
+    },
+    GENDER_TYPE_CLASSIFICATION: {
+        LK: 'LAKI-LAKI',
+        PM: 'PEREMPUAN',
+    },
+    RELIGION_TYPE_CLASSIFICATION: {
+        ISLAM: 'ISLAM',
+        KATHOLIK: 'KATHOLIK',
+        KRISTEN: 'KRISTEN',
+        BUDHA: 'BUDHA',
+        KONGHUCU: 'KONGHUCU',
+    },
+    VALID_UNTIL_TYPE_CLASSIFICATION: {
+        LIFE_TIME: 'SEUMUR HIDUP'
+    },
+    NATIONALITY_TYPE_CLASSIFICATION: {
+        WNI: 'WNI',
+        WNA: 'WNA'
     }
-}
-
-export const OCR_MARTIAL_STATUS_CLASSIFICATION = {
-    BELUM_KAWIN: 'BELUM_KAWIN',
-    KAWIN: 'KAWIN',
-    CERAI_HIDUP: 'CERAI_HIDUP',
-    CERAI_MATI: 'CERAI_MATI'
-}
-
-export const OCR_BLOOD_TYPE_CLASSIFICATION = {
-    A: 'A',
-    B: 'B',
-    AB: 'AB',
-    O: 'O'
 }

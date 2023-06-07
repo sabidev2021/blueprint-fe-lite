@@ -24,7 +24,7 @@
                             <div class="field">
                                 <label for="nik">NIK</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="nik"
+                                    <input [(ngModel)]="identityModel.nik"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="nik"
                                            pInputText
@@ -38,7 +38,7 @@
                             <div class="field">
                                 <label for="name">Nama</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="name"
+                                    <input [(ngModel)]="identityModel.name"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="name"
                                            pInputText
@@ -52,7 +52,7 @@
                             <div class="field">
                                 <label for="birth-place">Tempat</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="birth_place"
+                                    <input [(ngModel)]="identityModel.birth_place"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="birth-place"
                                            type="text"
@@ -65,7 +65,7 @@
                             <div class="field">
                                 <label for="birth-date">Tanggal Lahir</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="birth_date"
+                                    <input [(ngModel)]="identityModel.birth_date"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="birth-date"
                                            type="text"
@@ -78,7 +78,7 @@
                             <div class="field">
                                 <label for="gender">Jenis Kelamin</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="gender"
+                                    <input [(ngModel)]="identityModel.gender"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="gender"
                                            type="text"
@@ -91,7 +91,7 @@
                             <div class="field">
                                 <label for="blood_type">Golongan Darah</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="blood_type"
+                                    <input [(ngModel)]="identityModel.blood_type"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="blood_type"
                                            type="text"
@@ -102,22 +102,9 @@
                                 </ng-template>
                             </div>
                             <div class="field">
-                                <label for="rt">RT</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="rt"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="rt"
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                            <div class="field">
                                 <label for="village">Kelurahan / Desa</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="village"
+                                    <input [(ngModel)]="identityModel.village"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="village"
                                            type="text"
@@ -130,7 +117,7 @@
                             <div class="field">
                                 <label for="subdistrict">Kecamatan</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="subdistrict"
+                                    <input [(ngModel)]="identityModel.subdistrict"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="subdistrict"
                                            type="text"
@@ -147,7 +134,7 @@
                     <div class="field">
                         <label for="religion">Agama</label>
                         <ng-container *ngIf="!isLoading; else isHaveLoading">
-                            <input [(ngModel)]="religion"
+                            <input [(ngModel)]="identityModel.religion"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="religion"
                                    type="text"
@@ -160,7 +147,7 @@
                     <div class="field">
                         <label for="marital status">Status Perkawinan</label>
                         <ng-container *ngIf="!isLoading; else isHaveLoading">
-                            <input [(ngModel)]="martial_status"
+                            <input [(ngModel)]="identityModel.martial_status"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="marital status"
                                    type="text"
@@ -173,7 +160,7 @@
                     <div class="field">
                         <label for="work">Pekerjaan</label>
                         <ng-container *ngIf="!isLoading; else isHaveLoading">
-                            <input [(ngModel)]="work"
+                            <input [(ngModel)]="identityModel.work"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="work"
                                    type="text"
@@ -186,7 +173,7 @@
                     <div class="field">
                         <label for="citizenship">Kewarganegaraan</label>
                         <ng-container *ngIf="!isLoading; else isHaveLoading">
-                            <input [(ngModel)]="citizenship"
+                            <input [(ngModel)]="identityModel.citizenship"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="citizenship"
                                    type="text"
@@ -199,7 +186,7 @@
                     <div class="field">
                         <label for="valid-until">Berlaku Hingga</label>
                         <ng-container *ngIf="!isLoading; else isHaveLoading">
-                            <input [(ngModel)]="valid_until"
+                            <input [(ngModel)]="identityModel.valid_until"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="valid-until"
                                    type="text"
@@ -210,11 +197,24 @@
                         </ng-template>
                     </div>
                     <div class="field">
-                        <label for="rt">RW</label>
+                        <label for="rw">RW</label>
                         <ng-container *ngIf="!isLoading; else isHaveLoading">
-                            <input [(ngModel)]="rw"
+                            <input [(ngModel)]="identityModel.rw"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="RW"
+                                   type="text"
+                            />
+                        </ng-container>
+                        <ng-template #isHaveLoading>
+                            <p-skeleton width="75%"></p-skeleton>
+                        </ng-template>
+                    </div>
+                    <div class="field">
+                        <label for="rt">RT</label>
+                        <ng-container *ngIf="!isLoading; else isHaveLoading">
+                            <input [(ngModel)]="identityModel.rt"
+                                   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                   id="rt"
                                    type="text"
                             />
                         </ng-container>
@@ -228,10 +228,6 @@
                 <p [ngClass]="!isValidKtp ? 'mt-1 block text-center text-red-400' : 'hidden'">File not valid a identity
                     ID ( KTP ), Please an input a valid files</p>
             </div>
-            <div [ngClass]="resultText !== '' && resultText !== undefined ? 'flex' : 'hidden'"
-                 class="mt-6 p-3 bg-black-alpha-10 mr-0 ml-0">
-                <p class="text-red-500">{{resultText}}</p>
-            </div>
         </div>
         <div class="flex col-12 mt-6 flex flex-row-reverse flex-wrap">
             <button (click)="onConvertFile()" [disabled]="isDisableSubmit" class="btn-primary" label="Converting" pButton pRipple
@@ -244,6 +240,14 @@
                     <ko-rect [config]="configRect"></ko-rect>
                 </ko-layer>
             </ko-stage>
+        </div>
+        <div class="debugging-result col-12 flex">
+            <div [ngClass]="resultText !== '' && resultText !== undefined ? 'block' : 'hidden'">
+                <div class="mt-6 p-3 bg-black-alpha-10 mr-0 ml-0">
+                    <h4>Log Result : </h4>
+                    <p>{{resultText}}</p>
+               </div>
+            </div>
         </div>
     </div>
 </div>
