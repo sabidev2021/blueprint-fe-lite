@@ -10,5 +10,6 @@ export class OcrLinesModel {
     paragraph!: string;
     text!: string;
     words: OcrWordsModel[] = [];
+    lineModel: any;
 }
 

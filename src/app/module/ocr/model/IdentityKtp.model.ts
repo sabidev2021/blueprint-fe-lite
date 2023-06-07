@@ -11,6 +11,8 @@ export class IdentityKtpModel {
     religion!: string;
     martial_status!: string;
     work!: string;
+    province!: string;
+    city!: string;
     citizenship!: string;
     valid_until!: string;
     blood_type!: string;
