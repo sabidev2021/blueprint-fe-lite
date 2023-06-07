@@ -104,7 +104,7 @@
                             <div class="field">
                                 <label for="rt">RT</label>
                                 <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="rt_rw"
+                                    <input [(ngModel)]="rt"
                                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                            id="rt"
                                            type="text"
@@ -212,7 +212,7 @@
                     <div class="field">
                         <label for="rt">RW</label>
                         <ng-container *ngIf="!isLoading; else isHaveLoading">
-                            <input [(ngModel)]="rt_rw"
+                            <input [(ngModel)]="rw"
                                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                                    id="RW"
                                    type="text"

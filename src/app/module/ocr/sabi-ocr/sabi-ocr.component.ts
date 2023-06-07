@@ -34,7 +34,8 @@ export class SabiOcrComponent implements OnInit {
     birth_place!: string;
     birth_date!: string;
     gender!: string;
-    rt_rw!: string;
+    rt!: string;
+    rw!: string;
     village!: string;
     subdistrict!: string;
     religion!: string;
@@ -173,23 +174,16 @@ export class SabiOcrComponent implements OnInit {
     }
 
     mappingDataExtracted(value: OcrModel) {
-        // console.log(value.lines)
         value.lines.forEach((value: OcrLinesModel) => {
             console.log(value.text.replaceAll(/(\r\n|\n|\r\|&;\$%@"<>—\(\)\+)/gm, " ").trim().split(" "))
-            // if (value.text.includes('/')) {
-            //     console.log(value.text.split(" "))
-            // }
-            // if (value.text.includes('AGAMA')) {
-            //     const labelReligion = value.text.replaceAll(value.text, `AGAMA : ${value.text.replace(":", " ").split(" ")[1]}`);
-            //     console.log(labelReligion)
-            // }
             this.groupNik(value)
             this.groupName(value)
             this.groupBirthDate(value)
             this.groupBirthPlace(value)
             this.groupGender(value)
             this.groupBloodType(value)
-            this.groupRtRw(value)
+            this.groupRt(value)
+            this.groupRw(value)
             this.groupVillage(value)
             this.groupReligion(value)
             this.groupSubdistrict(value)
@@ -269,16 +263,28 @@ export class SabiOcrComponent implements OnInit {
         }
     }
 
-    groupRtRw(words: OcrLinesModel) {
-        if (words.text.includes('RT/RW')) {
-            const sanitazi = this.sanitaziWords('rt_rw', words, ':', 1)
+    groupRt(words: OcrLinesModel) {
+        if (words.text.includes('RT')) {
+            const sanitazi = this.sanitaziWords('rt', words, ':', 1)
             if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
-                this.rt_rw = sanitazi.replace(/[^A-Z]/gm, " ")
+                this.rt = sanitazi.replace(/[^A-Z]/gm, " ")
             } else {
-                this.rt_rw = '-';
+                this.rt = '-';
             }
         }
     }
+
+    groupRw(words: OcrLinesModel) {
+        if (words.text.includes('RW')) {
+            const sanitazi = this.sanitaziWords('rw', words, ':', 1)
+            if (sanitazi !== undefined ? sanitazi.length > 0 : false) {
+                this.rt = sanitazi.replace(/[^A-Z]/gm, " ")
+            } else {
+                this.rt = '-';
+            }
+        }
+    }
+
 
     groupVillage(words: OcrLinesModel) {
         if (words.text.includes('Kel/Desa')) {
@@ -395,7 +401,10 @@ export class SabiOcrComponent implements OnInit {
         if (field == 'village') {
             return characters.text.replace('.', ':').split(`${separator}`)[position]
         }
-        if (field == 'rt_rw') {
+        if (field == 'rt') {
+            return characters.text.replace('.', ':').split(`${separator}`)[position]
+        }
+        if (field == 'rw') {
             return characters.text.replace('.', ':').split(`${separator}`)[position]
         }
         if (field == 'martial_status') {
@@ -420,7 +429,8 @@ export class SabiOcrComponent implements OnInit {
         this.birth_date = '';
         this.birth_place = '';
         this.gender = '';
-        this.rt_rw = '';
+        this.rt = '';
+        this.rw = '';
         this.village = '';
         this.subdistrict = '';
         this.religion = '';
