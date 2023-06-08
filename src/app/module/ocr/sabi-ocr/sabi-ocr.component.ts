@@ -35,7 +35,6 @@ export class SabiOcrComponent implements OnInit {
     isValidKtp: boolean = true;
     isBlury: boolean = false;
     isAlertMessage: boolean = false;
-    list: Array<any> = [];
     public configStage = new BehaviorSubject({
         width: 200,
         height: 200,
@@ -128,8 +127,9 @@ export class SabiOcrComponent implements OnInit {
             this.messages = [{
                 severity: 'error',
                 summary: 'Error',
-                detail: 'please enter the file first !'
-            }];
+                detail: 'Please select a file to be processed'
+            }]
+            this.isSubmited = false;
         }
     }
 
@@ -479,7 +479,7 @@ export class SabiOcrComponent implements OnInit {
     clearOcrResult() {
         this.isSubmited = false
         this.isBlury = false
-        this.isAlertMessage = false
+        // this.isAlertMessage = false
         this.identityModel = new IdentityKtpModel()
         this.configImage.emit({
             image: ''
