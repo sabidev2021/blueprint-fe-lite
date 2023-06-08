@@ -12,7 +12,7 @@ export class InputService {
   ) { }
 
   public submit(data: any): Observable<any> {
-    const url = 'https://eojdneomeqbveqq.m.pipedream.net';
+    const url = 'https://eoc0lcdsrm8wv1u.m.pipedream.net';
     return this.http.post<any>(url, data);
   }
 }

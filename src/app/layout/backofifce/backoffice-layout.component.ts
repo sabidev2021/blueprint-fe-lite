@@ -143,4 +143,11 @@ export class BackOfficeLayoutComponent implements AfterViewChecked, OnDestroy {
         }
     }
 
+    get loginClass() {
+      console.log('run login class');
+      return {
+        'background-color': 'white',
+      }
+    }
+
 }
