@@ -35,6 +35,8 @@ export class SabiOcrComponent implements OnInit {
     isValidKtp: boolean = true;
     isBlury: boolean = false;
     isAlertMessage: boolean = false;
+    stateSwitch: any[] = [{label: 'Off', value: 'off'}, {label: 'On', value: 'on'}];
+    valueSwitch: string = 'off';
     public configStage = new BehaviorSubject({
         width: 200,
         height: 200,
