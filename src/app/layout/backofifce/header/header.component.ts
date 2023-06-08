@@ -39,7 +39,7 @@ export class HeaderBackofficeComponent implements OnInit {
     @Input() iconNotif = "/icon/navbar/notification.svg";
     @Input() iconSetting = "/icon/navbar/gear.svg";
 
-    username = '';
+    username: string | null = '';
     offsetFlag = true;
     notifClicked = false;
 
@@ -65,15 +65,9 @@ export class HeaderBackofficeComponent implements OnInit {
     public logout() {
       this.auth.logoutUser();
       this.router.navigate([ this.auth.getLoginUrl() ]);
-      // this.auth.logout(`${environment.services_name.landingService.baseUrl}`)
-        //     .then(r => r)
-        //     .catch(() => {
-        //             this.tracker.onLogoutMessage({message: 'Oops terjadi kesalahan sistem'})
-        //         }
-        //     )
     }
 
     private getUsername() {
-        return this.username = 'Sabi Ranger'
+        return this.username = this.db.get('username') ? this.db.get('username') : 'Sabi Ranger'
     }
 }

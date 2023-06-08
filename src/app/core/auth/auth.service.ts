@@ -4,6 +4,7 @@ import {SabiLogService} from "@core/logs/sabi-log.service";
 import {environment} from "@env/environment.dev";
 import {User} from "@core/auth/user";
 import {Observable, map, of} from "rxjs";
+import {Router} from "@angular/router";
 
 const USERS = [
   new User(1, 'admin', 'admin', 'ADMIN'),
@@ -85,7 +86,7 @@ export class AuthService {
     return this._env;
   }
 
-  constructor(private db: DbLocalService, private log: SabiLogService) {
+  constructor(private db: DbLocalService, private log: SabiLogService, private router: Router) {
   }
 
   initializeUserOptions(): void {
@@ -124,7 +125,6 @@ export class AuthService {
     } finally {
       this.db.clear()
       this.log.info("Db local has destroyed")
-      console.log('redirectUrl : ', redirectUrl)
     }
   }
 
@@ -154,11 +154,12 @@ export class AuthService {
     console.log('token expired');
   }
 
-  // baru boss
+  //dummy auth
   private redirectUrl: string = '/';
   private loginUrl: string = '/login';
   private isloggedIn: boolean = false;
   private loggedInUser!: User;
+  private authentication: boolean = false;
 
   getAllUsers(): Observable<User[]> {
     return usersObservable;
@@ -170,6 +171,8 @@ export class AuthService {
         (user:any) => user.username == username && user.password == password
       );
       if (user) {
+          console.log('username:', username, 'password:', password)
+        this.isAuthentication(username, password);
         this.isloggedIn = true;
         this.loggedInUser = user;
       } else {
@@ -177,6 +180,12 @@ export class AuthService {
       }
       return this.isloggedIn;
     }));
+  }
+
+  isAuthentication(username: string, password: string) {
+      this.db.save('authentication', true);
+      this.db.save('username', username);
+      this.db.save('password', password);
   }
   isUserLoggedIn(): boolean {
     return this.isloggedIn;
@@ -194,7 +203,8 @@ export class AuthService {
     return this.loggedInUser;
   }
   logoutUser(): void {
-    localStorage.clear();
+    this.db.clear();
     this.isloggedIn = false;
+    this.router.navigate([ this.loginUrl ]);
   }
 }
