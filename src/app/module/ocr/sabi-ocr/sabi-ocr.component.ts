@@ -12,7 +12,6 @@ import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
-import {ViewportScroller} from "@angular/common";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -35,6 +34,7 @@ export class SabiOcrComponent implements OnInit {
     isSubmited: boolean = false;
     isValidKtp: boolean = true;
     isBlury: boolean = false;
+    isAlertMessage: boolean = false;
     list: Array<any> = [];
     public configStage = new BehaviorSubject({
         width: 200,
@@ -55,7 +55,6 @@ export class SabiOcrComponent implements OnInit {
     constructor(
         private toastService: ToastService,
         private ocrService: OcrUploaderService,
-        private scroller: ViewportScroller
     ) {
         this.ocrService.isLogger()
             .subscribe((value: LoggerStatusModel) => console.info(value));
@@ -165,6 +164,7 @@ export class SabiOcrComponent implements OnInit {
             }
         });
         if (!this.isValidKtp) {
+            this.isAlertMessage = true;
             this.isValidKtp = false;
             this.onUploadClear()
             this.messages = [{
@@ -479,6 +479,7 @@ export class SabiOcrComponent implements OnInit {
     clearOcrResult() {
         this.isSubmited = false
         this.isBlury = false
+        this.isAlertMessage = false
         this.identityModel = new IdentityKtpModel()
         this.configImage.emit({
             image: ''
@@ -496,11 +497,15 @@ export class SabiOcrComponent implements OnInit {
     checkQualityImage(isQuality: boolean, field: string) {
         if (!isQuality && field == 'nik' || !isQuality && field == 'name' || !isQuality && field == 'birth_date' || !isQuality && field == 'birth_place') {
             this.isBlury = true;
+            this.isAlertMessage = true;
             this.messages = [{
                 severity: 'error',
                 summary: 'Error',
                 detail: 'Make sure the file or picture not blur or have a good quality '
             }];
+        }
+        if (this.isBlury) {
+            this.onUploadClear()
         }
     }
 

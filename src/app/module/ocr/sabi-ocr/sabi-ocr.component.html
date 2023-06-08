@@ -1,11 +1,12 @@
 <div class="col-12" id="target-scroller">
     <app-sabi-breadcrumbs></app-sabi-breadcrumbs>
     <h2>Optical Character Recognition ( OCR )</h2>
-    <p>Optical Character Recognition ( OCR ) Translation is used to image optical processing to extracting a image to
-        text.</p>
+    <p>Optical Character Recognition ( OCR )
+        Translation is used to image optical processing to extracting a image to text.
+    </p>
 </div>
 <div class="col-12 ocr-container">
-    <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
+    <p-messages [(value)]="messages" [enableService]="false" [closable]="true" *ngIf="!isAlertMessage"></p-messages>
     <div class="grid live-interface-core mt-4">
         <div class="col-7 pr-6">
             <app-sabi-ocr-uploader
