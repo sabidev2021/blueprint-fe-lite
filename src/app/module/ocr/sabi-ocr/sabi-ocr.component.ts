@@ -94,6 +94,7 @@ export class SabiOcrComponent implements OnInit {
 
     onLogoUploadFinish(event: FinishUploadedModel) {
         this.uploadedFiles = event.data
+        this.isAlertMessage = false
         if (event.data.length > 0) {
             this.isSubmited = false;
             this.toastService.success('Success upload a file KTP')
@@ -136,18 +137,17 @@ export class SabiOcrComponent implements OnInit {
     onSubmitOcr() {
         try {
             this.isLoading = true;
-            this.ocrService.traceOcrService(`${this.blobUrl}`)
-                .then((result: OcrModel | any) => {
-                    this.isValidateIdentity(result)
-                    this.mappingDataExtracted(result)
-                    this.isDebuggingText(result.text)
-                    if (this.isValidKtp) {
-                        this.drawCanvas(this.blobUrl)
-                        this.drawLineMarker()
-                    }
-                    this.isLoading = false;
-                    this.isSubmited = false
-                }).catch((err) => {
+            this.ocrService.traceOcrService(`${this.blobUrl}`).then((result: OcrModel | any) => {
+                this.isValidateIdentity(result)
+                this.mappingDataExtracted(result)
+                this.isDebuggingText(result.text)
+                if (this.isValidKtp) {
+                    this.drawCanvas(this.blobUrl)
+                    this.drawLineMarker()
+                }
+                this.isLoading = false;
+                this.isSubmited = false
+            }).catch((err) => {
                 console.error(err)
                 this.isLoading = false
                 this.toastService.error(`${err}`)
