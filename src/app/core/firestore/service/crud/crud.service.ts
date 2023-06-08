@@ -23,7 +23,7 @@ export class CrudService {
     return this.db.collection(path)
   }
 
-  updateData(path: string, data: object, id: string): Promise<void> {
+  updateData(path: string, data: object, id: string | undefined): Promise<void> {
     return this.db.collection(path).doc(id).update(data)
   }
 

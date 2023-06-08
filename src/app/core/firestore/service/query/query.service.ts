@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {collection, getDocs, getFirestore, query, where} from "firebase/firestore";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,8 @@ export class QueryService {
   firestore = getFirestore();
 
   constructor(
+    private db: AngularFirestore,
+    private storage: AngularFireStorage,
   ) {
   }
 
@@ -15,6 +19,7 @@ export class QueryService {
     let result: any[] = []
     const response = query(collection(this.firestore, path), where(key, "<", value))
     const snapshot = await getDocs(response)
+    console.log(snapshot)
     snapshot?.forEach((doc: { id: string; data: () => any; }) => {
       result.push({id: doc.id, ...doc.data()});
     });
@@ -71,7 +76,7 @@ export class QueryService {
     return result
   }
 
-  async in(path: string, key: string, value: []) {
+  async queryIn(path: string, key: string, value: [(string | number | undefined), (string | number | undefined)]) {
     let result: any[] = []
     const response = query(collection(this.firestore, path), where(key, "in", value))
     const snapshot = await getDocs(response)
@@ -81,7 +86,7 @@ export class QueryService {
     return result
   }
 
-  async notIn(path: string, key: string, value: []) {
+  async queryNotIn(path: string, key: string, value: [(string | number | undefined), (string | number | undefined)]) {
     let result: any[] = []
     const response = query(collection(this.firestore, path), where(key, "not-in", value))
     const snapshot = await getDocs(response)
@@ -91,7 +96,7 @@ export class QueryService {
     return result
   }
 
-  async arrayContains(path: string, key: string, value: []) {
+  async queryArrayContains(path: string, key: string, value: string | number | undefined) {
     let result: any[] = []
     const response = query(collection(this.firestore, path), where(key, "array-contains", value))
     const snapshot = await getDocs(response)
@@ -101,7 +106,7 @@ export class QueryService {
     return result
   }
 
-  async arrayContainsAny(path: string, key: string, value: []) {
+  async queryArrayContainsAny(path: string, key: string, value: (string | number | undefined)[]) {
     let result: any[] = []
     const response = query(collection(this.firestore, path), where(key, "array-contains-any", value))
     const snapshot = await getDocs(response)

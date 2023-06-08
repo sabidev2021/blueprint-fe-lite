@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from "@core/auth/auth.guard";
 import {NotfoundComponent} from "@app/module/notfound/notfound.component";
 
 const appRoutes: Routes = [
@@ -26,6 +25,11 @@ const appRoutes: Routes = [
       path: 'input',
       loadChildren: () => import('./module/input/input.module').then(m => m.InputModule),
       data: {animation: 'input'}
+    },
+    {
+      path: 'firebase',
+      loadChildren: () => import('./module/firebase/firebase.module').then(m => m.FirebaseModule),
+      data: {animation: 'firebase'}
     },
   {
     path: 'table',

@@ -1,0 +1,55 @@
+<div class="col-12 col-lg-12 col-md-12 mb-3">
+  <h2>Firestore Query</h2>
+  <p>In Firestore, you can use various comparison operators and array operators to perform queries. Here's an example of an operator in Angular with Firestore:</p>
+</div>
+
+<div class="flex pr-5">
+  <div class="flex flex-column p-5 m-2 pb-7 border-round sabi-card col-6">
+    <h4>
+      Demo
+    </h4>
+    <div class="card flex flex-column justify-content-start ml-1 mt-3">
+      <label class="block mb-2">Select Method</label>
+      <p-dropdown [options]="queryMethods" [(ngModel)]="selectedMethod" optionLabel="method"></p-dropdown>
+      <label class="block mb-2 mt-3">Key</label>
+      <input type="text" style="width: 125px;" aria-describedby="name-help" pInputText [(ngModel)]="selectedMethod.key" disabled>
+      <label class="block mb-2 mt-3">Value</label>
+      <input type="text" style="width: 125px;" aria-describedby="name-help" pInputText [(ngModel)]="value">
+      <label *ngIf="selectedMethod.key === 'category' && selectedMethod.method != 'array-contains'" class="block mb-2 mt-3">Other Value</label>
+      <input *ngIf="selectedMethod.key === 'category' && selectedMethod.method != 'array-contains'" type="text" style="width: 125px;" aria-describedby="name-help" pInputText [(ngModel)]="otherValue">
+      <label class="block mb-2 mt-3" style="font-size: 8px; color: #4A4A4A">If key "price" input value number (50, 100, etc). Else, input value string (fantasy, politic, adventure, etc).</label>
+    </div>
+    <button class="mr-1 ml-1 mt-3" type="button" pButton label="QUERY" (click)="queryData()"></button>
+  </div>
+
+  <div class="flex flex-column p-5 m-2 border-round sabi-card col-6">
+    <h4>
+      Result
+    </h4>
+    <div class="card">
+      <p-table [value]="books" [tableStyle]="{ 'min-width': '10rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Category</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-book>
+          <tr>
+            <td>{{book.title}}</td>
+            <td>{{book.price}}</td>
+            <td>
+              <p *ngIf="book.category[0] && !book.category[1]">
+                {{book.category[0]}}
+              </p>
+              <p *ngIf="book.category[0] && book.category[1]">
+                {{book.category[0] + ", " + book.category[1]}}
+              </p>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
