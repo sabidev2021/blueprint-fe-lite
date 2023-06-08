@@ -5,6 +5,7 @@
         text.</p>
 </div>
 <div class="col-12 ocr-container">
+    <p-messages [(value)]="messages" [enableService]="false" [closable]="false" *ngIf=isBlury></p-messages>
     <div class="grid live-interface-core mt-4">
         <div class="col-7 pr-6">
             <app-sabi-ocr-uploader
