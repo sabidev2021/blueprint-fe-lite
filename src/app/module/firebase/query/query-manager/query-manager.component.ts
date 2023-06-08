@@ -94,13 +94,6 @@ export class QueryManagerComponent {
       let response = await this.firestormQuery.queryArrayContainsAny('books', this.selectedMethod.key, [this.value, this.otherValue])
       this.books = response
     }
-    // else if (this.selectedMethod.method === 'in') {
-    //   let response = await this.firestormQuery.queryIn('books', this.selectedMethod.key, [this.value, this.otherValue])
-    //   this.books = response
-    // } else if (this.selectedMethod.method === 'not-in') {
-    //   let response = await this.firestormQuery.queryNotIn('books', this.selectedMethod.key, [this.value, this.otherValue])
-    //   this.books = response
-    // }
   }
 
 }
