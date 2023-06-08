@@ -5,6 +5,7 @@
         text.</p>
 </div>
 <div class="col-12 ocr-container">
+    <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
     <div class="grid live-interface-core mt-4">
         <div class="col-7 pr-6">
             <app-sabi-ocr-uploader
@@ -225,8 +226,6 @@
                 </div>
                 <p>When upload image it will create preview and converting by service OCR to detect text in the
                     image.</p>
-                <p [ngClass]="!isValidKtp ? 'mt-1 block text-center text-red-400' : 'hidden'">File not valid a identity
-                    ID ( KTP ), Please an input a valid files</p>
             </div>
         </div>
         <div class="flex col-12 mt-6 flex flex-row-reverse flex-wrap">
@@ -244,7 +243,7 @@
         <div class="debugging-result col-12 flex">
             <div [ngClass]="resultText !== '' && resultText !== undefined ? 'block' : 'hidden'">
                 <div class="mt-6 p-3 bg-black-alpha-10 mr-0 ml-0">
-                    <h4>Log Result : </h4>
+                    <h5>Log Result ( RAW DATA ) : </h5>
                     <p>{{resultText}}</p>
                </div>
             </div>

@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {BreadcrumbsModule} from "@app/shared/sabi-components/breadcrumb/breadcrumbs.module";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
+import {MessagesModule} from "primeng/messages";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
         RippleModule,
         FormsModule,
         InputTextModule,
-        BreadcrumbsModule
+        BreadcrumbsModule,
+        MessagesModule
     ],
     providers: [
         ToastService
