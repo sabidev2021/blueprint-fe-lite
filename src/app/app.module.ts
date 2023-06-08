@@ -16,6 +16,9 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {LoggedinService} from "@core/auth/logged-in.service";
 
+import {ToastModule as SabiToastModule} from "@app/shared/sabi-components/toast/toast.module";
+import {ToastModule as ToastPrimeModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
 
 @NgModule({
     declarations: [
@@ -31,11 +34,14 @@ import {LoggedinService} from "@core/auth/logged-in.service";
         BackOfficeLayoutModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule,
-        AngularFireStorageModule
+        AngularFireStorageModule,
+        SabiToastModule,
+        ToastPrimeModule
     ],
     providers: [
         AuthService,
         HttpClient,
+        MessageService,
         HttpClientService,
         HttpErrorHandler,
         {

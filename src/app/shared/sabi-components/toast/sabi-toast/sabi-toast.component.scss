@@ -1,0 +1,77 @@
+:host ::ng-deep .p-toast {
+  position: fixed;
+  width: 800px;
+  opacity: 1;
+
+  @media only screen and (max-width: 799px)  {
+    width: 400px;
+  }
+
+  .p-toast-message.p-toast-message-error {
+    padding: 0 16px;
+    gap: 16px;
+    background: white;
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border-color: white;;
+    border-width: 0;
+    color: black;
+
+    .p-toast-icon-close {
+      cursor: pointer;
+      color: black;
+    }
+  }
+
+  .p-toast-message.p-toast-message-success {
+    padding: 0 16px;
+    gap: 16px;
+    background: white;
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border-color: white;;
+    border-width: 0;
+    color: black;
+
+    .p-toast-icon-close {
+      cursor: pointer;
+      color: black;
+    }
+  }
+}
+
+:host ::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+  .p-toast-message-content {
+    display: flex;
+    align-items: center;
+
+    .p-toast-message-icon {
+      font-size: 0;
+      background-image: url("../../../../../assets/icon/general/icon-failed.svg");
+      width: 20px;
+      height: 20px;
+    }
+
+    .p-toast-detail {
+      padding-bottom: 6px;
+    }
+  }
+}
+
+:host ::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+  .p-toast-message-content {
+    display: flex;
+    align-items: center;
+
+    .p-toast-message-icon {
+      font-size: 0;
+      background-image: url("../../../../../assets/icon/general/icon-success.svg");
+      width: 20px;
+      height: 20px;
+    }
+
+    .p-toast-detail {
+      padding-bottom: 6px;
+    }
+  }
+}
