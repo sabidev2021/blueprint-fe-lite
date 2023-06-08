@@ -61,11 +61,6 @@ export class SabiOcrComponent implements OnInit {
 
     ngOnInit() {
         this.iniStageCanvas()
-        this.messages = [{
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Make sure the file or picture not blur or have a good quality '
-        }];
     }
 
     iniStageCanvas() {
@@ -128,7 +123,11 @@ export class SabiOcrComponent implements OnInit {
                 }
             )
         } else {
-            this.toastService.error('Whoops please attach some files first when wrong !')
+            this.messages = [{
+                severity: 'error',
+                summary: 'Error',
+                detail: 'please enter the file first !'
+            }];
         }
     }
 
@@ -136,16 +135,17 @@ export class SabiOcrComponent implements OnInit {
         try {
             this.isLoading = true;
             this.ocrService.traceOcrService(`${this.blobUrl}`)
-                .then((result: OcrModel | any) => {
-                    this.isValidateIdentity(result)
-                    this.mappingDataExtracted(result)
-                    this.isDebuggingText(result.text)
-                    if (this.isValidKtp) {
-                        this.drawCanvas(this.blobUrl)
-                        this.drawLineMarker()
-                    }
-                    this.isLoading = false;
-                }).catch((err) => {
+            .then((result: OcrModel | any) => {
+                this.isValidateIdentity(result)
+                this.mappingDataExtracted(result)
+                this.isDebuggingText(result.text)
+                if (this.isValidKtp) {
+                    this.drawCanvas(this.blobUrl)
+                    this.drawLineMarker()
+                }
+                this.isLoading = false;
+                this.isSubmited = false
+            }).catch((err) => {
                 console.error(err)
                 this.isLoading = false
                 this.toastService.error(`${err}`)
@@ -164,9 +164,11 @@ export class SabiOcrComponent implements OnInit {
         if (!this.isValidKtp) {
             this.isValidKtp = false;
             this.onUploadClear()
-            setTimeout(() => {
-                this.toastService.error('Whoops your file is not valid KTP !')
-            }, 2000)
+            this.messages = [{
+                severity: 'error',
+                summary: 'Error',
+                detail: 'File not valid a identity ID ( KTP ), Please an input a valid files'
+            }];
         }
     }
 
@@ -260,7 +262,7 @@ export class SabiOcrComponent implements OnInit {
     }
 
     groupBloodType(words: OcrLinesModel) {
-        const sanitazi = this.sanitaziWords('blood_type', words, ':', 1)
+        const sanitazi = this.sanitaziWords('blood_type', words, ':', 3)
         if (sanitazi) {
             this.identityModel.blood_type = sanitazi.replace(/[^A-Z]/g, " ").trim();
         } else {
@@ -491,6 +493,11 @@ export class SabiOcrComponent implements OnInit {
     checkQualityImage(isQuality: boolean, field: string) {
         if (!isQuality && field == 'nik' || !isQuality && field == 'name' || !isQuality && field == 'birth_date' || !isQuality && field == 'birth_place') {
             this.isBlury = true;
+            this.messages = [{
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Make sure the file or picture not blur or have a good quality '
+            }];
         }
     }
 
