@@ -34,6 +34,7 @@ export class SabiOcrComponent implements OnInit {
     isSubmited: boolean = false;
     isValidKtp: boolean = true;
     isBlury: boolean = false;
+    isAlertMessage: boolean = false;
     list: Array<any> = [];
     public configStage = new BehaviorSubject({
         width: 200,
@@ -53,7 +54,7 @@ export class SabiOcrComponent implements OnInit {
 
     constructor(
         private toastService: ToastService,
-        private ocrService: OcrUploaderService
+        private ocrService: OcrUploaderService,
     ) {
         this.ocrService.isLogger()
             .subscribe((value: LoggerStatusModel) => console.info(value));
@@ -113,6 +114,7 @@ export class SabiOcrComponent implements OnInit {
     onConvertFile(): void {
         this.isBlury = false;
         this.isSubmited = true;
+        this.scrollToTop('target-scroller')
         if (this.uploadedFiles.length > 0) {
             this.ocrService.createFileToBlob(this.uploadedFiles)
                 .then((result: (Awaited<PromiseLike<any>>)) => {
@@ -135,17 +137,17 @@ export class SabiOcrComponent implements OnInit {
         try {
             this.isLoading = true;
             this.ocrService.traceOcrService(`${this.blobUrl}`)
-            .then((result: OcrModel | any) => {
-                this.isValidateIdentity(result)
-                this.mappingDataExtracted(result)
-                this.isDebuggingText(result.text)
-                if (this.isValidKtp) {
-                    this.drawCanvas(this.blobUrl)
-                    this.drawLineMarker()
-                }
-                this.isLoading = false;
-                this.isSubmited = false
-            }).catch((err) => {
+                .then((result: OcrModel | any) => {
+                    this.isValidateIdentity(result)
+                    this.mappingDataExtracted(result)
+                    this.isDebuggingText(result.text)
+                    if (this.isValidKtp) {
+                        this.drawCanvas(this.blobUrl)
+                        this.drawLineMarker()
+                    }
+                    this.isLoading = false;
+                    this.isSubmited = false
+                }).catch((err) => {
                 console.error(err)
                 this.isLoading = false
                 this.toastService.error(`${err}`)
@@ -162,6 +164,7 @@ export class SabiOcrComponent implements OnInit {
             }
         });
         if (!this.isValidKtp) {
+            this.isAlertMessage = true;
             this.isValidKtp = false;
             this.onUploadClear()
             this.messages = [{
@@ -476,6 +479,7 @@ export class SabiOcrComponent implements OnInit {
     clearOcrResult() {
         this.isSubmited = false
         this.isBlury = false
+        this.isAlertMessage = false
         this.identityModel = new IdentityKtpModel()
         this.configImage.emit({
             image: ''
@@ -493,16 +497,27 @@ export class SabiOcrComponent implements OnInit {
     checkQualityImage(isQuality: boolean, field: string) {
         if (!isQuality && field == 'nik' || !isQuality && field == 'name' || !isQuality && field == 'birth_date' || !isQuality && field == 'birth_place') {
             this.isBlury = true;
+            this.isAlertMessage = true;
             this.messages = [{
                 severity: 'error',
                 summary: 'Error',
                 detail: 'Make sure the file or picture not blur or have a good quality '
             }];
         }
+        if (this.isBlury) {
+            this.onUploadClear()
+        }
     }
 
     isDebuggingText(character: string) {
         this.resultText = character.trim().split(" ").join("")
+    }
+
+    scrollToTop(isTarget: string) {
+        document.getElementById(isTarget)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
     }
 
     get isDisableSubmit() {
