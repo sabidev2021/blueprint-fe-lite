@@ -171,8 +171,7 @@ export class AuthService {
         (user:any) => user.username == username && user.password == password
       );
       if (user) {
-          console.log('username:', username, 'password:', password)
-        this.isAuthentication(username, password);
+        this.isAuthentication(username, password, user['role']);
         this.isloggedIn = true;
         this.loggedInUser = user;
       } else {
@@ -182,10 +181,11 @@ export class AuthService {
     }));
   }
 
-  isAuthentication(username: string, password: string) {
+  isAuthentication(username: string, password: string, role: string) {
       this.db.save('authentication', true);
       this.db.save('username', username);
       this.db.save('password', password);
+      this.db.save('role', role);
   }
   isUserLoggedIn(): boolean {
     return this.isloggedIn;
