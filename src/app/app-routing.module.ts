@@ -4,11 +4,13 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import {NotfoundComponent} from "@app/module/notfound/notfound.component";
+import { AuthGuard } from './core/auth/auth.guard';
 
 const appRoutes: Routes = [
     {
         path: '',
         loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard],
         data: {animation: ''}
     },
     {
@@ -19,12 +21,18 @@ const appRoutes: Routes = [
     {
         path: 'dashboard',
         loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard],
         data: {animation: 'dashboard'}
     },
     {
-        path: 'input',
-        loadChildren: () => import('./module/input/input.module').then(m => m.InputModule),
-        data: {animation: 'input'}
+      path: 'login',
+      loadChildren: () => import('./module/login/login.module').then(m => m.LoginModule),
+      data: {animation: 'login'}
+    },
+    {
+      path: 'input',
+      loadChildren: () => import('./module/input/input.module').then(m => m.InputModule),
+      data: {animation: 'input'}
     },
     {
         path: 'table',
