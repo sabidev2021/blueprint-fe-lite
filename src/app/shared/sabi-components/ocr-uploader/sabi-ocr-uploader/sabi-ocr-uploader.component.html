@@ -1,0 +1,45 @@
+<ngx-dropzone  (change)="onSelectFile($event)"
+              [accept]="accept"
+              [multiple]="false"
+              [ngClass]="errorMessage ? 'error-dropbox' : ''"
+              class="sabi-ocr-uploader input-dropzone"
+              #drop
+>
+    <ngx-dropzone-label *ngIf="spinner !== true" class="sabi-label">
+        <div *ngIf="isPreviewFiles; else isNothaveFileUploader" class="sabi-container-uploader">
+            <img [ngStyle]="{ 'max-width': imgWidth + 'px', 'max-height': imgHeight + 'px'}"
+                 [src]="retrievedImage"
+                 alt="preview-images"
+                 class="preview-box__uploader"
+            />
+        </div>
+        <ng-template #isNothaveFileUploader>
+            <div class="label-file">
+                <h2>Upload KTP file here</h2>
+                <img class="ilustration-uploader" [src]="(imgPath + 'general/unggah.svg') " alt="icon-upload"/>
+            </div>
+        </ng-template>
+    </ngx-dropzone-label>
+</ngx-dropzone>
+<div class="information-placeholder"
+     [ngClass]="errorMessage ? 'error-dropbox' : ''"
+     (click)="drop.showFileSelector()"
+>
+    <p class="sub-information">Drag and drop a KTP or select from your computer</p>
+</div>
+<div *ngIf="isShowCloseAction" class="cta-remove-files">
+    <span
+        (click)="onRemoveFile()"
+        [ngStyle]="{top: closeBtnTop + 'px'}"
+        class="badge-rounded"
+    >
+        <svg fill="none" height="12" viewBox="0 0 9 8" width="12" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M4.912 3.984L8.144 8H6.576L4.144 4.96L1.728 8H0.144L3.376 3.984L0.336 0.208H1.904L4.144 3.04L6.384 0.208H7.968L4.912 3.984Z"
+                fill="white"
+            />
+        </svg>
+    </span>
+</div>
+
+

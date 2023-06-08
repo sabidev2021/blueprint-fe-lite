@@ -22,24 +22,29 @@ const appRoutes: Routes = [
         data: {animation: 'dashboard'}
     },
     {
-      path: 'input',
-      loadChildren: () => import('./module/input/input.module').then(m => m.InputModule),
-      data: {animation: 'input'}
+        path: 'input',
+        loadChildren: () => import('./module/input/input.module').then(m => m.InputModule),
+        data: {animation: 'input'}
     },
     {
       path: 'firebase',
       loadChildren: () => import('./module/firebase/firebase.module').then(m => m.FirebaseModule),
       data: {animation: 'firebase'}
     },
-  {
-    path: 'table',
-    loadChildren: () => import('./module/table/sabi-table.module').then(m => m.SabiTableModule),
-    data: {animation: 'table'}
-  },
+    {
+        path: 'table',
+        loadChildren: () => import('./module/table/sabi-table.module').then(m => m.SabiTableModule),
+        data: {animation: 'table'}
+    },
     {
         path: 'manage-profile',
         loadChildren: () => import('./module/manage-profile/manage-profile.module').then(m => m.ManageProfileModule),
         data: {animation: 'dashboard'}
+    },
+    {
+        path: 'ocr',
+        loadChildren: () => import('./module/ocr/ocr.module').then(m => m.OcrModule),
+        data: {animation: 'ocr'}
     },
     {
         path: '**',
@@ -49,16 +54,16 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes),
-  ],
-  exports: [
-    RouterModule
-  ]
+    declarations: [],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(appRoutes),
+    ],
+    exports: [
+        RouterModule
+    ]
 })
 
 export class AppRoutingModule {

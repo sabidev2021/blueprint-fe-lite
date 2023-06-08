@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
 
 @Injectable({
@@ -12,7 +12,7 @@ export class CrudService {
   }
 
   addDataToCollection(path: string, data: object): Promise<any> {
-    return this.db.collection(path).add({ ...data })
+    return this.db.collection(path).add({...data})
   }
 
   getByID(path: string, id: string): any {

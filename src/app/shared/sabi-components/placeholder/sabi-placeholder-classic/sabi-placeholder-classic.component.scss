@@ -1,0 +1,33 @@
+@import "../../../../../styles/variables/variables";
+
+.sabi-payment-placeholder {
+  font-size: $font-size-tertiary;
+
+  .cta-placeholder-single {
+    display: block;
+    margin-top: -20px;
+
+    p.heading-payment {
+      font-style: normal;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-tertiary;
+      line-height: 19px;
+      color: $sc-light-black;
+      margin-bottom: 8px;
+    }
+
+    p.heading-payment__sub {
+      font-style: normal;
+      font-weight: $font-weight-300;
+      font-size: $font-size-tertiary;
+      line-height: 19px;
+      color: $sc-light-black;
+    }
+
+    .btn-paynow {
+      display: flex;
+      margin: 0 auto;
+    }
+  }
+}
+

@@ -19,7 +19,6 @@ export class QueryService {
     let result: any[] = []
     const response = query(collection(this.firestore, path), where(key, "<", value))
     const snapshot = await getDocs(response)
-    console.log(snapshot)
     snapshot?.forEach((doc: { id: string; data: () => any; }) => {
       result.push({id: doc.id, ...doc.data()});
     });
