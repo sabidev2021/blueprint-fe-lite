@@ -12,6 +12,7 @@ import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
+import {ViewportScroller} from "@angular/common";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -53,7 +54,8 @@ export class SabiOcrComponent implements OnInit {
 
     constructor(
         private toastService: ToastService,
-        private ocrService: OcrUploaderService
+        private ocrService: OcrUploaderService,
+        private scroller: ViewportScroller
     ) {
         this.ocrService.isLogger()
             .subscribe((value: LoggerStatusModel) => console.info(value));
@@ -113,6 +115,7 @@ export class SabiOcrComponent implements OnInit {
     onConvertFile(): void {
         this.isBlury = false;
         this.isSubmited = true;
+        this.scrollToTop('target-scroller')
         if (this.uploadedFiles.length > 0) {
             this.ocrService.createFileToBlob(this.uploadedFiles)
                 .then((result: (Awaited<PromiseLike<any>>)) => {
@@ -135,17 +138,17 @@ export class SabiOcrComponent implements OnInit {
         try {
             this.isLoading = true;
             this.ocrService.traceOcrService(`${this.blobUrl}`)
-            .then((result: OcrModel | any) => {
-                this.isValidateIdentity(result)
-                this.mappingDataExtracted(result)
-                this.isDebuggingText(result.text)
-                if (this.isValidKtp) {
-                    this.drawCanvas(this.blobUrl)
-                    this.drawLineMarker()
-                }
-                this.isLoading = false;
-                this.isSubmited = false
-            }).catch((err) => {
+                .then((result: OcrModel | any) => {
+                    this.isValidateIdentity(result)
+                    this.mappingDataExtracted(result)
+                    this.isDebuggingText(result.text)
+                    if (this.isValidKtp) {
+                        this.drawCanvas(this.blobUrl)
+                        this.drawLineMarker()
+                    }
+                    this.isLoading = false;
+                    this.isSubmited = false
+                }).catch((err) => {
                 console.error(err)
                 this.isLoading = false
                 this.toastService.error(`${err}`)
@@ -503,6 +506,13 @@ export class SabiOcrComponent implements OnInit {
 
     isDebuggingText(character: string) {
         this.resultText = character.trim().split(" ").join("")
+    }
+
+    scrollToTop(isTarget: string) {
+        document.getElementById(isTarget)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
     }
 
     get isDisableSubmit() {
