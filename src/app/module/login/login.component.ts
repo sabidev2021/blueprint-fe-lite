@@ -26,7 +26,7 @@ export class LoginComponent {
           console.log('Redirect Url:'+ url);
           this.router.navigate([ url ]);
         } else {
-          this.invalidCredentialMsg = 'Invalid Credentials. Try again.';
+          this.invalidCredentialMsg = 'Username atau Password salah. Coba lagi.';
         }
       }
     );

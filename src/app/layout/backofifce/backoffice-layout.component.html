@@ -1,4 +1,4 @@
-<div class="layout-wrapper" [ngClass]="containerClass">
+<div class="layout-wrapper" [ngClass]="(header && sideMenu ? containerClass : 'login-page')">
     <header-backoffice *ngIf="header"></header-backoffice>
     <sidebar-left-backoffice *ngIf="sideMenu"></sidebar-left-backoffice>
     <div [ngClass]="(header && sideMenu ? 'layout-main-container' : '')">

@@ -6,7 +6,7 @@ import {User} from "@core/auth/user";
 import {Observable, map, of} from "rxjs";
 
 const USERS = [
-  new User(1, 'dendy', 'admin123', 'ADMIN'),
+  new User(1, 'admin', 'admin', 'ADMIN'),
   new User(2, 'user', 'user', 'USER'),
 ];
 let usersObservable = of(USERS);
@@ -166,20 +166,13 @@ export class AuthService {
 
   isUserAuthenticated(username: string, password: string): Observable<boolean> {
     return this.getAllUsers().pipe(map((users: any) => {
-      console.log('users : ', users);
-      console.log('mahesh');
-      console.log('m123');
       let user = users.find(
         (user:any) => user.username == username && user.password == password
       );
-      console.log(user, 'username : ', username);
-      console.log(user, 'password : ', password);
       if (user) {
-        console.log('user : ', user);
         this.isloggedIn = true;
         this.loggedInUser = user;
       } else {
-        console.log('else user : ', user);
         this.isloggedIn = false;
       }
       return this.isloggedIn;
