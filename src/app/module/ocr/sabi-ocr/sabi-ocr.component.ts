@@ -28,7 +28,7 @@ export class SabiOcrComponent implements OnInit {
     identityModel: IdentityKtpModel = new IdentityKtpModel();
     uploadedFiles: File[] = [];
     serviceName: string = 'sabi-ocr-service';
-    resultText!: string;
+    resultText: string = '';
     blobUrl: string = '';
     isLoading: boolean = false;
     isSubmited: boolean = false;
@@ -94,7 +94,7 @@ export class SabiOcrComponent implements OnInit {
 
     onLogoUploadFinish(event: FinishUploadedModel) {
         this.uploadedFiles = event.data
-        this.isAlertMessage = false
+        this.isAlertMessage = false;
         if (event.data.length > 0) {
             this.isSubmited = false;
             this.toastService.success('Success upload a file KTP')
@@ -113,7 +113,7 @@ export class SabiOcrComponent implements OnInit {
 
     onConvertFile(): void {
         this.isBlury = false;
-        this.isSubmited = true;
+        this.isSubmited = true
         this.scrollToTop('target-scroller')
         if (this.uploadedFiles.length > 0) {
             this.ocrService.createFileToBlob(this.uploadedFiles)
@@ -479,7 +479,6 @@ export class SabiOcrComponent implements OnInit {
     clearOcrResult() {
         this.isSubmited = false
         this.isBlury = false
-        // this.isAlertMessage = false
         this.identityModel = new IdentityKtpModel()
         this.configImage.emit({
             image: ''

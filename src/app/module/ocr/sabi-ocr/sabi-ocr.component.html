@@ -233,7 +233,7 @@
             <button (click)="onConvertFile()" [disabled]="isDisableSubmit" class="btn-primary" label="Converting" pButton pRipple
                     type="button"></button>
         </div>
-        <div class="container-konva">
+        <div class="container-konva" [ngClass]="resultText.length > 0 ? 'flex' : 'hidden'">
             <ko-stage #stage [config]="configStage">
                 <ko-layer #layer>
                     <ko-image [config]="configImage"></ko-image>
@@ -242,7 +242,7 @@
             </ko-stage>
         </div>
         <div class="debugging-result col-12 flex">
-            <div [ngClass]="resultText !== '' && resultText !== undefined ? 'block' : 'hidden'">
+            <div [ngClass]="resultText ? 'block' : 'hidden'">
                 <div class="mt-6 p-3 bg-black-alpha-10 mr-0 ml-0">
                     <h5>Log Result ( RAW DATA ) : </h5>
                     <p>{{resultText}}</p>
