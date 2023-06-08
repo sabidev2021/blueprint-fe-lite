@@ -1,0 +1,30 @@
+<!--<h3>Login Form</h3>-->
+<!--<div *ngIf="invalidCredentialMsg" style="color:red;font-size: 20px">{{invalidCredentialMsg}}</div>-->
+<!--<div>-->
+<!--  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">-->
+<!--    <p>User Name: <input formControlName="username"></p>-->
+<!--    <p>Password: <input type="password" formControlName="password"></p>-->
+<!--    <p><button type="submit">Submit</button></p>-->
+<!--  </form>-->
+<!--</div>-->
+<div class="login-page">
+  <div class="login-content grid">
+    <div class="col-6">
+      <img src="assets/logo/logo-sabi.svg" width="80%" alt="logosabi">
+    </div>
+    <div class="col-6">
+        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+          <div class="field col-4">
+            <label for="username" class="block">Username</label>
+            <input id="username" type="text" aria-describedby="username-help" pInputText formControlName="username">
+          </div>
+          <div class="field col-4">
+            <label for="password" class="block">Password</label>
+            <input id="password" type="password" aria-describedby="password-help" pInputText formControlName="password">
+          </div>
+          <button type="submit" pButton label="Submit"></button>
+          <div *ngIf="invalidCredentialMsg" style="color:red;font-size:14px;margin-top:10px">{{invalidCredentialMsg}}</div>
+        </form>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
+import {Message} from 'primeng/api';
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -32,6 +33,8 @@ export class SabiOcrComponent implements OnInit {
     isLoading: boolean = false;
     isSubmited: boolean = false;
     isValidKtp: boolean = true;
+    isBlury: boolean = false;
+    isAlertMessage: boolean = false;
     list: Array<any> = [];
     public configStage = new BehaviorSubject({
         width: 200,
@@ -47,10 +50,11 @@ export class SabiOcrComponent implements OnInit {
         stroke: '',
         strokeWidth: 0
     });
+    messages!: Message[];
 
     constructor(
         private toastService: ToastService,
-        private ocrService: OcrUploaderService
+        private ocrService: OcrUploaderService,
     ) {
         this.ocrService.isLogger()
             .subscribe((value: LoggerStatusModel) => console.info(value));
@@ -108,7 +112,9 @@ export class SabiOcrComponent implements OnInit {
     }
 
     onConvertFile(): void {
+        this.isBlury = false;
         this.isSubmited = true;
+        this.scrollToTop('target-scroller')
         if (this.uploadedFiles.length > 0) {
             this.ocrService.createFileToBlob(this.uploadedFiles)
                 .then((result: (Awaited<PromiseLike<any>>)) => {
@@ -119,7 +125,11 @@ export class SabiOcrComponent implements OnInit {
                 }
             )
         } else {
-            this.toastService.error('Whoops please attach some files first when wrong !')
+            this.messages = [{
+                severity: 'error',
+                summary: 'Error',
+                detail: 'please enter the file first !'
+            }];
         }
     }
 
@@ -127,16 +137,17 @@ export class SabiOcrComponent implements OnInit {
         try {
             this.isLoading = true;
             this.ocrService.traceOcrService(`${this.blobUrl}`)
-            .then((result: OcrModel | any) => {
-                this.isValidateIdentity(result)
-                this.mappingDataExtracted(result)
-                this.isDebuggingText(result.text)
-                if (this.isValidKtp) {
-                    this.drawCanvas(this.blobUrl)
-                    this.drawLineMarker()
-                }
-                this.isLoading = false;
-            }).catch((err) => {
+                .then((result: OcrModel | any) => {
+                    this.isValidateIdentity(result)
+                    this.mappingDataExtracted(result)
+                    this.isDebuggingText(result.text)
+                    if (this.isValidKtp) {
+                        this.drawCanvas(this.blobUrl)
+                        this.drawLineMarker()
+                    }
+                    this.isLoading = false;
+                    this.isSubmited = false
+                }).catch((err) => {
                 console.error(err)
                 this.isLoading = false
                 this.toastService.error(`${err}`)
@@ -153,11 +164,14 @@ export class SabiOcrComponent implements OnInit {
             }
         });
         if (!this.isValidKtp) {
+            this.isAlertMessage = true;
             this.isValidKtp = false;
             this.onUploadClear()
-            setTimeout(() => {
-                this.toastService.error('Whoops your file is not valid KTP !')
-            }, 2000)
+            this.messages = [{
+                severity: 'error',
+                summary: 'Error',
+                detail: 'File not valid a identity ID ( KTP ), Please an input a valid files'
+            }];
         }
     }
 
@@ -186,9 +200,11 @@ export class SabiOcrComponent implements OnInit {
         if (words.text.includes('NIK')) {
             const sanitazi = this.sanitaziWords('nik', words, ':', 1)
             if (sanitazi) {
-                this.identityModel.nik = sanitazi.replace(/[^0-9]/g, "").trim();
+                this.identityModel.nik = sanitazi.replace(/[^0-9]/g, "").trim()
+                this.checkQualityImage(true, 'nik')
             } else {
                 this.identityModel.nik = '-';
+                this.checkQualityImage(false, 'nik')
             }
         }
     }
@@ -198,8 +214,10 @@ export class SabiOcrComponent implements OnInit {
             const sanitazi = this.sanitaziWords('name', words, ':', 1)
             if (sanitazi) {
                 this.identityModel.name = sanitazi.replace(/[^a-zA-Z]/gm, " ");
+                this.checkQualityImage(true, 'name')
             } else {
                 this.identityModel.name = '-';
+                this.checkQualityImage(false, 'name')
             }
         }
     }
@@ -209,8 +227,10 @@ export class SabiOcrComponent implements OnInit {
             const sanitazi = this.sanitaziWords('birth_date', words, ':', 1)
             if (sanitazi) {
                 this.identityModel.birth_date = sanitazi.split(" ")[2];
+                this.checkQualityImage(true, 'birth_date')
             } else {
                 this.identityModel.birth_date = '-';
+                this.checkQualityImage(false, 'birth_date')
             }
         }
     }
@@ -220,8 +240,10 @@ export class SabiOcrComponent implements OnInit {
             const sanitazi = this.sanitaziWords('birth_place', words, ':', 1)
             if (sanitazi) {
                 this.identityModel.birth_place = sanitazi.replace(/[^A-Z]/g, " ");
+                this.checkQualityImage(true, 'birth_place')
             } else {
                 this.identityModel.birth_place = '-';
+                this.checkQualityImage(false, 'birth_place')
             }
         }
     }
@@ -243,7 +265,7 @@ export class SabiOcrComponent implements OnInit {
     }
 
     groupBloodType(words: OcrLinesModel) {
-        const sanitazi = this.sanitaziWords('blood_type', words, ':', 1)
+        const sanitazi = this.sanitaziWords('blood_type', words, ':', 3)
         if (sanitazi) {
             this.identityModel.blood_type = sanitazi.replace(/[^A-Z]/g, " ").trim();
         } else {
@@ -292,7 +314,6 @@ export class SabiOcrComponent implements OnInit {
     groupReligion(words: OcrLinesModel) {
         if (words.text.includes('Agama')) {
             const sanitazi = this.sanitaziWords('religion', words, ':', 1)
-            console.log(sanitazi)
             if (sanitazi) {
                 if (words.text.includes("ISL")) {
                     this.identityModel.religion = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.ISLAM
@@ -384,7 +405,7 @@ export class SabiOcrComponent implements OnInit {
         }
     }
 
-    groupCity (words: OcrLinesModel) {
+    groupCity(words: OcrLinesModel) {
         if (words.text.includes('Provi')) {
             this.identityModel.city = words.text.split(" ")[1]
         }
@@ -456,7 +477,10 @@ export class SabiOcrComponent implements OnInit {
     }
 
     clearOcrResult() {
-        this.identityModel =  new IdentityKtpModel()
+        this.isSubmited = false
+        this.isBlury = false
+        this.isAlertMessage = false
+        this.identityModel = new IdentityKtpModel()
         this.configImage.emit({
             image: ''
         });
@@ -470,8 +494,30 @@ export class SabiOcrComponent implements OnInit {
         });
     }
 
+    checkQualityImage(isQuality: boolean, field: string) {
+        if (!isQuality && field == 'nik' || !isQuality && field == 'name' || !isQuality && field == 'birth_date' || !isQuality && field == 'birth_place') {
+            this.isBlury = true;
+            this.isAlertMessage = true;
+            this.messages = [{
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Make sure the file or picture not blur or have a good quality '
+            }];
+        }
+        if (this.isBlury) {
+            this.onUploadClear()
+        }
+    }
+
     isDebuggingText(character: string) {
         this.resultText = character.trim().split(" ").join("")
+    }
+
+    scrollToTop(isTarget: string) {
+        document.getElementById(isTarget)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
     }
 
     get isDisableSubmit() {
