@@ -28,14 +28,15 @@ export class SabiOcrComponent implements OnInit {
     identityModel: IdentityKtpModel = new IdentityKtpModel();
     uploadedFiles: File[] = [];
     serviceName: string = 'sabi-ocr-service';
-    resultText!: string;
+    resultText: string = '';
     blobUrl: string = '';
     isLoading: boolean = false;
     isSubmited: boolean = false;
     isValidKtp: boolean = true;
     isBlury: boolean = false;
     isAlertMessage: boolean = false;
-    list: Array<any> = [];
+    stateSwitch: any[] = [{label: 'Off', value: 'off'}, {label: 'On', value: 'on'}];
+    valueSwitch: string = 'off';
     public configStage = new BehaviorSubject({
         width: 200,
         height: 200,
@@ -95,6 +96,7 @@ export class SabiOcrComponent implements OnInit {
 
     onLogoUploadFinish(event: FinishUploadedModel) {
         this.uploadedFiles = event.data
+        this.isAlertMessage = false;
         if (event.data.length > 0) {
             this.isSubmited = false;
             this.toastService.success('Success upload a file KTP')
@@ -113,7 +115,7 @@ export class SabiOcrComponent implements OnInit {
 
     onConvertFile(): void {
         this.isBlury = false;
-        this.isSubmited = true;
+        this.isSubmited = true
         this.scrollToTop('target-scroller')
         if (this.uploadedFiles.length > 0) {
             this.ocrService.createFileToBlob(this.uploadedFiles)
@@ -128,26 +130,26 @@ export class SabiOcrComponent implements OnInit {
             this.messages = [{
                 severity: 'error',
                 summary: 'Error',
-                detail: 'please enter the file first !'
-            }];
+                detail: 'Please select a file to be processed'
+            }]
+            this.isSubmited = false;
         }
     }
 
     onSubmitOcr() {
         try {
             this.isLoading = true;
-            this.ocrService.traceOcrService(`${this.blobUrl}`)
-                .then((result: OcrModel | any) => {
-                    this.isValidateIdentity(result)
-                    this.mappingDataExtracted(result)
-                    this.isDebuggingText(result.text)
-                    if (this.isValidKtp) {
-                        this.drawCanvas(this.blobUrl)
-                        this.drawLineMarker()
-                    }
-                    this.isLoading = false;
-                    this.isSubmited = false
-                }).catch((err) => {
+            this.ocrService.traceOcrService(`${this.blobUrl}`).then((result: OcrModel | any) => {
+                this.isValidateIdentity(result)
+                this.mappingDataExtracted(result)
+                this.isDebuggingText(result.text)
+                if (this.isValidKtp) {
+                    this.drawCanvas(this.blobUrl)
+                    this.drawLineMarker()
+                }
+                this.isLoading = false;
+                this.isSubmited = false
+            }).catch((err) => {
                 console.error(err)
                 this.isLoading = false
                 this.toastService.error(`${err}`)
@@ -479,7 +481,6 @@ export class SabiOcrComponent implements OnInit {
     clearOcrResult() {
         this.isSubmited = false
         this.isBlury = false
-        this.isAlertMessage = false
         this.identityModel = new IdentityKtpModel()
         this.configImage.emit({
             image: ''
