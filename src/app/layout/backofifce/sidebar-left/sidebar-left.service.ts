@@ -26,7 +26,15 @@ export class SidebarLeftService implements OnInit {
             items: [
                 {label: 'Ocr', icon: 'pi pi-fw pi-clone', routerLink: ['/ocr']},
             ]
-        }
+        },
+      {
+        label: 'Firebase',
+        items: [
+          {label: 'Firestore Database', icon: 'pi pi-fw pi-clone', routerLink: ['/firebase/firestore']},
+          {label: 'Firestore Query', icon: 'pi pi-fw pi-clone', routerLink: ['/firebase/firestore-query']},
+          {label: 'Realtime Database', icon: 'pi pi-fw pi-clone', routerLink: ['/firebase/realtime-database']},
+        ],
+      },
     ];
 
     ngOnInit() {

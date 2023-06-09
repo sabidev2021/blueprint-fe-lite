@@ -6,7 +6,7 @@
 import * as functions from "firebase-functions";
 
 export const createUser = functions.firestore
-  .document("users/{userId}")
+  .document("members/{userId}")
   .onCreate((snap, context) => {
     console.log(
       "trigger after create",
@@ -16,7 +16,7 @@ export const createUser = functions.firestore
   });
 
 export const getUser = functions.firestore
-  .document("users/{userId}")
+  .document("members/{userId}")
   .onWrite((change, context) => {
     console.log(
       "trigger after read",
@@ -27,7 +27,7 @@ export const getUser = functions.firestore
   });
 
 export const updateUser = functions.firestore
-  .document("users/{userId}")
+  .document("members/{userId}")
   .onUpdate((change, context) => {
     console.log(
       "trigger after update",
@@ -38,7 +38,7 @@ export const updateUser = functions.firestore
   });
 
 export const deleteUser = functions.firestore
-  .document("users/{userId}")
+  .document("members/{userId}")
   .onDelete((snap, context) => {
     console.log(
       "trigger after delete",

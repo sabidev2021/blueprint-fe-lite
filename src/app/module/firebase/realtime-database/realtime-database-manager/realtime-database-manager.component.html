@@ -1,0 +1,80 @@
+<div class="col-12 col-lg-12 col-md-12">
+  <h2>Realtime Database</h2>
+  <p>Implement Firebase Realtime Database in Angular.</p>
+</div>
+
+<div class="flex pr-5">
+  <div class="flex flex-column p-5 m-2 pb-7 border-round sabi-card col-6">
+    <h4>
+      CREATE
+    </h4>
+    <div class="col-12 flex flex-row pr-1 pl-1">
+      <div class="field col-6">
+        <label class="block">Name</label>
+        <input type="text" class="col-12" aria-describedby="name-help" pInputText [(ngModel)]="newMember.name">
+      </div>
+      <div class="field col-6">
+        <label class="block">Hobby</label>
+        <input type="text" class="col-12" aria-describedby="name-help" pInputText [(ngModel)]="newMember.hobby">
+      </div>
+    </div>
+    <button class="mr-1 ml-1" type="button" (click)="createMember()" pButton label="CREATE"></button>
+  </div>
+  <div class="flex flex-column p-5 m-2 border-round sabi-card col-6">
+    <h4>
+      READ
+    </h4>
+    <div class="card">
+      <p-table [value]="members" [tableStyle]="{ 'min-width': '10rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Hobby</th>
+            <th>Action Button</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-member>
+          <tr>
+            <td>{{member.name}}</td>
+            <td>{{member.hobby}}</td>
+            <td class="flex" style="justify-content: center;">
+              <p-button label="Update" styleClass="p-button-success mr-3" (click)="selectMember(member)"></p-button>
+              <p-button label="Delete" styleClass="p-button-danger" (click)="deleteMember(member.id)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<div class="flex pr-5">
+  <div class="flex flex-column p-5 m-2 pb-7 border-round sabi-card col-6">
+    <h4>
+      QUERY
+    </h4>
+    <div class="card flex flex-column justify-content-start ml-1 mt-3">
+      <label class="block mb-2">Select Key</label>
+      <p-dropdown [options]="queryMethods" [(ngModel)]="selectedMethod" optionLabel="key"></p-dropdown>
+      <label class="block mb-2 mt-3">Value</label>
+      <input type="text" style="width: 125px;" aria-describedby="name-help" pInputText [(ngModel)]="value">
+    </div>
+    <button class="mr-1 ml-1 mt-5" type="button" pButton label="QUERY" (click)="queryData()"></button>
+  </div>
+  <div *ngIf="selectedMember.id" class="flex flex-column p-5 m-2 pb-7 border-round sabi-card col-6">
+    <h4>
+      UPDATE
+    </h4>
+    <div class="col-12 flex flex-row pr-1 pl-1">
+      <div class="field col-6">
+        <label class="block">Name</label>
+        <input type="text" class="col-12" aria-describedby="name-help" pInputText [(ngModel)]="selectedMember.name">
+      </div>
+      <div class="field col-6">
+        <label class="block">Hobby</label>
+        <input type="text" class="col-12" aria-describedby="name-help" pInputText [(ngModel)]="selectedMember.hobby">
+      </div>
+    </div>
+    <button class="mr-1 ml-1" type="button" (click)="updateMember(selectedMember.id)" pButton label="UPDATE"></button>
+  </div>
+</div>
