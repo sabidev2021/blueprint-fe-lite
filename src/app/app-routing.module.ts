@@ -35,6 +35,11 @@ const appRoutes: Routes = [
       data: {animation: 'input'}
     },
     {
+      path: 'firebase',
+      loadChildren: () => import('./module/firebase/firebase.module').then(m => m.FirebaseModule),
+      data: {animation: 'firebase'}
+    },
+    {
         path: 'table',
         loadChildren: () => import('./module/table/sabi-table.module').then(m => m.SabiTableModule),
         data: {animation: 'table'}
