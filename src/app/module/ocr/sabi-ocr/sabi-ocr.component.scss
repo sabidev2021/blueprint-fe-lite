@@ -1,3 +1,5 @@
+@import "src/styles/variables/variables";
+
 .ocr-container {
     .live-interface-core {
         background-color: #FFFF;
@@ -6,11 +8,6 @@
     }
     .config-panel {
         display: block;
-        padding: 0 15px 0 15px;
+        font-weight: $font-weight-bold;
     }
-}
-
-canvas {
-    border: 1px solid grey;
-    background-color: lightgrey;
 }
