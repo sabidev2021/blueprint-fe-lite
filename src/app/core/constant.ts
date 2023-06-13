@@ -112,7 +112,7 @@ export const OCR_CONFIG = {
         ADDRESS: 'Alamat :',
         RT_RW: 'RT/RW :',
         VILLAGE: 'Kel/Desa :',
-        SUBDISTRIC: 'Kecamatan :',
+        SUBDISTRICT: 'Kecamatan :',
         RELIGION: 'Agama :',
         MARTIAL_STATUS: 'Status Perkawinan :',
         WORK: 'Pekerjaan :',
