@@ -45,7 +45,7 @@
     display: flex;
     align-items: center;
 
-    .p-toast-message-icon {
+    & > .p-toast-message-icon {
       font-size: 0;
       background-image: url("../../../../../assets/icon/general/icon-failed.svg");
       width: 20px;
@@ -63,7 +63,7 @@
     display: flex;
     align-items: center;
 
-    .p-toast-message-icon {
+    & > .p-toast-message-icon {
       font-size: 0;
       background-image: url("../../../../../assets/icon/general/icon-success.svg");
       width: 20px;

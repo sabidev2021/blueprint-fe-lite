@@ -12,7 +12,6 @@ import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
-
 @Component({
     selector: 'app-sabi-ocr',
     templateUrl: './sabi-ocr.component.html',
@@ -178,6 +177,7 @@ export class SabiOcrComponent implements OnInit {
     }
 
     mappingDataExtracted(value: OcrModel) {
+        console.log(value)
         value.lines.forEach((value: OcrLinesModel) => {
             this.groupNik(value)
             this.groupName(value)
