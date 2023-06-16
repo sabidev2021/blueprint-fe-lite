@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {BehaviorSubject} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
@@ -9,9 +9,11 @@ import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
+import {AspectScale, Dimensions, ImageCroppedEvent, ImageTransform} from "@app/module/ocr/interface";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
+
 @Component({
     selector: 'app-sabi-ocr',
     templateUrl: './sabi-ocr.component.html',
@@ -22,6 +24,9 @@ export class SabiOcrComponent implements OnInit {
     @ViewChild('stage') stage!: KonvaComponent;
     @ViewChild('layer') layer!: KonvaComponent;
     @ViewChild('dragLayer') dragLayer!: KonvaComponent;
+    @Input() accept!: string;
+    @Input() inputIndex = 0;
+    @Input() inputName = 'file-transfer'
 
     loggerStats: LoggerStatusModel = new LoggerStatusModel();
     identityModel: IdentityKtpModel = new IdentityKtpModel();
@@ -51,10 +56,25 @@ export class SabiOcrComponent implements OnInit {
         strokeWidth: 0
     });
     messages!: Message[];
+    canvasRotation: number = 0;
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
+    scale: number = 1;
+    showCropper: boolean = false;
+    containWithinAspectRatio: boolean = false;
+    transform: ImageTransform = {};
+    visible: boolean = false;
+    aspectRatio: Array<object> = [];
+    selectedRatio!: AspectScale;
+    isDefaultRatio: number = 4 / 3 ;
+    isRatioWidth!: number;
+    isRatioHeight!: number;
+    isMaintainAspectRatio: boolean = true;
 
     constructor(
         private toastService: ToastService,
         private ocrService: OcrUploaderService,
+        private el: ElementRef,
     ) {
         this.ocrService.isLogger()
             .subscribe((value: LoggerStatusModel) => console.info(value));
@@ -62,6 +82,7 @@ export class SabiOcrComponent implements OnInit {
 
     ngOnInit() {
         this.iniStageCanvas()
+        this.initTheRatios()
     }
 
     iniStageCanvas() {
@@ -519,6 +540,110 @@ export class SabiOcrComponent implements OnInit {
             behavior: "smooth",
             block: "start",
         });
+    }
+
+    initTheRatios(): void {
+        this.aspectRatio = [
+            { label: "Choose Ratio", scale: { width: 0,  height: 0 } },
+            { label: "1 / 1", scale: { width: 1,  height: 1 } },
+            { label: "3 / 2", scale: { width: 3,  height: 2 } },
+            { label: "4 / 3", scale: { width: 4,  height: 3 } },
+            { label: "16 / 9", scale: { width: 16,  height: 9 } },
+        ]
+    }
+
+    changeTheRatios(event: { value: { width: string, height: string } }) {
+        this.isRatioWidth = parseInt(event.value.width)
+        this.isRatioHeight = parseInt(event.value.height)
+    }
+
+    fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+    }
+
+    imageLoaded() {
+        this.showCropper = true;
+        this.visible = true;
+        console.info('Image was successfully loaded !')
+    }
+
+    cropperReady(sourceImageDimensions: Dimensions) {
+        console.log(sourceImageDimensions)
+    }
+
+    loadImageFailed() {
+        this.toastService.error('Whoops something when wrong image load failed !')
+    }
+
+    zoomOut() {
+        this.scale -= .1;
+        this.transform = {
+            ...this.transform,
+            scale: this.scale
+        };
+    }
+
+    zoomIn() {
+        this.scale += .1;
+        this.transform = {
+            ...this.transform,
+            scale: this.scale
+        };
+    }
+
+    toggleContainWithinAspectRatio() {
+        this.containWithinAspectRatio = !this.containWithinAspectRatio;
+    }
+
+    submitCropping() {
+        this.visible = false
+    }
+
+    dragAspectRatio() {
+        this.isMaintainAspectRatio = !this.isMaintainAspectRatio
+    }
+
+    onTriggerInput() {
+        const hostElem = this.el.nativeElement;
+        hostElem.querySelector(`input[name='${this.inputName + '-' + this.inputIndex}']`).click();
+    }
+
+    flipHoriziontal() {
+        this.transform = {
+            ...this.transform,
+            flipH: !this.transform.flipH
+        };
+    }
+
+    flipVertical() {
+        this.transform = {
+            ...this.transform,
+            flipV: !this.transform.flipV
+        };
+    }
+
+    rotateLeft() {
+        this.canvasRotation--;
+        this.flipAfterRotate();
+    }
+
+    rotateRight() {
+        this.canvasRotation++;
+        this.flipAfterRotate();
+    }
+
+    private flipAfterRotate() {
+        const flippedH = this.transform.flipH;
+        const flippedV = this.transform.flipV;
+        this.transform = {
+            ...this.transform,
+            flipH: flippedV,
+            flipV: flippedH
+        };
     }
 
     get isDisableSubmit() {

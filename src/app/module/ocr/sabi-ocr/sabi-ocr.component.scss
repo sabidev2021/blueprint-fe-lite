@@ -11,3 +11,23 @@
         font-weight: $font-weight-bold;
     }
 }
+
+.container-cropper {
+    display: block;
+    width: 100%;
+    padding: 5px;
+}
+
+:host {
+    ::ng-deep .sabi-dropdown {
+        border: 1px solid #3B82F6;
+        height: 35px;
+        color:white;
+        &,.p-dropdown-label {
+            padding: 4px 0 0 6px;
+            color: #3c82f7;
+            font-size: 0.875rem;
+            font-weight: $font-weight-bold;
+        }
+    }
+}
