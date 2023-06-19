@@ -491,6 +491,7 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
             stroke: '',
             strokeWidth: 0
         });
+        this.resultText = "";
     }
 
     checkQualityImage(isQuality: boolean, field: string) {
