@@ -9,7 +9,7 @@
     <p-messages [(value)]="messages" [enableService]="false" [closable]="true" *ngIf="isAlertMessage"></p-messages>
     <div class="grid live-interface-core mt-4">
         <div class="col-7 pr-6">
-            <div class="sabi-cropper-uploader" (click)="onTriggerInput()" *ngIf="showCropper !== true">
+            <div class="sabi-cropper-uploader" appDragDrop (click)="onTriggerInput()" *ngIf="showCropper !== true">
                 <input type="file"
                        [accept]="accept"
                        [name]="inputName +'-'+ inputIndex"

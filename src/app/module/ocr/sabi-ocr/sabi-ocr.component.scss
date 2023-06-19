@@ -1,4 +1,5 @@
 @import "src/styles/variables/variables";
+@import "src/styles/components/animations/shakes";
 
 .ocr-container {
     .live-interface-core {
@@ -114,4 +115,9 @@
         align-items: center;
     }
 
+}
+
+.fileover {
+    animation: shake 1s;
+    animation-iteration-count: infinite;
 }

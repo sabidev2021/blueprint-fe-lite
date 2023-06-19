@@ -18,6 +18,7 @@ import {DialogModule} from "primeng/dialog";
 import {ImageCropperModule} from "ngx-image-cropper";
 import {CardModule} from "primeng/card";
 import {DropdownModule} from "primeng/dropdown";
+import {DragAndDropModule} from "@app/shared/sabi-directive/drag-and-drop/drag-and-drop.module";
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import {DropdownModule} from "primeng/dropdown";
         DialogModule,
         ImageCropperModule,
         CardModule,
-        DropdownModule
+        DropdownModule,
+        DragAndDropModule
     ],
     providers: [
         ToastService

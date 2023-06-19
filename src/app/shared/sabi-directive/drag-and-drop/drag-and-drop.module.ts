@@ -6,6 +6,9 @@ import {DragDropDirective} from './drag-drop.directive';
     declarations: [
         DragDropDirective
     ],
+    exports: [
+        DragDropDirective
+    ],
     imports: [
         CommonModule
     ]
