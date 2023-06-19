@@ -69,6 +69,7 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     isRatioWidth!: number;
     isRatioHeight!: number;
     isMaintainAspectRatio: boolean = true;
+    sourceImageDimension: Dimensions | string = '';
 
     constructor(
         private toastService: ToastService,
@@ -175,7 +176,6 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     mappingDataExtracted(value: OcrModel) {
-        console.log(value)
         value.lines.forEach((value: OcrLinesModel) => {
             this.groupNik(value)
             this.groupName(value)
@@ -539,7 +539,6 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     imageCropped(event: ImageCroppedEvent) {
-        console.log(event)
         this.croppedImage = event.base64;
     }
 
@@ -549,7 +548,7 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     cropperReady(sourceImageDimensions: Dimensions) {
-        console.log(sourceImageDimensions)
+        this.sourceImageDimension = sourceImageDimensions
     }
 
     loadImageFailed() {
