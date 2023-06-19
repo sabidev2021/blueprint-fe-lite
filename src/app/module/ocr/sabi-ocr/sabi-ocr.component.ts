@@ -584,6 +584,7 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     onTriggerInput() {
+        this.isAlertMessage = false;
         const hostElem = this.el.nativeElement;
         hostElem.querySelector(`input[name='${this.inputName + '-' + this.inputIndex}']`).click();
     }
@@ -625,6 +626,7 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     onRemovedFiles() {
         this.croppedImage = '';
         this.showCropper = false;
+        this.clearOcrResult()
     }
 
     onFileDropped(files: File[]) {
