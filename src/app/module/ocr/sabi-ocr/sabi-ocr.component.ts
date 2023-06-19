@@ -1,9 +1,7 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {BehaviorSubject} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
-import {ErrorUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/ErrorUploaded.model";
-import {FinishUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/FinishUploaded.model";
 import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
@@ -13,13 +11,14 @@ import {AspectScale, Dimensions, ImageCroppedEvent, ImageTransform} from "@app/m
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
+import {fileBase64Model} from "@app/module/ocr/model/fileBase64.model";
 
 @Component({
     selector: 'app-sabi-ocr',
     templateUrl: './sabi-ocr.component.html',
     styleUrls: ['./sabi-ocr.component.scss'],
 })
-export class SabiOcrComponent implements OnInit {
+export class SabiOcrComponent implements OnInit, OnDestroy {
 
     @ViewChild('stage') stage!: KonvaComponent;
     @ViewChild('layer') layer!: KonvaComponent;
@@ -34,7 +33,6 @@ export class SabiOcrComponent implements OnInit {
     uploadedFiles: File[] = [];
     serviceName: string = 'sabi-ocr-service';
     resultText: string = '';
-    blobUrl: string = '';
     isLoading: boolean = false;
     isSubmited: boolean = false;
     isValidKtp: boolean = true;
@@ -86,6 +84,10 @@ export class SabiOcrComponent implements OnInit {
         this.initTheRatios()
     }
 
+    ngOnDestroy() {
+
+    }
+
     iniStageCanvas() {
         this.configStage.next({
             width: 900,
@@ -115,38 +117,12 @@ export class SabiOcrComponent implements OnInit {
         });
     }
 
-    onLogoUploadFinish(event: FinishUploadedModel) {
-        this.uploadedFiles = event.data
-        this.isAlertMessage = false;
-        if (event.data.length > 0) {
-            this.isSubmited = false;
-            this.toastService.success('Success upload a file KTP')
-        }
-    }
-
-    onErrorUploadFinish(event: ErrorUploadedModel) {
-        this.toastService.error(`Whoops format file not valid ${event}`)
-    }
-
-    onUploadClear() {
-        this.resultText = "";
-        this.uploadedFiles = [];
-        this.clearOcrResult()
-    }
-
     onConvertFile(): void {
         this.isBlury = false;
         this.isSubmited = true
         this.scrollToTop('target-scroller')
-        if (this.uploadedFiles.length > 0) {
-            this.ocrService.createFileToBlob(this.uploadedFiles)
-                .then((result: (Awaited<PromiseLike<any>>)) => {
-                    this.blobUrl = result[0].data
-                    this.onSubmitOcr()
-                }).catch((err) => {
-                    console.error(err)
-                }
-            )
+        if (this.croppedImage.length > 0) {
+            this.onSubmitOcr()
         } else {
             this.messages = [{
                 severity: 'error',
@@ -160,12 +136,13 @@ export class SabiOcrComponent implements OnInit {
     onSubmitOcr() {
         try {
             this.isLoading = true;
-            this.ocrService.traceOcrService(`${this.blobUrl}`).then((result: OcrModel | any) => {
+            this.ocrService.traceOcrService(`${this.croppedImage}`)
+            .then((result: OcrModel | any) => {
                 this.isValidateIdentity(result)
                 this.mappingDataExtracted(result)
                 this.isDebuggingText(result.text)
                 if (this.isValidKtp) {
-                    this.drawCanvas(this.blobUrl)
+                    this.drawCanvas(this.croppedImage)
                     this.drawLineMarker()
                 }
                 this.isLoading = false;
@@ -189,7 +166,6 @@ export class SabiOcrComponent implements OnInit {
         if (!this.isValidKtp) {
             this.isAlertMessage = true;
             this.isValidKtp = false;
-            this.onUploadClear()
             this.messages = [{
                 severity: 'error',
                 summary: 'Error',
@@ -528,7 +504,7 @@ export class SabiOcrComponent implements OnInit {
             }];
         }
         if (this.isBlury) {
-            this.onUploadClear()
+            this.croppedImage = "";
         }
     }
 
@@ -563,6 +539,7 @@ export class SabiOcrComponent implements OnInit {
     }
 
     imageCropped(event: ImageCroppedEvent) {
+        console.log(event)
         this.croppedImage = event.base64;
     }
 
@@ -646,6 +623,19 @@ export class SabiOcrComponent implements OnInit {
         };
     }
 
+    onRemovedFiles() {
+        this.croppedImage = '';
+        this.showCropper = false;
+    }
+
+    onFileDropped(files: File[]) {
+        this.ocrService.createFileToBase64(files).then((result: fileBase64Model) => {
+            this.croppedImage = result.data
+        })
+        this.visible = true;
+        this.showCropper = true
+    }
+
     get isDisableSubmit() {
         return this.isSubmited
     }
@@ -654,8 +644,4 @@ export class SabiOcrComponent implements OnInit {
         return this.isValidKtp
     }
 
-    onRemovedFiles() {
-        this.croppedImage = '';
-        this.showCropper = false;
-    }
 }

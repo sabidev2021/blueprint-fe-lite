@@ -6,6 +6,7 @@ import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {OCR_CONFIG} from "@core/constant";
 import {Observable, of} from "rxjs";
+import {fileBase64Model} from "@app/module/ocr/model/fileBase64.model";
 
 @Injectable({
     providedIn: 'root'
@@ -18,21 +19,19 @@ export class OcrUploaderService {
     ) {
     }
 
-    createFileToBlob(file: File[]) {
-        return Promise.all(file.map((image: File) =>
-            new Promise((resolve, reject) => {
-                const fileReader = new FileReader();
-                fileReader.onload = (file: ProgressEvent<FileReader>) => {
-                    const formatResponse: { data: string | ArrayBuffer | null } = {
-                        data: file.target!.result
-                    }
-                    resolve(<FileUrlModel>formatResponse);
-                };
-                fileReader.onerror = (error: ProgressEvent<FileReader>) => reject(error);
-                fileReader.readAsDataURL(image);
-            }))
-        ).then(r => r);
-    }
+    createFileToBase64 = (file: File[]) => new Promise<fileBase64Model>((resolve, reject) => {
+        Array.from(file).forEach((file: File) => {
+            const fileReader = new FileReader();
+            fileReader.onload = (file: ProgressEvent<FileReader>) => {
+                const formatResponse: { data: string | ArrayBuffer | null } = {
+                    data: file.target!.result
+                }
+                resolve(<FileUrlModel>formatResponse);
+            };
+            fileReader.onerror = (error: ProgressEvent<FileReader>) => reject(error);
+            return fileReader.readAsDataURL(file);
+        })
+    })
 
     async traceOcrService(filePath: string) {
         try {

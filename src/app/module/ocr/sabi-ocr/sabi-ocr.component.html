@@ -9,7 +9,12 @@
     <p-messages [(value)]="messages" [enableService]="false" [closable]="true" *ngIf="isAlertMessage"></p-messages>
     <div class="grid live-interface-core mt-4">
         <div class="col-7 pr-6">
-            <div class="sabi-cropper-uploader" appDragDrop (click)="onTriggerInput()" *ngIf="showCropper !== true">
+            <div class="sabi-cropper-uploader"
+                 appDragDrop
+                 (click)="onTriggerInput()"
+                 (fileDropped)="onFileDropped($event)"
+                 *ngIf="showCropper !== true"
+            >
                 <input type="file"
                        [accept]="accept"
                        [name]="inputName +'-'+ inputIndex"
@@ -277,6 +282,7 @@
             </div>
         </div>
     </div>
+
     <p-dialog header="Preview Images"
           [(visible)]="visible"
           [modal]="true"
@@ -356,6 +362,7 @@
                 [alignImage]="'left'"
         >
         </image-cropper>
+
         <div class="modal-action flex justify-content-end mt-5">
             <p-button label="Cropping" styleClass="mr-2" (onClick)="submitCropping()"></p-button>
         </div>
