@@ -9,13 +9,42 @@
     <p-messages [(value)]="messages" [enableService]="false" [closable]="true" *ngIf="isAlertMessage"></p-messages>
     <div class="grid live-interface-core mt-4">
         <div class="col-7 pr-6">
-            <app-sabi-ocr-uploader
-                    (onClear)="onUploadClear()"
-                    (onErrorUpload)="onErrorUploadFinish($event)"
-                    (onFinishUpload)="onLogoUploadFinish($event)"
-                    [serviceName]="serviceName"
+            <div class="sabi-cropper-uploader"
+                 appDragDrop
+                 (click)="onTriggerInput()"
+                 (fileDropped)="onFileDropped($event)"
+                 *ngIf="showCropper !== true"
             >
-            </app-sabi-ocr-uploader>
+                <input type="file"
+                       [accept]="accept"
+                       [name]="inputName +'-'+ inputIndex"
+                       hidden
+                       (change)="fileChangeEvent($event)"
+                />
+                <div class="label-file">
+                    <h2>Upload KTP file here</h2>
+                    <img class="ilustration-uploader" [src]="(imgPath + 'general/unggah.svg') " alt="icon-upload"/>
+                </div>
+            </div>
+            <div class="grid container-cropper">
+                <div [ngClass]="croppedImage.length > 0 ? 'sabi-preview-cropper block' : 'hidden'">
+                    <img [src]="croppedImage" alt="cropped image"/>
+                </div>
+            </div>
+            <div class="panel-labeling-info">
+                <p class="sub-information">Drag and drop a KTP or select from your computer</p>
+            </div>
+            <div class="cta-remove-files" *ngIf="showCropper">
+                <span class="badge-rounded"
+                    (click)="onRemovedFiles()"
+                >
+                    <svg fill="none" height="12" viewBox="0 0 9 8" width="12" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.912 3.984L8.144 8H6.576L4.144 4.96L1.728 8H0.144L3.376 3.984L0.336 0.208H1.904L4.144 3.04L6.384 0.208H7.968L4.912 3.984Z"
+                                fill="white"
+                        />
+                    </svg>
+                </span>
+            </div>
             <div class="config-panel mt-3 flex align-items-center justify-content-start">
                 Show Debug &nbsp; <p-selectButton [options]="stateSwitch" [(ngModel)]="valueSwitch" optionLabel="label" optionValue="value"></p-selectButton>
             </div>
@@ -253,4 +282,89 @@
             </div>
         </div>
     </div>
+
+    <p-dialog header="Preview Images"
+          [(visible)]="visible"
+          [modal]="true"
+          [style]="{ width: '55vw' }"
+          [draggable]="false"
+          [resizable]="false"
+          [maximizable]="true"
+    >
+        <div class="flex mb-2 mt-2">
+            <p-button label="Zoom -"
+                      styleClass="p-button-outlined p-button-sm mr-2"
+                      (click)="zoomOut()"
+            >
+            </p-button>
+            <p-button label="Zoom +"
+                      styleClass="p-button-outlined p-button-sm mr-2"
+                      (click)="zoomIn()"
+            >
+            </p-button>
+            <p-button label="{{ isMaintainAspectRatio ? 'Free Crop ( Disabled )' : 'Free Crop ( Enable )' }}"
+                      styleClass="p-button-outlined p-button-sm mr-2"
+                      (click)="dragAspectRatio()"
+            >
+            </p-button>
+            <p-button label="{{ containWithinAspectRatio ? 'Contain Within Aspect Ratio' : 'Fill Aspect Ratio' }}"
+                      styleClass="p-button-outlined p-button-sm mr-2"
+                      (click)="toggleContainWithinAspectRatio()"
+            >
+            </p-button>
+            <p-dropdown
+                    (onChange)="changeTheRatios($event)"
+                    [options]="aspectRatio"
+                    [(ngModel)]="selectedRatio"
+                    styleClass="p-dropdown-sm sabi-dropdown"
+                    optionLabel="label"
+                    optionValue="scale"
+                    [disabled]="!isMaintainAspectRatio"
+            >
+            </p-dropdown>
+        </div>
+        <div class="flex mb-2 mt-2">
+            <p-button label="Flip Vertical"
+                      styleClass="p-button-outlined p-button-sm mr-2"
+                      (click)="flipHoriziontal()"
+            >
+            </p-button>
+            <p-button
+                    label="Flip Horiziontal"
+                    styleClass="p-button-outlined p-button-sm mr-2"
+                    (click)="flipVertical()"
+            >
+            </p-button>
+            <p-button label="Rotate Left"
+                      styleClass="p-button-outlined p-button-sm mr-2"
+                      (click)="rotateLeft()"
+            >
+            </p-button>
+            <p-button label="Rotate Right"
+                      styleClass="p-button-outlined p-button-sm mr-2"
+                      (click)="rotateRight()"
+            >
+            </p-button>
+        </div>
+        <image-cropper
+                [canvasRotation]="canvasRotation"
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="isMaintainAspectRatio"
+                [containWithinAspectRatio]="containWithinAspectRatio"
+                [aspectRatio]="isRatioWidth !== undefined ? (isRatioWidth / isRatioHeight) : isDefaultRatio"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady($event)"
+                (loadImageFailed)="loadImageFailed()"
+                [roundCropper]="false"
+                [transform]="transform"
+                [alignImage]="'left'"
+        >
+        </image-cropper>
+
+        <div class="modal-action flex justify-content-end mt-5">
+            <p-button label="Cropping" styleClass="mr-2" (onClick)="submitCropping()"></p-button>
+        </div>
+    </p-dialog>
 </div>

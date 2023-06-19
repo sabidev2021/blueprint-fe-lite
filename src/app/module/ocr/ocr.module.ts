@@ -14,6 +14,11 @@ import {BreadcrumbsModule} from "@app/shared/sabi-components/breadcrumb/breadcru
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 import {MessagesModule} from "primeng/messages";
 import {SelectButtonModule} from "primeng/selectbutton";
+import {DialogModule} from "primeng/dialog";
+import {ImageCropperModule} from "ngx-image-cropper";
+import {CardModule} from "primeng/card";
+import {DropdownModule} from "primeng/dropdown";
+import {DragAndDropModule} from "@app/shared/sabi-directive/drag-and-drop/drag-and-drop.module";
 
 @NgModule({
     declarations: [
@@ -31,7 +36,12 @@ import {SelectButtonModule} from "primeng/selectbutton";
         InputTextModule,
         BreadcrumbsModule,
         MessagesModule,
-        SelectButtonModule
+        SelectButtonModule,
+        DialogModule,
+        ImageCropperModule,
+        CardModule,
+        DropdownModule,
+        DragAndDropModule
     ],
     providers: [
         ToastService
