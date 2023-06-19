@@ -653,4 +653,9 @@ export class SabiOcrComponent implements OnInit {
     get isValidIdentity() {
         return this.isValidKtp
     }
+
+    onRemovedFiles() {
+        this.croppedImage = '';
+        this.showCropper = false;
+    }
 }

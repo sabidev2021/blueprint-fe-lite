@@ -94,4 +94,23 @@
     }
 }
 
+.cta-remove-files {
+    display: flex;
+    justify-content: flex-end;
+    .badge-rounded {
+        position: relative;
+        top: -515px !important;
+        right: -15px;
+        z-index: 100;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border-radius: 20px;
+        color: $sc-white;
+        background-color: #1E263E !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+}
