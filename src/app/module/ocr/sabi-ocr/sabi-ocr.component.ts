@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {BehaviorSubject} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
@@ -17,7 +17,7 @@ import {Message} from 'primeng/api';
 @Component({
     selector: 'app-sabi-ocr',
     templateUrl: './sabi-ocr.component.html',
-    styleUrls: ['./sabi-ocr.component.scss']
+    styleUrls: ['./sabi-ocr.component.scss'],
 })
 export class SabiOcrComponent implements OnInit {
 
@@ -27,6 +27,7 @@ export class SabiOcrComponent implements OnInit {
     @Input() accept!: string;
     @Input() inputIndex = 0;
     @Input() inputName = 'file-transfer'
+    @Input() imgPath = "./assets/icon/";
 
     loggerStats: LoggerStatusModel = new LoggerStatusModel();
     identityModel: IdentityKtpModel = new IdentityKtpModel();
@@ -568,7 +569,6 @@ export class SabiOcrComponent implements OnInit {
     imageLoaded() {
         this.showCropper = true;
         this.visible = true;
-        console.info('Image was successfully loaded !')
     }
 
     cropperReady(sourceImageDimensions: Dimensions) {

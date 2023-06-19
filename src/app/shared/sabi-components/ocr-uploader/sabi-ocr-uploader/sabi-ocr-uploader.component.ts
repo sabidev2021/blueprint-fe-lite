@@ -32,9 +32,8 @@ export class SabiOcrUploaderComponent implements AfterViewInit {
     retrievedImage = '';
     spinner = false;
     errorMessage = false;
-    isDesktop: any;
-    isMobile: any;
 
+    @Output() onAttachFile: EventEmitter<File[]> = new EventEmitter();
     @Output() onClear: EventEmitter<void> = new EventEmitter();
     @Output() onChange: EventEmitter<void> = new EventEmitter();
     @Output() onFinishUpload: EventEmitter<FinishUploadedModel> = new EventEmitter<FinishUploadedModel>();
@@ -50,11 +49,12 @@ export class SabiOcrUploaderComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         this.initIDB()
+        console.log(this.filePath)
     }
 
     ngOnChanges(changes: SimpleChanges) {
         this._changes = changes;
-        this.retrievedImage = this.isVersioningFile(this.filePath)
+        this.retrievedImage = this.isVersioningFile(this.filePath, false)
     }
 
     ngOnDestroy() {
@@ -69,6 +69,10 @@ export class SabiOcrUploaderComponent implements AfterViewInit {
         return `key-${this.serviceName}`;
     }
 
+    onAttachFiles(files: File[]) {
+        this.onAttachFile.emit(files);
+    }
+
     async onSelectFile(event: { addedFiles: any; }) {
         this.deleteIdb(this.generateKeyStore())
         this.files.push(...event.addedFiles);
@@ -78,6 +82,7 @@ export class SabiOcrUploaderComponent implements AfterViewInit {
                 type: `${value.type}`
             }))
         })
+        this.onAttachFiles(this.files)
         await this.saveIdb(this.generateKeyStore(), modifyArray)
     }
 
@@ -187,13 +192,15 @@ export class SabiOcrUploaderComponent implements AfterViewInit {
     }
 
 
-    private isVersioningFile(fileUri: string) {
-        if (fileUri != null) {
-            if (fileUri.length > 0) {
-                if (this.versioning) {
-                    return `${fileUri}?ver=${Math.random()}`
+    private isVersioningFile(fileUri: string, isActive: boolean) {
+        if (isActive) {
+            if (fileUri != null) {
+                if (fileUri.length > 0) {
+                    if (this.versioning) {
+                        return `${fileUri}?ver=${Math.random()}`
+                    }
+                    return fileUri
                 }
-                return fileUri
             }
         }
         return fileUri

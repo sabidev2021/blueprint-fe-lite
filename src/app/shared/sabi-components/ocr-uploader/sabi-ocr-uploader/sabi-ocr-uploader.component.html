@@ -1,9 +1,9 @@
-<ngx-dropzone  (change)="onSelectFile($event)"
-              [accept]="accept"
+<ngx-dropzone [accept]="accept"
               [multiple]="false"
               [ngClass]="errorMessage ? 'error-dropbox' : ''"
               class="sabi-ocr-uploader input-dropzone"
               #drop
+              (change)="onSelectFile($event)"
 >
     <ngx-dropzone-label *ngIf="spinner !== true" class="sabi-label">
         <div *ngIf="isPreviewFiles; else isNothaveFileUploader" class="sabi-container-uploader">
