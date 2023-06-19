@@ -626,6 +626,7 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     onRemovedFiles() {
         this.croppedImage = '';
         this.showCropper = false;
+        this.clearOcrResult()
     }
 
     onFileDropped(files: File[]) {
