@@ -3,8 +3,8 @@ import {DbIndexService} from "@core/dbIndex/db-index.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {DbLocalService} from "@core/dblocal/db-local.service";
 import {CONFIG_FILE_MESSAGES, PICTURE_FORMAT_ALLOWED} from "@core/constant";
-import {FinishUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/FinishUploaded.model";
-import {ErrorUploadedModel} from "@app/shared/sabi-components/ocr-uploader/model/ErrorUploaded.model";
+import {FinishUploadedInterface} from "@app/shared/sabi-components/ocr-uploader/interface/FinishUploaded.interface";
+import {ErrorUploadedInterface} from "@app/shared/sabi-components/ocr-uploader/interface/ErrorUploaded.interface";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 
 @Component({
@@ -36,8 +36,8 @@ export class SabiOcrUploaderComponent implements AfterViewInit {
     @Output() onAttachFile: EventEmitter<File[]> = new EventEmitter();
     @Output() onClear: EventEmitter<void> = new EventEmitter();
     @Output() onChange: EventEmitter<void> = new EventEmitter();
-    @Output() onFinishUpload: EventEmitter<FinishUploadedModel> = new EventEmitter<FinishUploadedModel>();
-    @Output() onErrorUpload: EventEmitter<ErrorUploadedModel> = new EventEmitter<ErrorUploadedModel>();
+    @Output() onFinishUpload: EventEmitter<FinishUploadedInterface> = new EventEmitter<FinishUploadedInterface>();
+    @Output() onErrorUpload: EventEmitter<ErrorUploadedInterface> = new EventEmitter<ErrorUploadedInterface>();
 
     constructor(
         private toastService: ToastService,

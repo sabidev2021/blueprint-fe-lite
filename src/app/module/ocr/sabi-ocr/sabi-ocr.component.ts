@@ -18,7 +18,7 @@ import {fileBase64Model} from "@app/module/ocr/model/fileBase64.model";
     templateUrl: './sabi-ocr.component.html',
     styleUrls: ['./sabi-ocr.component.scss'],
 })
-export class SabiOcrComponent implements OnInit, OnDestroy {
+export class SabiOcrComponent implements OnInit {
 
     @ViewChild('stage') stage!: KonvaComponent;
     @ViewChild('layer') layer!: KonvaComponent;
@@ -83,10 +83,6 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.iniStageCanvas()
         this.initTheRatios()
-    }
-
-    ngOnDestroy() {
-
     }
 
     iniStageCanvas() {
@@ -176,6 +172,12 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     mappingDataExtracted(value: OcrModel) {
+        console.log(this.ocrService.isDebugWords(value))
+        console.log(this.ocrService.isDebugWords(value).words)
+        console.log(this.ocrService.isDebugWords(value).words[0].text)
+        console.log(this.ocrService.isDebugWords(value).words[1].text)
+        console.log(this.ocrService.isDebugWords(value).words[2].text)
+        this.ocrService.groupHeaderClassification(value)
         value.lines.forEach((value: OcrLinesModel) => {
             this.groupNik(value)
             this.groupName(value)

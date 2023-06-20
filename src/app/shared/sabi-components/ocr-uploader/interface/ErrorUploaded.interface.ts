@@ -1,4 +1,4 @@
-export interface ErrorUploadedModel {
+export interface ErrorUploadedInterface {
     messages: string
     errorMessage?: boolean
 }

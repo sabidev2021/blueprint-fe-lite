@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {createWorker} from 'tesseract.js';
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
-import {FileUrlModel} from "@app/shared/sabi-components/ocr-uploader/model/FileUrl.model";
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {OCR_CONFIG} from "@core/constant";
 import {Observable, of} from "rxjs";
 import {fileBase64Model} from "@app/module/ocr/model/fileBase64.model";
+import {FileUrlInterface} from "@app/shared/sabi-components/ocr-uploader/interface";
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +26,7 @@ export class OcrUploaderService {
                 const formatResponse: { data: string | ArrayBuffer | null } = {
                     data: file.target!.result
                 }
-                resolve(<FileUrlModel>formatResponse);
+                resolve(<FileUrlInterface>formatResponse);
             };
             fileReader.onerror = (error: ProgressEvent<FileReader>) => reject(error);
             return fileReader.readAsDataURL(file);
@@ -74,6 +74,15 @@ export class OcrUploaderService {
 
     isLogger(): Observable<LoggerStatusModel> {
         return of(this.loggerStats);
+    }
+
+    isDebugWords(words: OcrModel) {
+        return words
+    }
+
+    groupHeaderClassification(words: OcrModel) {
+        console.log(words.lines[0].text)
+        console.log(words.lines[1].text)
     }
 
 }

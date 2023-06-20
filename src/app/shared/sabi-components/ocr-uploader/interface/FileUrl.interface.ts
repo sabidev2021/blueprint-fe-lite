@@ -1,3 +1,3 @@
-export interface FileUrlModel {
+export interface FileUrlInterface {
     data: string | ArrayBuffer | null;
 }
