@@ -31,7 +31,7 @@
                     <img [src]="croppedImage" alt="cropped image"/>
                 </div>
             </div>
-            <div class="panel-labeling-info">
+            <div class="panel-labeling-info" appDragDrop>
                 <p class="sub-information">Drag and drop a KTP or select from your computer</p>
             </div>
             <div class="cta-remove-files" *ngIf="showCropper">
@@ -347,6 +347,7 @@
             </p-button>
         </div>
         <image-cropper
+                [autoCrop]="false"
                 [canvasRotation]="canvasRotation"
                 [imageChangedEvent]="imageChangedEvent"
                 [maintainAspectRatio]="isMaintainAspectRatio"
@@ -357,6 +358,7 @@
                 (imageLoaded)="imageLoaded()"
                 (cropperReady)="cropperReady($event)"
                 (loadImageFailed)="loadImageFailed()"
+                [imageBase64]="croppedImage"
                 [roundCropper]="false"
                 [transform]="transform"
                 [alignImage]="'left'"
