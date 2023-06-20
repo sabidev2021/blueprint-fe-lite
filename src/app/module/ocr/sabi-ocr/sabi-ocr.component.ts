@@ -172,12 +172,6 @@ export class SabiOcrComponent implements OnInit {
     }
 
     mappingDataExtracted(value: OcrModel) {
-        // console.log(this.ocrService .isDebugWords(value))
-        // console.log(this.ocrService.isDebugWords(value).words)
-        // console.log(this.ocrService.isDebugWords(value).words[0].text)
-        // console.log(this.ocrService.isDebugWords(value).words[1].text)
-        // console.log(this.ocrService.isDebugWords(value).words[2].text)
-        this.ocrService.headerClassification(value)
         value.lines.forEach((value: OcrLinesModel) => {
             this.groupNik(value)
             this.groupName(value)

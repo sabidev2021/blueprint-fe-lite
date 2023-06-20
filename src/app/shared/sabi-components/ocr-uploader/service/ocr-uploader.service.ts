@@ -84,11 +84,6 @@ export class OcrUploaderService {
         return words
     }
 
-    headerClassification(words: OcrModel) {
-        // console.log(words.lines[0].text)
-        // console.log(words.lines[1].text)
-    }
-
     labelClassification(label: OcrModel) {
         label.lines.forEach((lineVal: OcrLinesModel, index: number) => {
             this.ocrLabelService.labelingHeader(index, lineVal)
