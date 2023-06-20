@@ -634,8 +634,10 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
         this.ocrService.createFileToBase64(files).then((result: fileBase64Model) => {
             this.croppedImage = result.data
         })
-        this.visible = true;
-        this.showCropper = true
+        setTimeout(() => {
+            this.visible = true;
+            this.showCropper = true
+        }, 5000)
     }
 
     get isDisableSubmit() {
