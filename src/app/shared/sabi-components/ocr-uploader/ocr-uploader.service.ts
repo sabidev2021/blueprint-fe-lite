@@ -47,7 +47,6 @@ export class OcrUploaderService {
             ({data} = await worker.recognize(filePath));
             this.toastService.success('Success processing extracting data ')
             await worker.terminate();
-            console.log(data)
             return new Promise<PromiseLike<OcrModel>>((resolve, reject) => {
                 if (data.text.length > 0) {
                     resolve(data);

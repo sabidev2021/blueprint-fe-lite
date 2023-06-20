@@ -546,7 +546,6 @@ export class SabiOcrComponent implements OnInit {
     }
 
     imageLoaded() {
-        this.showCropper = true;
         this.visible = true;
     }
 
@@ -579,6 +578,7 @@ export class SabiOcrComponent implements OnInit {
     }
 
     submitCropping() {
+        this.showCropper = true
         this.visible = false
     }
 
@@ -635,10 +635,10 @@ export class SabiOcrComponent implements OnInit {
     onFileDropped(files: File[]) {
         this.ocrService.createFileToBase64(files).then((result: fileBase64Model) => {
             this.croppedImage = result.data
+            this.showCropper = true
         })
         if (this.croppedImage.length > 0) {
             this.visible = true;
-            this.showCropper = true
         }
     }
 

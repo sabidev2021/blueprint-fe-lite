@@ -13,7 +13,7 @@
                  appDragDrop
                  (click)="onTriggerInput()"
                  (fileDropped)="onFileDropped($event)"
-                 *ngIf="showCropper !== true"
+                 *ngIf="!showCropper"
             >
                 <input type="file"
                        [accept]="accept"
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="grid container-cropper">
-                <div [ngClass]="croppedImage.length > 0 && showCropper ? 'sabi-preview-cropper block' : 'hidden'">
+                <div [ngClass]="croppedImage.length > 0 ? 'sabi-preview-cropper block' : 'hidden'">
                     <img [src]="croppedImage" alt="cropped image"/>
                 </div>
             </div>
