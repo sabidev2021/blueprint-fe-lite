@@ -55,7 +55,6 @@ export const PICTURE_FORMAT_ALLOWED = {
 export const FILE_SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 export const FILE_SIZE_UNITS_LONG = ['Bytes', 'Kilobytes', 'Megabytes', 'Gigabytes', 'Pettabytes', 'Exabytes', 'Zettabytes', 'Yottabytes'];
 
-
 export const CONFIG_FILE_MESSAGES = {
     TYPE: {
         DOC: {
@@ -104,22 +103,28 @@ export const OCR_CONFIG = {
         WNA: 'WNA'
     },
     LABELING_CLASSIFICATION : {
-        NIK: 'NIK :',
-        NAME: 'Nama :',
-        BIRTH_PLACE_BIRTH_DATE: 'Tempat/Tgl Lahir :',
-        GENDER_TYPE: 'Jenis Kelamin :',
-        BLOOD_TYPE: 'Gol.Darah :',
-        ADDRESS: 'Alamat :',
-        RT_RW: 'RT/RW :',
-        VILLAGE: 'Kel/Desa :',
-        SUBDISTRICT: 'Kecamatan :',
-        RELIGION: 'Agama :',
-        MARTIAL_STATUS: 'Status Perkawinan :',
-        WORK: 'Pekerjaan :',
-        NATIONALITY: 'Kewarganegaraan :',
-        VALID_UNTIL: 'Berlaku Hingga :',
-        PROVINCE: 'Provinsi :',
-        CITY: 'Kota :',
-        DATE_CREATED: 'Tanggal Dibuat :'
+        NIK: 'NIK',
+        NAME: 'Nama',
+        BIRTH_PLACE_BIRTH_DATE: 'Tempat/Tgl Lahir',
+        BIRTH_PLACE: 'Tempat',
+        BIRTH_DATE: 'Tanggal Lahir',
+        GENDER_TYPE: 'Jenis Kelamin',
+        BLOOD_TYPE: 'Gol.Darah',
+        ADDRESS: 'Alamat',
+        RT_RW: 'RT/RW',
+        VILLAGE: 'Kel/Desa',
+        SUBDISTRICT: 'Kecamatan',
+        RELIGION: 'Agama',
+        MARTIAL_STATUS: 'Status Perkawinan',
+        WORK: 'Pekerjaan',
+        NATIONALITY: 'Kewarganegaraan',
+        VALID_UNTIL: 'Berlaku Hingga',
+        PROVINCE: 'Provinsi',
+        CITY: 'Kota',
+        DATE_CREATED: 'Tanggal Dibuat',
+        SEPARATOR_CLASSIFICATION: {
+            DOTS: ':',
+            SLASHES: '/'
+        }
     }
 }

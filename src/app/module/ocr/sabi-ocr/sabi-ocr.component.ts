@@ -1,17 +1,17 @@
-import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {BehaviorSubject} from "rxjs";
-import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
+import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-uploader.service";
 import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
-import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
+import {IdentityKtpModel} from "@app/module/ocr/model/Identity-Ktp.model";
 import {AspectScale, Dimensions, ImageCroppedEvent, ImageTransform} from "@app/module/ocr/interface";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
-import {fileBase64Model} from "@app/module/ocr/model/fileBase64.model";
+import {FileBase64Model} from "@app/module/ocr/model/File-Base64.model";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -172,12 +172,12 @@ export class SabiOcrComponent implements OnInit {
     }
 
     mappingDataExtracted(value: OcrModel) {
-        console.log(this.ocrService.isDebugWords(value))
-        console.log(this.ocrService.isDebugWords(value).words)
-        console.log(this.ocrService.isDebugWords(value).words[0].text)
-        console.log(this.ocrService.isDebugWords(value).words[1].text)
-        console.log(this.ocrService.isDebugWords(value).words[2].text)
-        this.ocrService.groupHeaderClassification(value)
+        // console.log(this.ocrService .isDebugWords(value))
+        // console.log(this.ocrService.isDebugWords(value).words)
+        // console.log(this.ocrService.isDebugWords(value).words[0].text)
+        // console.log(this.ocrService.isDebugWords(value).words[1].text)
+        // console.log(this.ocrService.isDebugWords(value).words[2].text)
+        this.ocrService.headerClassification(value)
         value.lines.forEach((value: OcrLinesModel) => {
             this.groupNik(value)
             this.groupName(value)
@@ -633,7 +633,7 @@ export class SabiOcrComponent implements OnInit {
     }
 
     onFileDropped(files: File[]) {
-        this.ocrService.createFileToBase64(files).then((result: fileBase64Model) => {
+        this.ocrService.createFileToBase64(files).then((result: FileBase64Model) => {
             this.croppedImage = result.data
             this.showCropper = true
         })
