@@ -1,5 +1,5 @@
-import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
-import {OcrPageModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrPage.model";
+import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrWords.model";
+import {OcrPageModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrPage.model";
 
 export class OcrLinesModel {
     baseline!: object;

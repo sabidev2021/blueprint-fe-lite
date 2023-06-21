@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
+import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLines.model";
 import {OCR_CONFIG} from "@core/constant";
-import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
-import {OcrLabelingModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLabeling.model";
+import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrWords.model";
+import {OcrLabelingModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLabeling.model";
 
 @Injectable({
     providedIn: 'root'

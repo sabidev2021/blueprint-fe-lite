@@ -7,20 +7,20 @@ import {
     OnInit,
     ViewChild
 } from '@angular/core';
-import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
+import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/models/LoggerStatus.model";
 import {BehaviorSubject} from "rxjs";
-import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-uploader.service";
-import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
-import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
-import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
+import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-uploader.service";
+import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrWords.model";
+import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/models/Ocr.model";
+import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLines.model";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
-import {IdentityKtpModel} from "@app/module/ocr/model/Identity-Ktp.model";
-import {AspectScale, Dimensions, ImageCroppedEvent, ImageTransform} from "@app/module/ocr/interface";
+import {IdentityKtpModel} from "@app/module/ocr/models/Identity-Ktp.model";
+import {AspectScale, Dimensions, ImageCroppedEvent, ImageTransform} from "@app/module/ocr/interfaces";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
-import {FileBase64Model} from "@app/module/ocr/model/File-Base64.model";
-import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-labeling.service";
+import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
+import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -40,7 +40,7 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     loggerStats: LoggerStatusModel = new LoggerStatusModel();
     identityModel: IdentityKtpModel = new IdentityKtpModel();
     uploadedFiles: File[] = [];
-    serviceName: string = 'sabi-ocr-service';
+    serviceName: string = 'sabi-ocr-services';
     resultText: string = '';
     isLoading: boolean = false;
     isSubmited: boolean = false;

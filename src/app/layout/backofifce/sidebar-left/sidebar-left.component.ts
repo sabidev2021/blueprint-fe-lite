@@ -2,7 +2,7 @@ import {Component, Input, ViewEncapsulation, ViewChild, OnInit, ElementRef} from
 import {Router} from '@angular/router';
 import {SidebarLeftService as SidebarService} from "@app/layout/backofifce/sidebar-left/sidebar-left.service";
 import {HeaderBackofficeComponent} from "@app/layout/backofifce/header/header.component";
-import {menuItem} from "@app/layout/backofifce/sidebar-left/model/menu-item.model";
+import {menuItem} from "@app/layout/backofifce/sidebar-left/models/menu-item.model";
 
 @Component({
     selector: 'sidebar-left-backoffice',

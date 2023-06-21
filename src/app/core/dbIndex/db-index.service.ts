@@ -98,7 +98,7 @@ export class DbIndexService {
                     const cursorIdb = event.target.result;
                     if (cursorIdb) {
                         request.onsuccess = () => {
-                            console.info('success update rows data via cursor interface');
+                            console.info('success update rows data via cursor interfaces');
                         };
                     }
                     resolve(response);

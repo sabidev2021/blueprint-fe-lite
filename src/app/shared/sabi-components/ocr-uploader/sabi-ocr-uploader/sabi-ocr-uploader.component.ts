@@ -3,8 +3,8 @@ import {DbIndexService} from "@core/dbIndex/db-index.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {DbLocalService} from "@core/dblocal/db-local.service";
 import {CONFIG_FILE_MESSAGES, PICTURE_FORMAT_ALLOWED} from "@core/constant";
-import {FinishUploadedInterface} from "@app/shared/sabi-components/ocr-uploader/interface/FinishUploaded.interface";
-import {ErrorUploadedInterface} from "@app/shared/sabi-components/ocr-uploader/interface/ErrorUploaded.interface";
+import {FinishUploadedInterface} from "@app/shared/sabi-components/ocr-uploader/interfaces/FinishUploaded.interface";
+import {ErrorUploadedInterface} from "@app/shared/sabi-components/ocr-uploader/interfaces/ErrorUploaded.interface";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 
 @Component({

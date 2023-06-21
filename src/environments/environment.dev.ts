@@ -49,7 +49,7 @@ export const environment = {
       baseUrl: 'https://dev.sabienv.xyz',
     },
     mockoonNotifService: {
-      title: 'notification-service',
+      title: 'notification-services',
       baseUrl: '',
     },
     mockoonBorrowerService: {
