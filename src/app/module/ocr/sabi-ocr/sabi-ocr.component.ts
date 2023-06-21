@@ -1,24 +1,33 @@
-import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+    Component,
+    DoCheck,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {BehaviorSubject} from "rxjs";
-import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/ocr-uploader.service";
+import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-uploader.service";
 import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
-import {IdentityKtpModel} from "@app/module/ocr/model/IdentityKtp.model";
+import {IdentityKtpModel} from "@app/module/ocr/model/Identity-Ktp.model";
 import {AspectScale, Dimensions, ImageCroppedEvent, ImageTransform} from "@app/module/ocr/interface";
 import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
-import {fileBase64Model} from "@app/module/ocr/model/fileBase64.model";
+import {FileBase64Model} from "@app/module/ocr/model/File-Base64.model";
+import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-labeling.service";
 
 @Component({
     selector: 'app-sabi-ocr',
     templateUrl: './sabi-ocr.component.html',
     styleUrls: ['./sabi-ocr.component.scss'],
 })
-export class SabiOcrComponent implements OnInit, OnDestroy {
+export class SabiOcrComponent implements OnInit, DoCheck {
 
     @ViewChild('stage') stage!: KonvaComponent;
     @ViewChild('layer') layer!: KonvaComponent;
@@ -70,14 +79,14 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     isRatioHeight!: number;
     isMaintainAspectRatio: boolean = true;
     sourceImageDimension: Dimensions | string = '';
+    isLoggerOcr: Array<Object> = [];
 
     constructor(
         private toastService: ToastService,
         private ocrService: OcrUploaderService,
+        private ocrLabelingService: OcrLabelingService,
         private el: ElementRef,
     ) {
-        this.ocrService.isLogger()
-            .subscribe((value: LoggerStatusModel) => console.info(value));
     }
 
     ngOnInit() {
@@ -85,8 +94,8 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
         this.initTheRatios()
     }
 
-    ngOnDestroy() {
-
+    ngDoCheck() {
+       this.runLoggerOcr()
     }
 
     iniStageCanvas() {
@@ -544,7 +553,6 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     imageLoaded() {
-        this.showCropper = true;
         this.visible = true;
     }
 
@@ -577,6 +585,7 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     submitCropping() {
+        this.showCropper = true
         this.visible = false
     }
 
@@ -631,12 +640,18 @@ export class SabiOcrComponent implements OnInit, OnDestroy {
     }
 
     onFileDropped(files: File[]) {
-        this.ocrService.createFileToBase64(files).then((result: fileBase64Model) => {
+        this.ocrService.createFileToBase64(files).then((result: FileBase64Model) => {
             this.croppedImage = result.data
+            this.showCropper = true
         })
         if (this.croppedImage.length > 0) {
             this.visible = true;
-            this.showCropper = true
+        }
+    }
+
+    runLoggerOcr() {
+        if (this.isSubmited) {
+            this.ocrService.isLogger().subscribe((value: LoggerStatusModel) => this.isLoggerOcr.push(value));
         }
     }
 

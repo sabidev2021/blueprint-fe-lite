@@ -1,3 +1,3 @@
-export class fileBase64Model {
+export class FileBase64Model {
     data?: string | ArrayBuffer | null;
 }

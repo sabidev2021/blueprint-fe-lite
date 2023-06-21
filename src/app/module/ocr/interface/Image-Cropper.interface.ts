@@ -1,4 +1,4 @@
-import { CropperPosition } from '../interface/cropper-poisition.interface';
+import { CropperPosition } from './Cropper-Position.interface';
 
 export interface ImageCroppedEvent {
     base64?: string | null;

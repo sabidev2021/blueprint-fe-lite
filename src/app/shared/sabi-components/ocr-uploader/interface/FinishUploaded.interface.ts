@@ -1,4 +1,4 @@
-export interface FinishUploadedModel {
+export interface FinishUploadedInterface {
     data: File[],
     errorMessage?: boolean
 }

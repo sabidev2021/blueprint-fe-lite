@@ -13,7 +13,7 @@
                  appDragDrop
                  (click)="onTriggerInput()"
                  (fileDropped)="onFileDropped($event)"
-                 *ngIf="showCropper !== true"
+                 *ngIf="!showCropper"
             >
                 <input type="file"
                        [accept]="accept"
@@ -347,7 +347,7 @@
             </p-button>
         </div>
         <image-cropper
-                [autoCrop]="false"
+                [autoCrop]="true"
                 [canvasRotation]="canvasRotation"
                 [imageChangedEvent]="imageChangedEvent"
                 [maintainAspectRatio]="isMaintainAspectRatio"
@@ -358,8 +358,8 @@
                 (imageLoaded)="imageLoaded()"
                 (cropperReady)="cropperReady($event)"
                 (loadImageFailed)="loadImageFailed()"
-                [imageBase64]="croppedImage"
                 [roundCropper]="false"
+                [imageQuality]="100"
                 [transform]="transform"
                 [alignImage]="'left'"
         >
