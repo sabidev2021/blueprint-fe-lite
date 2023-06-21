@@ -21,31 +21,31 @@ export const environment = {
   endpoint: 'dev.sabienv.xyz',
   services_name: {
     inventoryService: {
-      title: 'inventory-services',
+      title: 'inventory-service',
       baseUrl: 'https://inventory.dev.sabienv.xyz',
     },
     companyService: {
-      title: 'company-services',
+      title: 'company-service',
       baseUrl: 'https://company.dev.sabienv.xyz',
     },
     userAdminService: {
-      title: 'user-admin-services',
+      title: 'user-admin-service',
       baseUrl: 'https://user-admin.dev.sabienv.xyz',
     },
     salesService: {
-      title: 'sales-services',
+      title: 'sales-service',
       baseUrl: 'https://sales.dev.sabienv.xyz',
     },
     notificationService: {
-      title: 'notification-services',
+      title: 'notification-service',
       baseUrl: 'https://notification.dev.sabienv.xyz',
     },
     salesDashboardService: {
-      title: 'sales-dashboard-services',
+      title: 'sales-dashboard-service',
       baseUrl: 'https://sales-dashboard.dev.sabienv.xyz',
     },
     landingService: {
-      title: 'landing-services',
+      title: 'landing-service',
       baseUrl: 'https://dev.sabienv.xyz',
     },
 
@@ -69,7 +69,7 @@ export const environment = {
     divider: 'https://www.figma.com/file/oMZVXvbVmSbTwQFZkN1sY6/Design-System---Sabi-LaaS?node-id=1018%3A1977&t=zSzClfKvKE341u5G-0',
   },
   mockoonService: {
-    title: 'notification-services',
+    title: 'notification-service',
     baseUrl: ''
   },
   firebaseConfig: {

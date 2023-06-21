@@ -4,7 +4,7 @@ import {HttpClientService} from '@core/http/http-client.service';
 @Injectable()
 
 export class DashboardService {
-  private serviceName = 'user-admin-services'
+  private serviceName = 'user-admin-service'
 
   constructor(
     private httpClient: HttpClientService,

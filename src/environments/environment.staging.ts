@@ -21,31 +21,31 @@ export const environment = {
   endpoint: 'stag.sabienv.xyz',
   services_name: {
     inventoryService: {
-      title: 'inventory-services',
+      title: 'inventory-service',
       baseUrl: 'https://api.stag.sabienv.xyz/inventory',
     },
     companyService: {
-      title: 'company-services',
+      title: 'company-service',
       baseUrl: 'https://api.stag.sabienv.xyz/company',
     },
     userAdminService: {
-      title: 'user-admin-services',
+      title: 'user-admin-service',
       baseUrl: 'https://api.stag.sabienv.xyz/user-admin',
     },
     salesService: {
-      title: 'sales-services',
+      title: 'sales-service',
       baseUrl: 'https://api.stag.sabienv.xyz/sales',
     },
     notificationService: {
-      title: 'notification-services',
+      title: 'notification-service',
       baseUrl: 'https://api.stag.sabienv.xyz/notification',
     },
     salesDashboardService: {
-      title: 'sales-dashboard-services',
+      title: 'sales-dashboard-service',
       baseUrl: 'https://api.stag.sabienv.xyz/sales-dashboard',
     },
     landingService: {
-      title: 'landing-services',
+      title: 'landing-service',
       baseUrl: 'https://stag.sabienv.xyz',
     }
   },
