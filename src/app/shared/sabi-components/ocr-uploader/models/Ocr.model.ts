@@ -1,7 +1,7 @@
-import {OcrBlocksModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrBlocks.model";
-import {OcrPageModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrPage.model";
-import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
-import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrWords.model";
+import {OcrBlocksModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrBlocks.model";
+import {OcrPageModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrPage.model";
+import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLines.model";
+import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrWords.model";
 
 export class OcrModel {
     text!: string;

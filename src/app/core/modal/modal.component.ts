@@ -11,8 +11,8 @@
 // //   MAT_DIALOG_DATA
 // // }
 // //   from '@angular/material/dialog';
-// import {ModalStateService} from './modal-state.service';
-// // import {DialogModel} from './model/DialogModel';
+// import {ModalStateService} from './modal-state.services';
+// // import {DialogModel} from './models/DialogModel';
 //
 // @Component({
 //   selector: 'app-modal',

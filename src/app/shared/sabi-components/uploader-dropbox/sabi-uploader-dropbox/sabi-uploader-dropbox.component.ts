@@ -10,7 +10,7 @@ import {
 import {HttpErrorResponse} from "@angular/common/http";
 import {UploaderDropboxService} from "@app/shared/sabi-components/uploader-dropbox/uploader-dropbox.service";
 import {getErrMessage} from '@core/handler/sabi-error-response';
-import {ToastService} from "@shared/../../toast/toast.service";
+import {ToastService} from "@shared/../../toast/toast.services";
 import {PICTURE_FORMAT_ALLOWED} from "@core/constant";
 import {SabiResponse} from "@core/handler/sabi-response";
 import {UploadFileResponse} from "@app/shared/sabi-components/uploader-dropbox/models/UploadFileResponse.model";

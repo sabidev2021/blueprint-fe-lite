@@ -4,7 +4,7 @@ import {BreadcrumbModule} from 'xng-breadcrumb';
 import {NgxDropzoneModule} from 'ngx-dropzone';
 import {SabiUploaderDropboxComponent} from './sabi-uploader-dropbox/sabi-uploader-dropbox.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {ToastService} from "@shared/../toast/toast.service";
+import {ToastService} from "@shared/../toast/toast.services";
 
 @NgModule({
   declarations: [

@@ -21,39 +21,39 @@ export const environment = {
   endpoint: 'dev.sabienv.xyz',
   services_name: {
     inventoryService: {
-      title: 'inventory-service',
+      title: 'inventory-services',
       baseUrl: 'https://inventory.dev.sabienv.xyz',
     },
     companyService: {
-      title: 'company-service',
+      title: 'company-services',
       baseUrl: 'https://company.dev.sabienv.xyz',
     },
     userAdminService: {
-      title: 'user-admin-service',
+      title: 'user-admin-services',
       baseUrl: 'https://user-admin.dev.sabienv.xyz',
     },
     salesService: {
-      title: 'sales-service',
+      title: 'sales-services',
       baseUrl: 'https://sales.dev.sabienv.xyz',
     },
     notificationService: {
-      title: 'notification-service',
+      title: 'notification-services',
       baseUrl: 'https://notification.dev.sabienv.xyz',
     },
     salesDashboardService: {
-      title: 'sales-dashboard-service',
+      title: 'sales-dashboard-services',
       baseUrl: 'https://sales-dashboard.dev.sabienv.xyz',
     },
     landingService: {
-      title: 'landing-service',
+      title: 'landing-services',
       baseUrl: 'https://dev.sabienv.xyz',
     },
     mockoonNotifService: {
-      title: 'notification-service',
+      title: 'notification-services',
       baseUrl: '',
     },
     mockoonBorrowerService: {
-      title: 'borrower-service',
+      title: 'borrower-services',
       baseUrl: 'https://63180c0cf6b281877c61c3fa.mockapi.io/borrower',
     },
   },

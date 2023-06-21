@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {createWorker} from 'tesseract.js';
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
-import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/model/Ocr.model";
-import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
+import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/models/Ocr.model";
+import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/models/LoggerStatus.model";
 import {OCR_CONFIG} from "@core/constant";
 import {Observable, of} from "rxjs";
-import {FileUrlInterface} from "@app/shared/sabi-components/ocr-uploader/interface";
-import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/model/OcrLines.model";
-import {FileBase64Model} from "@app/module/ocr/model/File-Base64.model";
-import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-labeling.service";
+import {FileUrlInterface} from "@app/shared/sabi-components/ocr-uploader/interfaces";
+import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLines.model";
+import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
+import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";
 
 @Injectable({
     providedIn: 'root'

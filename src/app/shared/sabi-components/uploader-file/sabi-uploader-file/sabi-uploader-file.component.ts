@@ -8,7 +8,7 @@ import {
     SimpleChanges,
     ViewEncapsulation
 } from '@angular/core';
-import {ToastService} from "@shared/../../toast/toast.service";
+import {ToastService} from "@shared/../../toast/toast.services";
 import {HttpErrorResponse} from "@angular/common/http";
 import {getErrMessage} from "@core/handler/sabi-error-response";
 import {UploaderFileService} from "@app/shared/sabi-components/uploader-file/uploader-file.service";
