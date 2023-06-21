@@ -1,4 +1,12 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
+import {
+    Component,
+    DoCheck,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/model/LoggerStatus.model";
 import {BehaviorSubject} from "rxjs";
 import {OcrUploaderService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-uploader.service";
@@ -12,13 +20,14 @@ import {KonvaComponent} from "ng2-konva";
 import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
 import {FileBase64Model} from "@app/module/ocr/model/File-Base64.model";
+import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/service/ocr-labeling.service";
 
 @Component({
     selector: 'app-sabi-ocr',
     templateUrl: './sabi-ocr.component.html',
     styleUrls: ['./sabi-ocr.component.scss'],
 })
-export class SabiOcrComponent implements OnInit {
+export class SabiOcrComponent implements OnInit, DoCheck {
 
     @ViewChild('stage') stage!: KonvaComponent;
     @ViewChild('layer') layer!: KonvaComponent;
@@ -70,19 +79,23 @@ export class SabiOcrComponent implements OnInit {
     isRatioHeight!: number;
     isMaintainAspectRatio: boolean = true;
     sourceImageDimension: Dimensions | string = '';
+    isLoggerOcr: Array<Object> = [];
 
     constructor(
         private toastService: ToastService,
         private ocrService: OcrUploaderService,
+        private ocrLabelingService: OcrLabelingService,
         private el: ElementRef,
     ) {
-        this.ocrService.isLogger()
-            .subscribe((value: LoggerStatusModel) => console.info(value));
     }
 
     ngOnInit() {
         this.iniStageCanvas()
         this.initTheRatios()
+    }
+
+    ngDoCheck() {
+       this.runLoggerOcr()
     }
 
     iniStageCanvas() {
@@ -633,6 +646,12 @@ export class SabiOcrComponent implements OnInit {
         })
         if (this.croppedImage.length > 0) {
             this.visible = true;
+        }
+    }
+
+    runLoggerOcr() {
+        if (this.isSubmited) {
+            this.ocrService.isLogger().subscribe((value: LoggerStatusModel) => this.isLoggerOcr.push(value));
         }
     }
 

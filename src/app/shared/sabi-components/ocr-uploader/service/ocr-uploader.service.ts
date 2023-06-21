@@ -86,6 +86,8 @@ export class OcrUploaderService {
 
     labelClassification(label: OcrModel) {
         label.lines.forEach((lineVal: OcrLinesModel, index: number) => {
+            // console.log(index)
+            // console.log(lineVal)
             this.ocrLabelService.labelingHeader(index, lineVal)
             this.ocrLabelService.labelingHeaderSub(index, lineVal)
             this.ocrLabelService.labelingNik(index, lineVal)
@@ -93,6 +95,19 @@ export class OcrUploaderService {
             this.ocrLabelService.labelBirthPlaceAndDate(index, lineVal)
             this.ocrLabelService.labelBirthPlace(index, lineVal)
             this.ocrLabelService.labelBirthDate(index, lineVal)
+            this.ocrLabelService.labelBloodType(index, lineVal)
+            this.ocrLabelService.labelGenderType(index, lineVal)
+            this.ocrLabelService.labelAddress(index, lineVal)
+            this.ocrLabelService.labelRTRW(index, lineVal)
+            this.ocrLabelService.labelRT(index, lineVal)
+            this.ocrLabelService.labelRW(index, lineVal)
+            this.ocrLabelService.labelVillage(index, lineVal)
+            this.ocrLabelService.labelSubDistrict(index, lineVal)
+            this.ocrLabelService.labelReligion(index, lineVal)
+            this.ocrLabelService.labelMartialStatus(index, lineVal)
+            this.ocrLabelService.labelWork(index, lineVal)
+            this.ocrLabelService.labelNationaly(index, lineVal)
+            this.ocrLabelService.labelValidUntil(index, lineVal)
         })
     }
 

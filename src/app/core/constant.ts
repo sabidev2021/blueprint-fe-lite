@@ -112,6 +112,8 @@ export const OCR_CONFIG = {
         BLOOD_TYPE: 'Gol.Darah',
         ADDRESS: 'Alamat',
         RT_RW: 'RT/RW',
+        RT: 'RT',
+        RW: 'RW',
         VILLAGE: 'Kel/Desa',
         SUBDISTRICT: 'Kecamatan',
         RELIGION: 'Agama',
