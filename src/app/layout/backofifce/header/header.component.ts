@@ -41,7 +41,6 @@ export class HeaderBackofficeComponent implements OnInit {
 
     username: string | null = '';
     offsetFlag = true;
-    notifClicked = false;
 
     constructor(
         private auth: AuthService,
@@ -64,7 +63,7 @@ export class HeaderBackofficeComponent implements OnInit {
 
     public logout() {
       this.auth.logoutUser();
-      this.router.navigate([ this.auth.getLoginUrl() ]);
+      this.router.navigate([this.auth.getLoginUrl()]).then(r => r);
     }
 
     private getUsername() {
