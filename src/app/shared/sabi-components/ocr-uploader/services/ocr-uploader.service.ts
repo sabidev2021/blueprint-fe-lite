@@ -18,8 +18,6 @@ export class OcrUploaderService {
 
     identityModel: IdentityKtpModel = new IdentityKtpModel();
     loggerStats = new LoggerStatusModel();
-    _groupLabelClassification: OcrLabelingModel[] = []
-    _labelClassification: any
 
     constructor(
         private toastService: ToastService
