@@ -651,7 +651,10 @@ export class SabiOcrComponent implements OnInit, DoCheck {
 
     runLoggerOcr() {
         if (this.isSubmited) {
-            this.ocrService.isLogger().subscribe((value: LoggerStatusModel) => this.isLoggerOcr.push(value));
+            this.ocrService.isLogger().subscribe((value: LoggerStatusModel) => this.isLoggerOcr.push({
+                status: value.status !== undefined ? value.status : "idle preparing",
+                progress: value.progress
+            }));
         }
     }
 

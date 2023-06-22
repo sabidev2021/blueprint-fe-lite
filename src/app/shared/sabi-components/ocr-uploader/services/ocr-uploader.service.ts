@@ -86,8 +86,6 @@ export class OcrUploaderService {
 
     labelClassification(label: OcrModel) {
         label.lines.forEach((lineVal: OcrLinesModel, index: number) => {
-            // console.log(index)
-            // console.log(lineVal)
             this.ocrLabelService.labelingHeader(index, lineVal)
             this.ocrLabelService.labelingHeaderSub(index, lineVal)
             this.ocrLabelService.labelingNik(index, lineVal)
