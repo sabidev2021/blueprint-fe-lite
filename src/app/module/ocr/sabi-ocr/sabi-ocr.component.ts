@@ -17,7 +17,6 @@ import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 import {IdentityKtpModel} from "@app/module/ocr/models/Identity-Ktp.model";
 import {AspectScale, Dimensions, ImageCroppedEvent, ImageTransform} from "@app/module/ocr/interfaces";
 import {KonvaComponent} from "ng2-konva";
-import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
 import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
 import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";

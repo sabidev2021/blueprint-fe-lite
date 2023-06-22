@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLines.model";
 import {OCR_CONFIG} from "@core/constant";
 import {OcrWordsModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrWords.model";
-import {OcrLabelingModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLabeling.model";
 import {Observable, of} from "rxjs";
 import {OcrGroupLabelingModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrGroupLabeling.model";
 
@@ -12,7 +11,6 @@ import {OcrGroupLabelingModel} from "@app/shared/sabi-components/ocr-uploader/mo
 
 export class OcrLabelingService {
 
-    private setLabel = new OcrLabelingModel();
     private setGroupingLabel = new OcrGroupLabelingModel();
 
     labelingHeader(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
