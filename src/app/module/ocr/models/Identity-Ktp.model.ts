@@ -1,9 +1,12 @@
 export class IdentityKtpModel {
     nik: string = '';
     name: string = '';
+    birth_place_and_date: string = '';
     birth_place: string = '';
     birth_date: string = '';
+    address: string = '';
     gender: string = '';
+    rt_rw: string = '';
     rt: string = '';
     rw: string = '';
     village: string = '';
@@ -13,7 +16,7 @@ export class IdentityKtpModel {
     work: string = '';
     province: string = '';
     city: string = '';
-    citizenship: string = '';
+    nationaly: string = '';
     valid_until: string = '';
     blood_type: string = '';
 }
