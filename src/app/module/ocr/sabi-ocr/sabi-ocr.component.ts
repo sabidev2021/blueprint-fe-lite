@@ -80,7 +80,8 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     isRatioHeight!: number;
     isMaintainAspectRatio: boolean = true;
     sourceImageDimension: Dimensions | string = '';
-    isLoggerOcr: Array<Object> = [];
+    isLoggerOcr: Array<any> = [];
+    private isGroupLabel!: OcrLabelingModel[];
 
     constructor(
         private toastService: ToastService,
@@ -148,6 +149,8 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     onSubmitOcr() {
         try {
             this.isLoading = true;
+            this.runLoggerOcr()
+            this.runLabelingOcr()
             this.ocrService.traceOcrService(`${this.croppedImage}`)
                 .then((result: OcrModel | any) => {
                     this.isValidateIdentity(result)
@@ -638,7 +641,6 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     onRemovedFiles() {
         this.croppedImage = '';
         this.showCropper = false;
-        this.ocrLabelingService._groupOCR = [];
         this.clearOcrResult()
     }
 
@@ -656,15 +658,24 @@ export class SabiOcrComponent implements OnInit, DoCheck {
         if (this.isSubmited) {
             this.ocrService.isLogger().subscribe((value: LoggerStatusModel) => this.isLoggerOcr.push({
                 status: value.status !== undefined ? value.status : "idle preparing",
-                progress: value.progress
+                progress: value.progress !== undefined ? value.progress : 0
             }));
         }
     }
 
     private runLabelingOcr() {
         if (this.isSubmited) {
-            console.log(this.ocrLabelingService._groupOCR)
-            this.ocrLabelingService.getCollectionArray()
+            // this.ocrLabelingService.getCollectionArray().subscribe({
+            //     next(result: OcrLabelingModel[]) {
+            //         console.log(result);
+            //     },
+            //     error(err) {
+            //         console.error('something wrong occurred: ' + err);
+            //     },
+            //     complete() {
+            //         console.log('done');
+            //     },
+            // })
         }
     }
 

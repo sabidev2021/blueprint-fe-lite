@@ -4,18 +4,22 @@ import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
 import {OcrModel} from "@app/shared/sabi-components/ocr-uploader/models/Ocr.model";
 import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/models/LoggerStatus.model";
 import {OCR_CONFIG} from "@core/constant";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {FileUrlInterface} from "@app/shared/sabi-components/ocr-uploader/interfaces";
 import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLines.model";
 import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
 import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";
+import {OcrLabelingModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLabeling.model";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class OcrUploaderService {
+
     loggerStats = new LoggerStatusModel();
+    _groupLabelClassification: BehaviorSubject<Array<OcrLabelingModel>> = new BehaviorSubject<Array<OcrLabelingModel>>([]);
+    _labelClassification: OcrLabelingModel = new OcrLabelingModel();
 
     constructor(
         private toastService: ToastService,
@@ -49,12 +53,12 @@ export class OcrUploaderService {
             await worker.recognize(filePath);
             let data: any;
             ({data} = await worker.recognize(filePath));
-            this.toastService.success('Success processing extracting data ')
-            await worker.terminate();
+            await this.labelClassification(data)
             return new Promise<PromiseLike<OcrModel>>((resolve, reject) => {
                 if (data.text.length > 0) {
-                    this.labelClassification(data)
                     resolve(data);
+                    this.toastService.success('Success processing extracting data ')
+                    worker.terminate();
                 } else {
                     const errorMessage = new Error(`Whoops Something when wrong !`);
                     reject(errorMessage);
@@ -86,26 +90,166 @@ export class OcrUploaderService {
 
     labelClassification(label: OcrModel) {
         label.lines.forEach((lineVal: OcrLinesModel, index: number) => {
-            this.ocrLabelService.labelingHeader(index, lineVal)
-            this.ocrLabelService.labelingHeaderSub(index, lineVal)
-            this.ocrLabelService.labelingNik(index, lineVal)
-            this.ocrLabelService.labelNames(index, lineVal)
-            this.ocrLabelService.labelBirthPlaceAndDate(index, lineVal)
-            this.ocrLabelService.labelBirthPlace(index, lineVal)
-            this.ocrLabelService.labelBirthDate(index, lineVal)
-            this.ocrLabelService.labelBloodType(index, lineVal)
-            this.ocrLabelService.labelGenderType(index, lineVal)
-            this.ocrLabelService.labelAddress(index, lineVal)
-            this.ocrLabelService.labelRTRW(index, lineVal)
-            this.ocrLabelService.labelRT(index, lineVal)
-            this.ocrLabelService.labelRW(index, lineVal)
-            this.ocrLabelService.labelVillage(index, lineVal)
-            this.ocrLabelService.labelSubDistrict(index, lineVal)
-            this.ocrLabelService.labelReligion(index, lineVal)
-            this.ocrLabelService.labelMartialStatus(index, lineVal)
-            this.ocrLabelService.labelWork(index, lineVal)
-            this.ocrLabelService.labelNationaly(index, lineVal)
-            this.ocrLabelService.labelValidUntil(index, lineVal)
+            this.ocrLabelService.labelingHeader(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelingHeaderSub(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelingNik(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelNames(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelBirthPlaceAndDate(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelBirthPlace(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelBirthDate(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelBloodType(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelGenderType(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelAddress(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelRTRW(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelRT(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelRW(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelVillage(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelSubDistrict(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelReligion(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelMartialStatus(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelWork(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelNationaly(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
+            this.ocrLabelService.labelValidUntil(index, lineVal).subscribe({
+                next(result: OcrLabelingModel) {
+                    console.log(result);
+                },
+                error(err) {
+                    console.error('something wrong occurred: ' + err);
+                },
+            })
         })
     }
 
