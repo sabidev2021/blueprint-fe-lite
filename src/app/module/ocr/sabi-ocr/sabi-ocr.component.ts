@@ -21,6 +21,7 @@ import {OCR_CONFIG} from "@core/constant";
 import {Message} from 'primeng/api';
 import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
 import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";
+import {OcrLabelingModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLabeling.model";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -74,7 +75,7 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     visible: boolean = false;
     aspectRatio: Array<object> = [];
     selectedRatio!: AspectScale;
-    isDefaultRatio: number = 4 / 3 ;
+    isDefaultRatio: number = 4 / 3;
     isRatioWidth!: number;
     isRatioHeight!: number;
     isMaintainAspectRatio: boolean = true;
@@ -95,7 +96,8 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     }
 
     ngDoCheck() {
-       this.runLoggerOcr()
+        this.runLoggerOcr()
+        this.runLabelingOcr()
     }
 
     iniStageCanvas() {
@@ -147,17 +149,17 @@ export class SabiOcrComponent implements OnInit, DoCheck {
         try {
             this.isLoading = true;
             this.ocrService.traceOcrService(`${this.croppedImage}`)
-            .then((result: OcrModel | any) => {
-                this.isValidateIdentity(result)
-                this.mappingDataExtracted(result)
-                this.isDebuggingText(result.text)
-                if (this.isValidKtp) {
-                    this.drawCanvas(this.croppedImage)
-                    this.drawLineMarker()
-                }
-                this.isLoading = false;
-                this.isSubmited = false
-            }).catch((err) => {
+                .then((result: OcrModel | any) => {
+                    this.isValidateIdentity(result)
+                    this.mappingDataExtracted(result)
+                    this.isDebuggingText(result.text)
+                    if (this.isValidKtp) {
+                        this.drawCanvas(this.croppedImage)
+                        this.drawLineMarker()
+                    }
+                    this.isLoading = false;
+                    this.isSubmited = false
+                }).catch((err) => {
                 console.error(err)
                 this.isLoading = false
                 this.toastService.error(`${err}`)
@@ -531,11 +533,11 @@ export class SabiOcrComponent implements OnInit, DoCheck {
 
     initTheRatios(): void {
         this.aspectRatio = [
-            { label: "Choose Ratio", scale: { width: 0,  height: 0 } },
-            { label: "1 / 1", scale: { width: 1,  height: 1 } },
-            { label: "3 / 2", scale: { width: 3,  height: 2 } },
-            { label: "4 / 3", scale: { width: 4,  height: 3 } },
-            { label: "16 / 9", scale: { width: 16,  height: 9 } },
+            {label: "Choose Ratio", scale: {width: 0, height: 0}},
+            {label: "1 / 1", scale: {width: 1, height: 1}},
+            {label: "3 / 2", scale: {width: 3, height: 2}},
+            {label: "4 / 3", scale: {width: 4, height: 3}},
+            {label: "16 / 9", scale: {width: 16, height: 9}},
         ]
     }
 
@@ -636,6 +638,7 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     onRemovedFiles() {
         this.croppedImage = '';
         this.showCropper = false;
+        this.ocrLabelingService._groupOCR = [];
         this.clearOcrResult()
     }
 
@@ -649,12 +652,19 @@ export class SabiOcrComponent implements OnInit, DoCheck {
         }
     }
 
-    runLoggerOcr() {
+    private runLoggerOcr() {
         if (this.isSubmited) {
             this.ocrService.isLogger().subscribe((value: LoggerStatusModel) => this.isLoggerOcr.push({
                 status: value.status !== undefined ? value.status : "idle preparing",
                 progress: value.progress
             }));
+        }
+    }
+
+    private runLabelingOcr() {
+        if (this.isSubmited) {
+            console.log(this.ocrLabelingService._groupOCR)
+            this.ocrLabelingService.getCollectionArray()
         }
     }
 
@@ -665,5 +675,4 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     get isValidIdentity() {
         return this.isValidKtp
     }
-
 }

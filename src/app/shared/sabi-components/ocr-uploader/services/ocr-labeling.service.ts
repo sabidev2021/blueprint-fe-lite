@@ -18,6 +18,7 @@ export class OcrLabelingService {
     }
 
     set labelOCR(value: OcrLabelingModel) {
+        console.log(value)
         this._labelOCR = value;
         this._groupOCR.push(value)
     }
@@ -89,7 +90,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_PLACE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_PLACE}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -101,7 +102,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_DATE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_DATE}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${stringLabel.words[4].text}`
             }
         }
@@ -110,11 +111,23 @@ export class OcrLabelingService {
     labelBloodType(position: number, stringLabel: OcrLinesModel) {
         if (position === 5) {
             const positionIndex = this.labelingHaveSeparator(stringLabel.words) ? 7 : 6
-            const groupWords = `${stringLabel.words[positionIndex].text || '-'}`;
+            let groupWords = `${stringLabel.words[positionIndex].text || '-'}`;
+            if (groupWords.includes('A')) {
+                groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.A
+            }
+            if (groupWords.includes('B')) {
+                groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.B
+            }
+            if (groupWords.includes('AB')) {
+                groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.AB
+            }
+            if (groupWords.includes('O')) {
+                groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.O
+            }
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.BLOOD_TYPE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.BLOOD_TYPE}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -122,11 +135,17 @@ export class OcrLabelingService {
 
     labelGenderType(position: number, stringLabel: OcrLinesModel) {
         if (position === 5) {
-            const groupWords = `${stringLabel.words[3].text}`;
+            let groupWords = `${stringLabel.words[3].text}`;
+            if (groupWords.includes('LAK')) {
+                groupWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.LK
+            }
+            if (groupWords.includes('PER')) {
+                groupWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.PM
+            }
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.GENDER_TYPE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.GENDER_TYPE}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -138,7 +157,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.ADDRESS} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.ADDRESS}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -150,7 +169,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RT_RW} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RT_RW}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -162,7 +181,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RT} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RT}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -174,7 +193,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RW} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RW}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -190,7 +209,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.VILLAGE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.VILLAGE}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -202,7 +221,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.SUBDISTRICT} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.SUBDISTRICT}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -210,11 +229,26 @@ export class OcrLabelingService {
 
     labelReligion(position: number, stringLabel: OcrLinesModel) {
         if (position === 10) {
-            const groupWords = `${stringLabel.words[1].text.replace(/[^a-zA-Z]/gm, " ").trim()}`;
+            let groupWords = `${stringLabel.words[1].text.replace(/[^a-zA-Z]/gm, " ").trim()}`;
+            if (groupWords.includes("ISL")) {
+                groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.ISLAM
+            }
+            if (groupWords.includes("KRI")) {
+                groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KRISTEN
+            }
+            if (groupWords.includes("KAT")) {
+                groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KATHOLIK
+            }
+            if (groupWords.includes("BUD")) {
+                groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.BUDHA
+            }
+            if (groupWords.includes("KON")) {
+                groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KONGHUCU
+            }
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RELIGION} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.RELIGION}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -222,11 +256,23 @@ export class OcrLabelingService {
 
     labelMartialStatus(position: number, stringLabel: OcrLinesModel) {
         if (position === 11) {
-            const groupWords = `${stringLabel.words[3].text.replace(/[^a-zA-Z]/gm, " ").trim()}`;
+            let groupWords = `${stringLabel.words[3].text.replace(/[^a-zA-Z]/gm, " ").trim()}`;
+            if (groupWords.includes('KAW')) {
+                groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.KAWIN;
+            }
+            if (groupWords.includes('BEL')) {
+               groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.BELUM_KAWIN;
+            }
+            if (groupWords.includes('MAT')) {
+                groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.CERAI_MATI;
+            }
+            if (groupWords.includes('HID')) {
+               groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.CERAI_HIDUP;
+            }
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.MARTIAL_STATUS} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.MARTIAL_STATUS}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -238,7 +284,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.WORK} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.WORK}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -250,7 +296,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.NATIONALITY} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.NATIONALITY}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
@@ -262,7 +308,7 @@ export class OcrLabelingService {
             this.labelOCR = {
                 group_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.VALID_UNTIL} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`,
                 left_label : `${OCR_CONFIG.LABELING_CLASSIFICATION.VALID_UNTIL}`,
-                separator: ':',
+                separator: `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`,
                 right_label: `${groupWords}`
             }
         }
