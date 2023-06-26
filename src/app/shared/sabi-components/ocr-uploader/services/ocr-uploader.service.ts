@@ -7,7 +7,6 @@ import {OCR_CONFIG} from "@core/constant";
 import {Observable, of} from "rxjs";
 import {FileUrlInterface} from "@app/shared/sabi-components/ocr-uploader/interfaces";
 import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
-import {OcrLabelingModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLabeling.model";
 import {IdentityKtpModel} from "@app/module/ocr/models";
 
 @Injectable({

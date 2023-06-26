@@ -20,7 +20,6 @@ import {KonvaComponent} from "ng2-konva";
 import {Message} from 'primeng/api';
 import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
 import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";
-import {OcrLabelingModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLabeling.model";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -80,7 +79,6 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     isMaintainAspectRatio: boolean = true;
     sourceImageDimension: Dimensions | string = '';
     isLoggerOcr: Array<any> = [];
-    private isGroupLabel: OcrLabelingModel[] = [];
 
     constructor(
         private toastService: ToastService,
@@ -164,7 +162,6 @@ export class SabiOcrComponent implements OnInit, DoCheck {
                 this.isLoading = false
                 this.toastService.error(`${err}`)
             });
-            console.log(this.isGroupLabel)
         } catch (err) {
             this.toastService.error('Whoops something when wrong !')
         }
@@ -200,7 +197,7 @@ export class SabiOcrComponent implements OnInit, DoCheck {
             this.ocrLabelingService.labelRT(position, words).subscribe(value => this.identityModel.rt = value.rt.right_label)
             this.ocrLabelingService.labelRW(position, words).subscribe(value => this.identityModel.rw = value.rw.right_label)
             this.ocrLabelingService.labelVillage(position, words).subscribe(value => this.identityModel.village = value.village.right_label)
-            this.ocrLabelingService.labelReligion(position, words).subscribe(value => this.identityModel.village = value.village.right_label)
+            this.ocrLabelingService.labelReligion(position, words).subscribe(value => this.identityModel.religion = value.religion.right_label)
             this.ocrLabelingService.labelSubDistrict(position, words).subscribe(value => this.identityModel.subdistrict = value.subdistrict.right_label)
             this.ocrLabelingService.labelMartialStatus(position, words).subscribe(value => this.identityModel.martial_status = value.martial_status.right_label)
             this.ocrLabelingService.labelWork(position, words).subscribe(value => this.identityModel.work = value.work.right_label)

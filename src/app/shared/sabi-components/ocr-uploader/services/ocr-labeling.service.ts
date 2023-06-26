@@ -58,8 +58,8 @@ export class OcrLabelingService {
     }
 
     labelNames(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
-        if (position === 3) {
-            if (stringLabel !== undefined) {
+        if (stringLabel !== undefined) {
+            if (position === 3) {
                 const groupWords = `${stringLabel.words[2].text}`;
                 this.setGroupingLabel.names.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.NAME} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.names.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.NAME}`;
@@ -87,7 +87,7 @@ export class OcrLabelingService {
     labelBirthPlace(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 4) {
-                const groupWords = `${stringLabel.words[3].text}`;
+                const groupWords = `${stringLabel.words[3].text.replace(/^[, ]+|[, ]+$|[, ]+/g, " ").trim()}`;
                 this.setGroupingLabel.birth_place.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_PLACE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.birth_place.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_PLACE}`;
                 this.setGroupingLabel.birth_place.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
@@ -101,7 +101,7 @@ export class OcrLabelingService {
     labelBirthDate(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 4) {
-                const groupWords = `${stringLabel.words[4].text}`;
+                const groupWords = `${stringLabel.words[4].text.replace(/^\d+$/, " ").trim()}`;
                 this.setGroupingLabel.birth_date.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_DATE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.birth_date.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_DATE}`;
                 this.setGroupingLabel.birth_date.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
@@ -117,22 +117,10 @@ export class OcrLabelingService {
             if (position === 5) {
                 const positionIndex = this.labelingHaveSeparator(stringLabel.words) ? 7 : 6
                 let groupWords = `${stringLabel.words[positionIndex].text || '-'}`;
-                if (groupWords.includes('A')) {
-                    groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.A
-                }
-                if (groupWords.includes('B')) {
-                    groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.B
-                }
-                if (groupWords.includes('AB')) {
-                    groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.AB
-                }
-                if (groupWords.includes('O')) {
-                    groupWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.O
-                }
-                this.setGroupingLabel.blood_type.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BLOOD_TYPE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
+                this.setGroupingLabel.blood_type.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BLOOD_TYPE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${this.labelReplaceBloodTypeStats(groupWords)}`;
                 this.setGroupingLabel.blood_type.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BLOOD_TYPE}`;
                 this.setGroupingLabel.blood_type.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                this.setGroupingLabel.blood_type.right_label = `${groupWords}`;
+                this.setGroupingLabel.blood_type.right_label = this.labelReplaceBloodTypeStats(groupWords);
                 return of(this.setGroupingLabel)
             }
         }
@@ -143,16 +131,10 @@ export class OcrLabelingService {
         if (stringLabel !== undefined) {
             if (position === 5) {
                 let groupWords = `${stringLabel.words[3].text}`;
-                if (groupWords.includes('LAK')) {
-                    groupWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.LK
-                }
-                if (groupWords.includes('PER')) {
-                    groupWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.PM
-                }
-                this.setGroupingLabel.gender.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.GENDER_TYPE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
+                this.setGroupingLabel.gender.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.GENDER_TYPE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${this.labelReplaceGenderStats(groupWords)}`;
                 this.setGroupingLabel.gender.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.GENDER_TYPE}`;
                 this.setGroupingLabel.gender.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                this.setGroupingLabel.gender.right_label = `${groupWords}`;
+                this.setGroupingLabel.gender.right_label = this.labelReplaceGenderStats(groupWords);
                 return of(this.setGroupingLabel)
             }
         }
@@ -178,7 +160,7 @@ export class OcrLabelingService {
                     }
                 }
 
-                const groupWords = `${newArr.replace(/^A-Z0-9 ]/g, " ").trim()}`;
+                const groupWords = `${newArr.replace(/^A-Z0-9 ]/g, "").trim()}`;
                 this.setGroupingLabel.address.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.ADDRESS} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.address.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.ADDRESS}`;
                 this.setGroupingLabel.address.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
@@ -266,27 +248,11 @@ export class OcrLabelingService {
     labelReligion(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 10) {
-                let groupWords = `${stringLabel.words[1].text.replace(/[^a-zA-Z]/gm, " ").trim()}`;
-                if (groupWords.includes("ISL")) {
-                    groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.ISLAM
-                }
-                if (groupWords.includes("KRI")) {
-                    groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KRISTEN
-                }
-                if (groupWords.includes("KAT")) {
-                    groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KATHOLIK
-                }
-                if (groupWords.includes("BUD")) {
-                    groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.BUDHA
-                }
-                if (groupWords.includes("KON")) {
-                    groupWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KONGHUCU
-                }
-
-                this.setGroupingLabel.religion.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.RELIGION} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
+                let groupWords = this.repairSeparator(stringLabel).split(" ")[2];
+                this.setGroupingLabel.religion.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.RELIGION} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${this.labelReplaceReligionStats(groupWords)}`;
                 this.setGroupingLabel.religion.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.RELIGION}`;
                 this.setGroupingLabel.religion.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                this.setGroupingLabel.religion.right_label = `${groupWords}`;
+                this.setGroupingLabel.religion.right_label = this.labelReplaceReligionStats(groupWords);
                 return of(this.setGroupingLabel)
             }
         }
@@ -297,22 +263,10 @@ export class OcrLabelingService {
         if (stringLabel !== undefined) {
             if (position === 11) {
                 let groupWords = `${stringLabel.words[3].text.replace(/[^a-zA-Z]/gm, " ").trim()}`;
-                if (groupWords.includes('KAW')) {
-                    groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.KAWIN;
-                }
-                if (groupWords.includes('BEL')) {
-                    groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.BELUM_KAWIN;
-                }
-                if (groupWords.includes('MAT')) {
-                    groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.CERAI_MATI;
-                }
-                if (groupWords.includes('HID')) {
-                    groupWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.CERAI_HIDUP;
-                }
-                this.setGroupingLabel.martial_status.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.MARTIAL_STATUS} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
+                this.setGroupingLabel.martial_status.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.MARTIAL_STATUS} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${this.labelReplaceMartialStats(groupWords)}`;
                 this.setGroupingLabel.martial_status.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.MARTIAL_STATUS}`;
                 this.setGroupingLabel.martial_status.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                this.setGroupingLabel.martial_status.right_label = `${groupWords}`;
+                this.setGroupingLabel.martial_status.right_label = this.labelReplaceMartialStats(groupWords);
             }
             return of(this.setGroupingLabel)
         }
@@ -322,7 +276,7 @@ export class OcrLabelingService {
     labelWork(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 12) {
-                const groupWords = `${stringLabel.words[1].text.replace(/[^a-zA-Z]/gm, " ").trim()}`;
+                const groupWords = `${this.repairSeparator(stringLabel).split(" ")[2]}`;
                 this.setGroupingLabel.work.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.WORK} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.work.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.WORK}`;
                 this.setGroupingLabel.work.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
@@ -369,6 +323,86 @@ export class OcrLabelingService {
             }
         })
         return isLabelValid
+    }
+
+    labelReplaceMartialStats(isWords: string) {
+        if (isWords.includes('KAW')) {
+            isWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.KAWIN;
+        }
+        if (isWords.includes('BEL')) {
+            isWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.BELUM_KAWIN;
+        }
+        if (isWords.includes('MAT')) {
+            isWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.CERAI_MATI;
+        }
+        if (isWords.includes('HID')) {
+            isWords = OCR_CONFIG.MARTIAL_STATUS_CLASSIFICATION.CERAI_HIDUP;
+        }
+        return isWords
+    }
+
+    labelReplaceReligionStats(isWords: string) {
+        if (isWords.includes("ISL")) {
+            isWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.ISLAM
+        }
+        if (isWords.includes(":IS")) {
+            isWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.ISLAM
+        }
+        if (isWords.includes("KRI")) {
+            isWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KRISTEN
+        }
+        if (isWords.includes("KAT")) {
+            isWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KATHOLIK
+        }
+        if (isWords.includes("BUD")) {
+            isWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.BUDHA
+        }
+        if (isWords.includes("KON")) {
+            isWords = OCR_CONFIG.RELIGION_TYPE_CLASSIFICATION.KONGHUCU
+        }
+
+        return isWords
+    }
+
+    labelReplaceGenderStats(isWords: string) {
+        if (isWords.includes('LAK')) {
+            isWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.LK
+        }
+        if (isWords.includes('PER')) {
+            isWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.PM
+        }
+        return isWords
+    }
+
+    labelReplaceBloodTypeStats(isWords: string) {
+        if (isWords.includes('A')) {
+            isWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.A
+        }
+        if (isWords.includes('B')) {
+            isWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.B
+        }
+        if (isWords.includes('AB')) {
+            isWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.AB
+        }
+        if (isWords.includes('O')) {
+            isWords = OCR_CONFIG.BLOOD_TYPE_CLASSIFICATION.O
+        }
+        return isWords
+    }
+
+    repairSeparator(arrayLine: OcrLinesModel) {
+        let array = arrayLine.words;
+        let newArr: string = '';
+        let separator = OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS;
+        for (let i = 0; i < array.length; i++) {
+            newArr += array[i].text;
+            if (i === 0) {
+                if (i < array.length - 1) {
+                    newArr += ` ${separator} `;
+                }
+            }
+        }
+        return newArr
     }
 }
 
