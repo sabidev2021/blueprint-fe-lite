@@ -6,20 +6,20 @@ import {LoggerStatusModel} from "@app/shared/sabi-components/ocr-uploader/models
 import {OCR_CONFIG} from "@core/constant";
 import {Observable, of} from "rxjs";
 import {FileUrlInterface} from "@app/shared/sabi-components/ocr-uploader/interfaces";
-import {OcrLinesModel} from "@app/shared/sabi-components/ocr-uploader/models/OcrLines.model";
 import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
-import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";
+import {IdentityKtpModel} from "@app/module/ocr/models";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class OcrUploaderService {
+
+    identityModel: IdentityKtpModel = new IdentityKtpModel();
     loggerStats = new LoggerStatusModel();
 
     constructor(
-        private toastService: ToastService,
-        private ocrLabelService: OcrLabelingService
+        private toastService: ToastService
     ) {
     }
 
@@ -49,12 +49,11 @@ export class OcrUploaderService {
             await worker.recognize(filePath);
             let data: any;
             ({data} = await worker.recognize(filePath));
-            this.toastService.success('Success processing extracting data ')
-            await worker.terminate();
             return new Promise<PromiseLike<OcrModel>>((resolve, reject) => {
                 if (data.text.length > 0) {
-                    this.labelClassification(data)
                     resolve(data);
+                    this.toastService.success('Success processing extracting data ')
+                    worker.terminate();
                 } else {
                     const errorMessage = new Error(`Whoops Something when wrong !`);
                     reject(errorMessage);
@@ -83,32 +82,4 @@ export class OcrUploaderService {
     isDebugWords(words: OcrModel) {
         return words
     }
-
-    labelClassification(label: OcrModel) {
-        label.lines.forEach((lineVal: OcrLinesModel, index: number) => {
-            // console.log(index)
-            // console.log(lineVal)
-            this.ocrLabelService.labelingHeader(index, lineVal)
-            this.ocrLabelService.labelingHeaderSub(index, lineVal)
-            this.ocrLabelService.labelingNik(index, lineVal)
-            this.ocrLabelService.labelNames(index, lineVal)
-            this.ocrLabelService.labelBirthPlaceAndDate(index, lineVal)
-            this.ocrLabelService.labelBirthPlace(index, lineVal)
-            this.ocrLabelService.labelBirthDate(index, lineVal)
-            this.ocrLabelService.labelBloodType(index, lineVal)
-            this.ocrLabelService.labelGenderType(index, lineVal)
-            this.ocrLabelService.labelAddress(index, lineVal)
-            this.ocrLabelService.labelRTRW(index, lineVal)
-            this.ocrLabelService.labelRT(index, lineVal)
-            this.ocrLabelService.labelRW(index, lineVal)
-            this.ocrLabelService.labelVillage(index, lineVal)
-            this.ocrLabelService.labelSubDistrict(index, lineVal)
-            this.ocrLabelService.labelReligion(index, lineVal)
-            this.ocrLabelService.labelMartialStatus(index, lineVal)
-            this.ocrLabelService.labelWork(index, lineVal)
-            this.ocrLabelService.labelNationaly(index, lineVal)
-            this.ocrLabelService.labelValidUntil(index, lineVal)
-        })
-    }
-
 }
