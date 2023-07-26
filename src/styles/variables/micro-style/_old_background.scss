@@ -1,0 +1,11 @@
+@import "./src/styles/variables/micro-style/colors";
+/*
+    ====================
+        Background
+    ====================
+*/
+
+$bg-primary         : $primary-color-500;
+$bg-secondary       : $primary-color-700;
+$bg-positive        : $warning-color-500;
+$bg-negative        : $success-color-500;

@@ -1,3 +1,25 @@
 @import 'variables/variables';
 
-.sabi-radio { }
+.sabi-radio {
+    &.p-radiobutton .p-radiobutton-box {
+        border: 2px solid $neutral-color-400;
+    }
+
+    &.p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+        width: 9px;
+        height: 9px;
+    }
+
+    &.p-radiobutton .p-radiobutton-box.p-highlight {
+        border-color: $primary-color-900;
+        background-color: $bg-primary-900;
+    }
+
+    &.p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+        border-color: $primary-color-500;
+    }
+
+    &.p-radiobutton-disabled > .p-radiobutton-box {
+        background-color: $bg-neutral-200;
+    }
+}

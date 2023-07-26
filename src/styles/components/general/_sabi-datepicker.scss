@@ -1,19 +1,65 @@
 @import 'variables/variables';
 
 .sabi-datepicker {
-  > .p-calendar {
-    > .p-datepicker {
-      table {
-        td > span.p-highlight {
-          background: $primary-color-50;
-          color: $primary-color-500;
-          border-radius: 4px;
+    &.p-calendar .p-inputtext {
+        height: 54px;
+    }
+}
+
+.p-datepicker {
+    table {
+        border-collapse: collapse;
+
+        td {
+            padding: 5px 0 0 0;
         }
 
-        td.p-datepicker-today > span {
-          border-radius: 4px;
+        & td > span {
+            border-radius: 4px;
         }
-      }
+
+        tr td > span.p-highlight {
+            background-color: $primary-color-50;
+            color: $primary-color-500;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $neutral-color-100;
+                color: $sc-black;
+            }
+        }
+
+        tr td > span:has(.p-highlight) {
+            span:only-child {
+                border: 1px solid red;
+            }
+        }
+
+        & td.p-datepicker-today > span {
+            background-color: transparent;
+            border-radius: 4px;
+            color: $sc-black;
+
+            &:hover {
+                background-color: $neutral-color-100;
+                color: $sc-black;
+            }
+
+            &:before {
+                display: flex;
+                content: "Today";
+                position: absolute;
+                top: 23px;
+                font-size: 8px;
+                color: $primary-color-500;
+            }
+        }
+
+        & span:not(.p-highlight):not(.p-disabled):hover {
+            border: unset;
+        }
+
     }
-  }
 }
+
+

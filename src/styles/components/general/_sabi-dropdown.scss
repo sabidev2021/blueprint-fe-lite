@@ -4,6 +4,10 @@
   > .p-dropdown {
     border-radius: 4px;
     border-color: #E2E8F0;
+    height: 54px;
+    > .p-dropdown-label {
+      margin-top: 6px;
+    }
     &:hover {
       border-color: #94A3B8;
     }

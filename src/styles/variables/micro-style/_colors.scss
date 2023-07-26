@@ -1,0 +1,43 @@
+@import "./src/styles/variables/micro-style/old_colors";
+
+/*
+    ====================
+        Base Colors
+    ====================
+    Neutral :  Colors for texts, dividers.
+    Primary : Use these sabi-colors for CTAs, links, inputs, active states, etc.
+    Success : To indicate positive feedback.
+    Warning : To indicate important or risky information.
+    Danger  : To indicate critical, destructive, or irreversible actions.
+    Shades  : Basic sabi-colors to generate various neutral sabi-colors.
+
+*/
+
+$neutral-color-50     : #F8FAFC;
+$neutral-color-100    : #F1F5F9;
+$neutral-color-200    : #E2E8F0;
+$neutral-color-300    : #CBD5E1;
+$neutral-color-400    : #94A3B8;
+$neutral-color-900    : #0F172A;
+
+$primary-color-50     : #E3F4FF;
+$primary-color-500    : #2C76CB;
+$primary-color-600    : #1D5BAC;
+$primary-color-700    : #194A8B;
+$primary-color-900    : #1A3760;
+
+$success-color-50     : #EAF5DC;
+$success-color-500    : #8CC63E;
+
+$warning-color-50     : #FEF5E7;
+$warning-color-100    : #FDECCE;
+$warning-color-500    : #F59E0B;
+
+$danger-color-50      : #FEECEF;
+$danger-color-100     : #FCC5CF;
+$danger-color-500     : #F43F5E;
+$danger-color-600     : #DC3955;
+$danger-color-700     : #C3324B;
+
+$white-color          : #FFFFFF;
+$black-color          : #000000;

@@ -1,0 +1,41 @@
+@import "./src/styles/variables/micro-style/colors";
+
+/*
+    ============
+        Font
+    ============
+*/
+
+$font-family-base           : 'Inter';
+$font-family-primary        : $font-family-base;
+
+/*
+    ====================
+        Font Size
+    ====================
+*/
+$font-size-primary          : 18px;
+$font-size-secondary        : 16px;
+$font-size-tertiary         : 14px;
+$font-size-quatenary        : 12px;
+$font-size-microsmall       : 10px;
+
+/*
+    ====================
+        Font Weight
+    ====================
+*/
+$font-weight-light          : lighter;
+$font-weight-300            : 300;
+$font-weight-400            : 400;
+$font-weight-500            : 500;
+$font-weight-semibold       : 600;
+$font-weight-bold           : 700;
+
+/*
+    ================
+        Text
+    ================
+*/
+
+$text-primary               : $neutral-color-900;

@@ -1,0 +1,35 @@
+@import "./src/styles/variables/micro-style/colors";
+/*
+    ====================
+        Background
+    ====================
+*/
+
+$bg-neutral-50     : $neutral-color-50;
+$bg-neutral-100    : $neutral-color-100;
+$bg-neutral-200    : $neutral-color-200;
+$bg-neutral-300    : $neutral-color-300;
+$bg-neutral-400    : $neutral-color-400;
+$bg-neutral-900    : $neutral-color-900;
+
+$bg-primary-50     : $primary-color-50;
+$bg-primary-500    : $primary-color-500;
+$bg-primary-600    : $primary-color-600;
+$bg-primary-700    : $primary-color-700;
+$bg-primary-900    : $primary-color-900;
+
+$bg-success-50     : $success-color-50;
+$bg-success-500    : $success-color-500;
+
+$bg-warning-50     : $warning-color-50;
+$bg-warning-100    : $warning-color-100;
+$bg-warning-500    : $warning-color-500;
+
+$bg-danger-50      : $danger-color-50;
+$bg-danger-100     : $danger-color-100;
+$bg-danger-500     : $danger-color-500;
+$bg-danger-600     : $danger-color-600;
+$bg-danger-700     : $danger-color-700;
+
+$bg-shades-0       : $white-color;
+$bg-shades-100     : $black-color;

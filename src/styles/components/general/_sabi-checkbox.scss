@@ -1,3 +1,20 @@
-@import 'variables/variables';
+@import './src/styles/variables/variables';
 
-.sabi-checkbox { }
+.sabi-checkbox {
+    &.p-checkbox .p-checkbox-box {
+        border: 1px solid $neutral-color-400;
+    }
+
+    &.p-checkbox .p-checkbox-box.p-highlight {
+        border-color: $primary-color-900;
+        background-color: $bg-primary-900;
+    }
+
+    &.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+        background-color: $bg-primary-900;
+    }
+
+    &.p-checkbox-disabled > .p-checkbox-box {
+        background-color: $bg-neutral-200;
+    }
+}

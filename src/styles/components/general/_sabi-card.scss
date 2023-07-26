@@ -2,11 +2,12 @@
 
 .sabi-card {
     background-color: var(--surface-card);
-    border: 1px solid var(--surface-border);
+    border: unset;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: var(--card-shadow);
-    border-radius: $borderRadius;
+    box-shadow: unset;
+    border-radius: 20px;
+    border: 1px solid $neutral-color-200;
 
     &:last-child {
         margin-bottom: 0;

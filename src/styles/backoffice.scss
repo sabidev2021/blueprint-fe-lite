@@ -1,10 +1,15 @@
 @import 'variables/variables';
-
 @import 'vendor/prime-ng';
-
 @import 'layouts/layouts';
 
+@import "components/general/sabi-radio";
+@import "components/general/sabi-buttons";
+@import "components/general/sabi-texfield";
+@import "components/general/sabi-textarea";
+@import "components/general/sabi-dropdown";
+@import "components/general/sabi-table";
 @import "components/general/sabi-card";
 @import "components/general/sabi-checkbox";
-@import "components/general/sabi-dropdown";
 @import "components/general/sabi-datepicker";
+@import "components/general/sabi-breadcrumb";
+@import "components/general/sabi-icon";
