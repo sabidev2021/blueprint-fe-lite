@@ -1,0 +1,109 @@
+@import "variables/variables";
+
+.sabi-btn-properties {
+    width: auto;
+    height: 48px;
+    border-radius: 4px;
+    font-family: $font-family-primary;
+}
+
+button.sabi-btn {
+    @extend .sabi-btn-properties;
+
+    &.btn-primary {
+        background-color: $primary-color-500;
+
+        &:hover, .p-button:enabled:hover {
+            border-color: $primary-color-500;
+            background-color: $primary-color-500;
+        }
+
+        &:active {
+            border-color: $primary-color-500;
+            background-color: $primary-color-500;
+        }
+
+    }
+
+    &.btn-primary-outlined {
+        .p-button-outlined {
+            &:hover, &:enabled:hover {
+                background-color: rgba(59, 130, 246, 0.04);
+                border: solid $primary-color-500;
+                color: $primary-color-500;
+            }
+
+            &:active, &:enabled:active {
+                background-color: $sc-white;
+                border: solid $primary-color-500;
+                color: $primary-color-500;
+            }
+        }
+    }
+
+    &.btn-primary-text {
+
+        &:hover, &.p-button-text:enabled:hover {
+            background-color: $white-color;
+            color: $primary-color-500;
+        }
+
+        &:active, .p-button-text:enabled:active {
+            color: $primary-color-500;
+        }
+
+    }
+
+    &.btn-destructive {
+        background-color: $danger-color-500;
+        border: solid $danger-color-500;
+
+        &:hover, .p-button:enabled:hover {
+            border-color: $danger-color-500;
+            background-color: $danger-color-500;
+        }
+
+        &:active, .p-button:enabled:active {
+            border-color: $danger-color-500;
+            background-color: $danger-color-500;
+        }
+    }
+
+    &.btn-destructive-outlined {
+        background-color: $white-color;
+        border: solid $danger-color-500;
+        color: $danger-color-500;
+
+        &.p-button-outlined {
+            &:hover, &:enabled:hover {
+                background-color: $white-color;
+                border: solid $danger-color-500;
+                color: $danger-color-500;
+            }
+
+            &:active, &:enabled:active {
+                background-color: $white-color;
+                border: solid $danger-color-500;
+                color: $danger-color-500;
+            }
+        }
+
+    }
+
+    &.btn-destructive-text {
+        background-color: $white-color;
+        color: $danger-color-500;
+
+        &.p-button.p-button-text {
+            &:hover, &:enabled:hover {
+                background-color: $white-color;
+                color: $danger-color-500;
+            }
+
+            &:active {
+                background-color: $white-color;
+                color: $danger-color-500;
+            }
+        }
+    }
+}

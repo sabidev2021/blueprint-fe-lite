@@ -1,3 +1,21 @@
 @import 'variables/variables';
 
-.sabi-textfield { }
+.sabi-float-label.p-float-label {
+    input:focus ~ label {
+        top: 1rem;
+        font-size: 10px;
+    }
+
+    input.p-filled ~ label {
+        top: 1rem;
+        font-size: 10px;
+    }
+}
+
+.sabi-float-label {
+    .sabi-textfield.p-inputtext {
+        padding-top: 10px;
+        padding-bottom: 0;
+        min-height: 54px;
+    }
+}

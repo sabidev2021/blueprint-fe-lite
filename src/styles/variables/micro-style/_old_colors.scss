@@ -1,0 +1,38 @@
+/*
+    ====================
+        Old Base Colors
+    ====================
+    - Element Prefix :
+      mc - Main Colors
+      sc - Secondary Colors
+*/
+
+$mc-apple-green             : #8CC63E;
+$mc-dark-blue               : #194175;
+
+$sc-conifer-green           : #A0D061;
+$sc-brown-rust              : #AD6436;
+$sc-light-blue              : #E5E8ED;
+$sc-saltpan-green           : #EFF4E8;
+$sc-khasmir-blue            : #42638E;
+$sc-claret-red              : #911F43;
+$sc-light-grey              : #131010;
+$sc-dark-grey               : #B2B2B2;
+$sc-white                   : #ffffff;
+$sc-black                   : #333333;
+$sc-dark-black              : #000;
+$sc-light-black             : #1E263E;
+$sc-claret-red-light        : #fc403629;
+$sc-light-grey-soften       : #F5F7FA;
+$sc-red-peach               : #f44336;
+
+/*
+    ================
+        Colors
+    ================
+*/
+
+$color-primary          : $mc-apple-green;
+$color-secondary        : $sc-khasmir-blue;
+$color-positive         : $sc-conifer-green;
+$color-negative         : $sc-saltpan-green;

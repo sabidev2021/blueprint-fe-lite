@@ -7,6 +7,8 @@
 @import "backoffice/typography";
 @import "backoffice/footer";
 @import "backoffice/fonts";
+@import "backoffice/colors";
+@import "backoffice/background";
 
 * {
     box-sizing: border-box;
@@ -20,7 +22,7 @@ html {
 body {
     font-family: $font-family-primary;
     color: var(--text-color);
-    background-color: var(--surface-ground);
+    background-color: $bg-neutral-50;
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -48,9 +50,4 @@ a {
 
 .layout-wrapper {
     min-height: 100vh;
-}
-
-.login-page {
-  background-color: white;
-  height: 100%;
 }

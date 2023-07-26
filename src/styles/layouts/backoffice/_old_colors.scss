@@ -1,0 +1,14 @@
+@import './src/styles/variables/variables';
+@import './src/styles/mixins/colors';
+
+.color-secondary {
+    @include colors-variants($color-secondary);
+}
+
+.color-positive {
+    @include colors-variants($color-positive);
+}
+
+.color-negative {
+    @include colors_variants($color-negative);
+}

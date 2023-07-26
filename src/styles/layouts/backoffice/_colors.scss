@@ -1,18 +1,94 @@
-@import '../../variables/variables';
-@import '../../mixins/colors';
+@import './src/styles/variables/micro-style/colors';
+@import './src/styles/mixins/colors';
 
-.color-primary {
-  @include colors-variants($color-primary);
+.color-neutral-50 {
+    @include colors-variants($neutral-color-50);
 }
 
-.color-secondary {
-  @include colors-variants($color-secondary);
+.color-neutral-100 {
+    @include colors-variants($neutral-color-100);
 }
 
-.color-positive {
-  @include colors-variants($color-positive);
+.color-neutral-200 {
+    @include colors-variants($neutral-color-200);
 }
 
-.color-negative {
-  @include colors_variants($color-negative);
+.color-neutral-300 {
+    @include colors-variants($neutral-color-300);
 }
+
+.color-neutral-400 {
+    @include colors-variants($neutral-color-400);
+}
+
+.color-neutral-900 {
+    @include colors-variants($neutral-color-900);
+}
+
+.color-primary-50 {
+    @include colors-variants($primary-color-50);
+}
+
+.color-primary-500 {
+    @include colors-variants($primary-color-500);
+}
+
+.color-primary-600 {
+    @include colors-variants($primary-color-50);
+}
+
+.color-primary-700 {
+    @include colors-variants($primary-color-700);
+}
+
+.color-primary-900 {
+    @include colors-variants($primary-color-900);
+}
+
+.color-success-50 {
+    @include colors-variants($success-color-50);
+}
+
+.color-success-500 {
+    @include colors-variants($success-color-500);
+}
+
+.color-warning-50 {
+    @include colors-variants($warning-color-50);
+}
+
+.color-warning-100 {
+    @include colors-variants($warning-color-100);
+}
+
+.color-warning-500 {
+    @include colors-variants($warning-color-500);
+}
+
+.color-danger-50 {
+    @include colors-variants($danger-color-50);
+}
+
+.color-danger-100 {
+    @include colors-variants($danger-color-100);
+}
+
+.color-danger-500 {
+    @include colors-variants($danger-color-500);
+}
+
+.color-danger-700 {
+    @include colors-variants($danger-color-700);
+}
+
+.color-shades-0 {
+    @include colors-variants($white-color);
+}
+
+.color-shades-100 {
+    @include colors-variants($black-color);
+}
+
+
+
+

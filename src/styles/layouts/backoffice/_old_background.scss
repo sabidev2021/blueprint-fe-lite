@@ -1,0 +1,23 @@
+@import "./src/styles/variables/micro-style/old_colors";
+@import "./src/styles/variables/micro-style/old_background";
+@import './src/styles/mixins/background-variant';
+
+.bg--secondary {
+    @include bg-variant($bg-secondary);
+}
+
+.bg--positive {
+    @include bg-variant($bg-positive);
+}
+
+.bg--negative {
+    @include bg-variant($bg-negative);
+}
+
+.bg--claret {
+    @include bg-variant($sc-claret-red);
+}
+
+.bg--brownrust {
+    @include bg-variant($sc-brown-rust);
+}

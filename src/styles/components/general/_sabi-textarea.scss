@@ -1,3 +1,8 @@
 @import 'variables/variables';
 
-.sabi-textarea { }
+.sabi-textarea {
+    .p-float-label textarea ~ label:focus {
+        top: 1.25rem !important;
+        font-size: 12px;
+    }
+}

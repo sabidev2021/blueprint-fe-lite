@@ -1,30 +1,94 @@
-@import '../../variables/variables';
-@import '../../mixins/background-variant';
+@import './src/styles/variables/variables';
+@import './src/styles/mixins/background-variant';
 
-.bg--primary {
-  @include bg-variant($bg-primary);
+.bg-neutral-50 {
+    @include bg-variant($bg-neutral-50);
 }
 
-.bg--secondary {
-  @include bg-variant($bg-secondary);
+.bg-neutral-100 {
+    @include bg-variant($bg-neutral-100);
 }
 
-.bg--positive {
-  @include bg-variant($bg-positive);
+.bg-neutral-200 {
+    @include bg-variant($bg-neutral-200);
 }
 
-.bg--negative {
-  @include bg-variant($bg-negative);
+.bg-neutral-300 {
+    @include bg-variant($bg-neutral-300);
 }
 
-.bg--neutral {
-  @include bg-variant($bg-neutral);
+.bg-neutral-400 {
+    @include bg-variant($bg-neutral-400);
 }
 
-.bg--claret {
-  @include bg-variant($sc-claret-red);
+.bg-neutral-900 {
+    @include bg-variant($bg-neutral-900);
 }
 
-.bg--brownrust {
-  @include bg-variant($sc-brown-rust);
+.bg-primary-50 {
+    @include bg-variant($bg-primary-50);
+}
+
+.bg-primary-500 {
+    @include bg-variant($bg-primary-500);
+}
+
+.bg-primary-600 {
+    @include bg-variant($bg-primary-600);
+}
+
+.bg-primary-700 {
+    @include bg-variant($bg-primary-700);
+}
+
+.bg-primary-900 {
+    @include bg-variant($bg-primary-900);
+}
+
+.bg-success-50 {
+    @include bg-variant($bg-success-50);
+}
+
+.bg-success-500 {
+    @include bg-variant($bg-success-500);
+}
+
+.bg-warning-50 {
+    @include bg-variant($bg-warning-50);
+}
+
+.bg-warning-100 {
+    @include bg-variant($bg-warning-100);
+}
+
+.bg-warning-500 {
+    @include bg-variant($bg-warning-500);
+}
+
+.bg-danger-50 {
+    @include bg-variant($bg-danger-50);
+}
+
+.bg-danger-100 {
+    @include bg-variant($bg-danger-100);
+}
+
+.bg-danger-500 {
+    @include bg-variant($bg-danger-500);
+}
+
+.bg-danger-600 {
+    @include bg-variant($bg-danger-600);
+}
+
+.bg-danger-700 {
+    @include bg-variant($bg-danger-700);
+}
+
+.bg-shades-0 {
+    @include bg-variant($bg-shades-0);
+}
+
+.bg-shades-100 {
+    @include bg-variant($bg-shades-100);
 }
