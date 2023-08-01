@@ -13,10 +13,11 @@
          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
          [filterDelay]="0"
          [globalFilterFields]="['name','country.name','representative.name','status']"
+         class="sabi-table"
 >
     <ng-template pTemplate="caption">
         <div class="table-header flex justify-content-between">
-            <span style="margin: auto 0">Daftar Pengajuan Pinjaman</span>
+            <span style="margin: auto 0"></span>
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Cari ..." />

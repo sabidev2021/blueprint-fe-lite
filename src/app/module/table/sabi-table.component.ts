@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Borrower} from "@app/module/table/models/customer.model";
 import {SabiTableService} from "@app/module/table/services/sabi-table-service";
 import {PrimeNGConfig} from "primeng/api";
 import {Table} from "primeng/table";
 import {environment as env} from "@env/environment.dev";
 import {getErrMessage} from "@core/handler/sabi-error-response";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Borrower} from "@app/module/table/interfaces";
 
 @Component({
     selector: 'app-sabi-table',
