@@ -3,34 +3,77 @@
   <p>Default Input</p>
 </div>
 <div class="mt-5">
-  <p-card>
+  <p-card class="sabi-card sabi-form">
     <form [formGroup]="formGroup">
       <div class="p-fluid grid">
         <div class="field col-4">
-          <label for="name" class="block">Name</label>
-          <input id="name" type="text" aria-describedby="name-help" pInputText formControlName="name">
+          <span class="p-float-label sabi-float-label">
+              <input id="name"
+                     type="text"
+                     aria-describedby="name-help"
+                     pInputText
+                     formControlName="name"
+                     class="sabi-textfield"
+              >
+              <label for="name">Name</label>
+          </span>
         </div>
         <div class="field col-4">
-          <label for="phone" class="block">Phone</label>
-          <input id="phone" type="text" (keydown)="numberOnly($event)" aria-describedby="phone-help" pInputText formControlName="phone">
+           <span class="p-float-label sabi-float-label">
+               <input id="phone"
+                      type="text"
+                      (keydown)="numberOnly($event)"
+                      aria-describedby="phone-help"
+                      pInputText
+                      formControlName="phone"
+                      class="sabi-textfield"
+               >
+              <label for="phone">Phone</label>
+          </span>
         </div>
         <div class="field col-4">
-          <label for="email" class="block">Email</label>
-          <input id="email" type="text" aria-describedby="name-help" pInputText formControlName="email">
+          <span class="p-float-label sabi-float-label">
+                <input id="email"
+                       type="text"
+                       aria-describedby="name-help"
+                       pInputText
+                       formControlName="email"
+                       class="sabi-textfield"
+                >
+              <label for="email">Email</label>
+          </span>
         </div>
         <div class="field col-4">
-          <label for="username" class="block">Username</label>
-          <input id="username" type="text" aria-describedby="username-help" pInputText formControlName="username">
+            <span class="p-float-label sabi-float-label">
+                <input id="username"
+                       type="text"
+                       aria-describedby="name-help"
+                       pInputText
+                       formControlName="username"
+                       class="sabi-textfield"
+                >
+              <label for="username">Username</label>
+          </span>
         </div>
         <div class="field col-4">
           <label for="address" class="block">Address</label>
-          <input id="address" type="text" aria-describedby="address-help" pInputText formControlName="address">
+          <input
+                  id="address"
+                  type="text"
+                  aria-describedby="address-help"
+                  pInputText formControlName="address"
+          >
         </div>
         <div class="field col-4">
           <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" (onSelect)="onUpload($event)"></p-fileUpload>
         </div>
         <div class="col-3">
-          <button type="button" (click)="submitForm()" pButton label="Submit"></button>
+          <p-button type="button"
+                    (click)="submitForm()"
+                    label="Submit"
+                    styleClass="sabi-btn btn-primary"
+          >
+          </p-button>
         </div>
       </div>
     </form>

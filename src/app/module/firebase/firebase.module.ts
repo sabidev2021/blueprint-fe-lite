@@ -10,6 +10,7 @@ import {TableModule} from "primeng/table";
 import { QueryManagerComponent } from './query/query-manager/query-manager.component';
 import {DropdownModule} from "primeng/dropdown";
 import { RealtimeDatabaseManagerComponent } from './realtime-database/realtime-database-manager/realtime-database-manager.component';
+import {CardModule} from "primeng/card";
 
 
 @NgModule({
@@ -19,16 +20,17 @@ import { RealtimeDatabaseManagerComponent } from './realtime-database/realtime-d
     QueryManagerComponent,
     RealtimeDatabaseManagerComponent
   ],
-  imports: [
-    CommonModule,
-    FirebaseRoutingModule,
-    ButtonModule,
-    InputTextModule,
-    FormsModule,
-    TableModule,
-    ReactiveFormsModule,
-    DropdownModule
-  ],
+    imports: [
+        CommonModule,
+        FirebaseRoutingModule,
+        ButtonModule,
+        InputTextModule,
+        FormsModule,
+        TableModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        CardModule
+    ],
   exports: [
     CrudComponent
   ]

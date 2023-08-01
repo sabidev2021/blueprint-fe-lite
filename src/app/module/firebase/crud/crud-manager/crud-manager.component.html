@@ -1,71 +1,78 @@
-<div class="col-12 col-lg-12 col-md-12 mb-3">
-  <h2>Firestore Database</h2>
-  <p><a routerLink="/firebase/firestore-crud">Click here</a> to start CRUD demo.</p>
-  <p>If you want to learn how to install firestore in angular, follow these steps:</p>
-</div>
-
-<!--Install Firebase packages-->
-<div class="sabi-card mb-3">
-  <h4>1. Install Firebase packages</h4>
-  <p>Make sure you have Node.js and npm (Node Package Manager) installed on your system. Then, open a terminal or command prompt and navigate to your Angular project's root directory. Run the following command to install Firebase packages:</p>
-  <pre class="app-code"><code>
-    npm install firebase @angular/fire
-  </code></pre>
-</div>
-
-<!--Create a Firebase project-->
-<div class="sabi-card mb-3">
-  <h4>2. Create a Firebase project</h4>
-  <p>Go to the Firebase website (https://firebase.google.com/) and sign in with your Google account. Create a new Firebase project by clicking on the "Add project" button.</p>
-</div>
-
-<!--Set up your Angular project in the Firebase console-->
-<div class="sabi-card mb-3">
-  <h4>3. Set up your Angular project in the Firebase console</h4>
-  <p>Once you have created the Firebase project, click on it to enter the project dashboard. Then, click on the "Web" option to add a new web app to your project.</p>
-  <p>Provide a name for your app, and Firebase will generate a Firebase configuration object for you.</p>
-</div>
-
-<!--Configure Firebase in your Angular app-->
-<div class="sabi-card mb-3">
-  <h4>4. Configure Firebase in your Angular app</h4>
-  <p>In your Angular project, open the src/environments directory, then open environment.ts. And add the following content to the environment.ts file:</p>
-  <pre class="app-code"><code>
-    export const environment = &#123;
-      production: false,
-      firebase: &#123;
-        apiKey: [your-api-key],
-        authDomain: [your-auth-domain],
-        projectId: [your-project-id],
-        storageBucket: [your-storage-bucket],
-        messagingSenderId: [your-messaging-sender-id],
-        appId: [your-app-id],
-      &#125;
-    &#125;
-  </code></pre>
-</div>
-
-<!--Configure Angular app module-->
-<div class="sabi-card mb-3">
-  <h4>5. Configure Angular app module</h4>
-  <p>Open the src/app/app.module.ts file and import the necessary modules:</p>
-  <pre class="app-code"><code>
-    import &#123; NgModule &#125;; from '@angular/core';
-    import &#123; AngularFireModule &#125;; from '@angular/fire';
-    import &#123; environment &#125;; from '../environments/environment';
-
-    @NgModule(&#123;
-      imports: [
-        AngularFireModule.initializeApp(environment.firebase),
-      ],
-    )&#125;
-
-    export class AppModule &#123; &#125;
-  </code></pre>
-</div>
-
-<div class="col-12 col-lg-12 col-md-12">
-  <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
-    <button type="button" routerLink="/firebase/firestore-crud" pButton label="CRUD Demo"></button>
+<p-card class="sabi-card">
+  <div class="col-12 col-lg-12 col-md-12 mb-3">
+    <h2>Firestore Database</h2>
+    <p><a routerLink="/firebase/firestore-crud">Click here</a> to start CRUD demo.</p>
+    <p>If you want to learn how to install firestore in angular, follow these steps:</p>
   </div>
-</div>
+
+  <!--Install Firebase packages-->
+  <div class="mb-3">
+    <h4>1. Install Firebase packages</h4>
+    <p>Make sure you have Node.js and npm (Node Package Manager) installed on your system. Then, open a terminal or
+      command prompt and navigate to your Angular project's root directory. Run the following command to install
+      Firebase packages:</p>
+    <pre class="app-code"><code>
+      npm install firebase @angular/fire
+    </code></pre>
+  </div>
+
+  <!--Create a Firebase project-->
+  <div class="mb-3">
+    <h4>2. Create a Firebase project</h4>
+    <p>Go to the Firebase website (https://firebase.google.com/) and sign in with your Google account. Create a new
+      Firebase project by clicking on the "Add project" button.</p>
+  </div>
+
+  <!--Set up your Angular project in the Firebase console-->
+  <div class="mb-3">
+    <h4>3. Set up your Angular project in the Firebase console</h4>
+    <p>Once you have created the Firebase project, click on it to enter the project dashboard. Then, click on the "Web"
+      option to add a new web app to your project.</p>
+    <p>Provide a name for your app, and Firebase will generate a Firebase configuration object for you.</p>
+  </div>
+
+  <!--Configure Firebase in your Angular app-->
+  <div class="mb-3">
+    <h4>4. Configure Firebase in your Angular app</h4>
+    <p>In your Angular project, open the src/environments directory, then open environment.ts. And add the following
+      content to the environment.ts file:</p>
+    <pre class="app-code"><code>
+      export const environment = &#123;
+        production: false,
+        firebase: &#123;
+          apiKey: [your-api-key],
+          authDomain: [your-auth-domain],
+          projectId: [your-project-id],
+          storageBucket: [your-storage-bucket],
+          messagingSenderId: [your-messaging-sender-id],
+          appId: [your-app-id],
+        &#125;
+      &#125;
+    </code></pre>
+  </div>
+
+  <!--Configure Angular app module-->
+  <div class="mb-3">
+    <h4>5. Configure Angular app module</h4>
+    <p>Open the src/app/app.module.ts file and import the necessary modules:</p>
+    <pre class="app-code"><code>
+      import &#123; NgModule &#125;; from '@angular/core';
+      import &#123; AngularFireModule &#125;; from '@angular/fire';
+      import &#123; environment &#125;; from '../environments/environment';
+
+      @NgModule(&#123;
+        imports: [
+          AngularFireModule.initializeApp(environment.firebase),
+        ],
+      )&#125;
+
+      export class AppModule &#123; &#125;
+    </code></pre>
+  </div>
+
+  <div class="col-12 col-lg-12 col-md-12">
+    <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
+      <button label="CRUD Demo" pButton routerLink="/firebase/firestore-crud" type="button"></button>
+    </div>
+  </div>
+</p-card>

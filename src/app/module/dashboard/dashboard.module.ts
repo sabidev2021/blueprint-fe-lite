@@ -7,6 +7,7 @@ import {DashboardService} from './services/dashboard.service';
 import {CurrencyPipe} from "@shared/../../shared/sabi-pipe/currency/currency.pipe";
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ButtonModule} from "primeng/button";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {ButtonModule} from "primeng/button";
         CommonModule,
         DashboardRoutingModule,
         DynamicDialogModule,
-        ButtonModule
+        ButtonModule,
+        CardModule
     ],
   providers: [
     DashboardService,

@@ -3,11 +3,9 @@
 .sabi-card {
     background-color: var(--surface-card);
     border: unset;
-    padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: unset;
     border-radius: 20px;
-    border: 1px solid $neutral-color-200;
 
     &:last-child {
         margin-bottom: 0;
