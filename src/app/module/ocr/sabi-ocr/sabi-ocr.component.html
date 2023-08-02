@@ -54,114 +54,116 @@
             <div class="grid mt-3">
                 <div class="col-6">
                     <div class="panel-extracted-data">
-                        <div class="card">
-                            <div class="field">
-                                <label for="nik">NIK</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.nik"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="nik"
-                                           pInputText
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
+                        <form>
+                            <div class="card">
+                                <div class="field">
+                                    <label for="nik">NIK</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.nik"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="nik"
+                                               pInputText
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
+                                <div class="field">
+                                    <label for="name">Nama</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.name"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="name"
+                                               pInputText
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
+                                <div class="field">
+                                    <label for="birth-place">Tempat Lahir</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.birth_place"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="birth-place"
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
+                                <div class="field">
+                                    <label for="birth-date">Tanggal Lahir</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.birth_date"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="birth-date"
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
+                                <div class="field">
+                                    <label for="gender">Jenis Kelamin</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.gender"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="gender"
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
+                                <div class="field">
+                                    <label for="blood_type">Golongan Darah</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.blood_type"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="blood_type"
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
+                                <div class="field">
+                                    <label for="village">Kelurahan / Desa</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.village"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="village"
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
+                                <div class="field">
+                                    <label for="subdistrict">Kecamatan</label>
+                                    <ng-container *ngIf="!isLoading; else isHaveLoading">
+                                        <input [(ngModel)]="identityModel.subdistrict"
+                                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                               id="subdistrict"
+                                               type="text"
+                                        />
+                                    </ng-container>
+                                    <ng-template #isHaveLoading>
+                                        <p-skeleton width="75%"></p-skeleton>
+                                    </ng-template>
+                                </div>
                             </div>
-                            <div class="field">
-                                <label for="name">Nama</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.name"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="name"
-                                           pInputText
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                            <div class="field">
-                                <label for="birth-place">Tempat Lahir</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.birth_place"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="birth-place"
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                            <div class="field">
-                                <label for="birth-date">Tanggal Lahir</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.birth_date"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="birth-date"
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                            <div class="field">
-                                <label for="gender">Jenis Kelamin</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.gender"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="gender"
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                            <div class="field">
-                                <label for="blood_type">Golongan Darah</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.blood_type"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="blood_type"
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                            <div class="field">
-                                <label for="village">Kelurahan / Desa</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.village"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="village"
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                            <div class="field">
-                                <label for="subdistrict">Kecamatan</label>
-                                <ng-container *ngIf="!isLoading; else isHaveLoading">
-                                    <input [(ngModel)]="identityModel.subdistrict"
-                                           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                           id="subdistrict"
-                                           type="text"
-                                    />
-                                </ng-container>
-                                <ng-template #isHaveLoading>
-                                    <p-skeleton width="75%"></p-skeleton>
-                                </ng-template>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-6">

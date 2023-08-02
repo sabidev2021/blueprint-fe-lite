@@ -1,13 +1,3 @@
-export interface Country {
-    name?: string;
-    code?: string;
-}
-
-export interface Representative {
-    name?: string;
-    image?: string;
-}
-
 export interface Borrower {
     id?: string;
     name?: string;

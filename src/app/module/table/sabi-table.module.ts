@@ -10,6 +10,7 @@ import {SliderModule} from "primeng/slider";
 import {ProgressBarModule} from "primeng/progressbar";
 import {SabiTableService} from "@app/module/table/services/sabi-table-service";
 import {InputTextModule} from "primeng/inputtext";
+import {BreadcrumbsModule} from "@app/shared/sabi-components/breadcrumb/breadcrumbs.module";
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import {InputTextModule} from "primeng/inputtext";
         SliderModule,
         ProgressBarModule,
         InputTextModule,
+        BreadcrumbsModule,
     ],
     providers: [SabiTableService]
 })

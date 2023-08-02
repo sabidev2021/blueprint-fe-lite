@@ -31,6 +31,7 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     @ViewChild('stage') stage!: KonvaComponent;
     @ViewChild('layer') layer!: KonvaComponent;
     @ViewChild('dragLayer') dragLayer!: KonvaComponent;
+
     @Input() accept!: string;
     @Input() inputIndex = 0;
     @Input() inputName = 'file-transfer'

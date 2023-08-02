@@ -1,5 +1,13 @@
 @import 'variables/variables';
 
+.sabi-textfield {
+    &.p-inputtext, &.p-inputmask {
+        padding-top: 10px;
+        padding-bottom: 0;
+        min-height: 54px;
+    }
+}
+
 .sabi-float-label.p-float-label {
     input:focus ~ label {
         top: 1rem;
@@ -12,10 +20,3 @@
     }
 }
 
-.sabi-float-label {
-    .sabi-textfield.p-inputtext {
-        padding-top: 10px;
-        padding-bottom: 0;
-        min-height: 54px;
-    }
-}

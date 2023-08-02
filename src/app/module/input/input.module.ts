@@ -10,24 +10,26 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {InputService} from "@app/module/input/services/input.service";
 import {FileUploadModule} from "primeng/fileupload";
+import {BreadcrumbsModule} from "@app/shared/sabi-components/breadcrumb/breadcrumbs.module";
 
 
 @NgModule({
   declarations: [
     InputComponent
   ],
-  imports: [
-    CommonModule,
-    InputRoutingModule,
-    InputTextModule,
-    CardModule,
-    FormsModule,
-    InputMaskModule,
-    ButtonModule,
-    RippleModule,
-    ReactiveFormsModule,
-    FileUploadModule,
-  ],
+    imports: [
+        CommonModule,
+        InputRoutingModule,
+        InputTextModule,
+        CardModule,
+        FormsModule,
+        InputMaskModule,
+        ButtonModule,
+        RippleModule,
+        ReactiveFormsModule,
+        FileUploadModule,
+        BreadcrumbsModule,
+    ],
   providers: [
     InputService
   ]
