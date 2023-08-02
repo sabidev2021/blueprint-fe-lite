@@ -3,59 +3,59 @@ import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {InputService} from "@app/module/input/services/input.service";
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+    selector: 'app-input',
+    templateUrl: './input.component.html',
+    styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
 
-  formGroup!: UntypedFormGroup;
+    formGroup!: UntypedFormGroup;
 
-  constructor(
-    private formBuilder: UntypedFormBuilder,
-    private inputService: InputService,
-  ) {
-  }
+    constructor(
+        private formBuilder: UntypedFormBuilder,
+        private inputService: InputService,
+    ) {
+    }
 
-  ngOnInit() {
-    this.initForm();
-  }
+    ngOnInit() {
+        this.initForm();
+    }
 
-  initForm() {
-    this.formGroup = this.formBuilder.group ({
-      name: '',
-      username: '',
-      phone: '',
-      email: '',
-      address: '',
-      file: [File],
-    })
-  }
+    initForm() {
+        this.formGroup = this.formBuilder.group({
+            name: '',
+            username: '',
+            phone: '',
+            email: '',
+            address: '',
+            file: [File],
+        })
+    }
 
-  onUpload(event: any) {
-    console.log('event :', event);
-    // const file = event.currentFiles.value;
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onload = () => {
-    //   console.log(reader.result);
-    //   this.formGroup.patchValue({file: reader.result})
-    // };
-    this.formGroup.patchValue({file: event})
-  }
+    onUpload(event: any) {
+        console.log('event :', event);
+        // const file = event.currentFiles.value;
+        // const reader = new FileReader();
+        // reader.readAsDataURL(file);
+        // reader.onload = () => {
+        //   console.log(reader.result);
+        //   this.formGroup.patchValue({file: reader.result})
+        // };
+        this.formGroup.patchValue({file: event})
+    }
 
-  numberOnly(event: any) {
-    let charCode = (event.which) ? event.which : event.keyCode;
-    return !(charCode > 31 && (charCode < 48 || charCode > 57));
-  }
+    numberOnly(event: any) {
+        let charCode = (event.which) ? event.which : event.keyCode;
+        return !(charCode > 31 && (charCode < 48 || charCode > 57));
+    }
 
-  submitForm() {
-    console.log('formGroup : ', this.formGroup.value);
-    this.inputService.submit(this.formGroup.value).subscribe({
-      next: (result: any) => {
-        console.log('result : ', result);
-      }
-    })
-  }
+    submitForm() {
+        console.log('formGroup : ', this.formGroup.value);
+        this.inputService.submit(this.formGroup.value).subscribe({
+            next: (result: any) => {
+                console.log('result : ', result);
+            }
+        })
+    }
 
 }
