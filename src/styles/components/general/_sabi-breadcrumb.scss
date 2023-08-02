@@ -1,21 +1,32 @@
 @import "variables/variables";
 
-:host ::ng-deep .xng-breadcrumb-root {
-  font-family: $font-family-primary;
-  font-style: normal;
-  font-weight: $font-weight-400;
-  font-size: $font-size-quatenary;
-  color: $primary-color-500;
-}
+:host ::ng-deep .sabi-breadcrumb {
+    & > .xng-breadcrumb-root {
+        font-family: $font-family-primary;
+        font-style: normal;
+        font-weight: $font-weight-400;
+        font-size: $font-size-quatenary;
+        color: $primary-color-500;
 
-:host ::ng-deep .xng-breadcrumb-trail {
-  font-family: $font-family-primary;
-  font-style: normal;
-  font-weight: $font-weight-semibold;
-  font-size: $font-size-quatenary;
-  color: $primary-color-900;
-}
+        & > .xng-breadcrumb-link {
+            text-transform: capitalize;
+            font-style: normal;
+            font-weight: $font-weight-500;
+            font-size: 10px;
+            line-height: 150%;
+            letter-spacing: 0.015em;
+            color: $sc-khasmir-blue;
 
-:host ::ng-deep .xng-breadcrumb-link:focus {
-  outline-color: $primary-color-500;
+            &:focus {
+                outline-color: $primary-color-500;
+            }
+        }
+    }
+    & li.xng-breadcrumb-item > .xng-breadcrumb-trail {
+        font-family: $font-family-primary;
+        font-style: normal;
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-quatenary;
+        color: $primary-color-900;
+    }
 }

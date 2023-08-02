@@ -1,4 +1,7 @@
-<xng-breadcrumb class="breadcrumb-menu">
+<xng-breadcrumb class="sabi-breadcrumb" [separator]="iconTemplate">
+    <ng-template #iconTemplate>
+        <img width="14px" height="14px" src="../assets/backoffice/icon/general/chevron-right.svg" alt="separator">
+    </ng-template>
     <ng-container *xngBreadcrumbItem="let breadcrumb">
         <ng-container> {{ breadcrumb }}</ng-container>
     </ng-container>
