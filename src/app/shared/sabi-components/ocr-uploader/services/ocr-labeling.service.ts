@@ -99,7 +99,10 @@ export class OcrLabelingService {
     labelBirthDate(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 4) {
-                const groupWords = this.suffixLabeling(stringLabel).replace("Lahir :", "").replace("Lahir", " ").split(",")[1].replace(/[^0-9\-\/]/g, " ").trim();
+                let groupWords = this.suffixLabeling(stringLabel);
+                if (this.suffixLabeling(stringLabel).replace("Lahir :", "").replace("Lahir", " ").split(",")[1] !== undefined) {
+                    groupWords = this.suffixLabeling(stringLabel).replace("Lahir :", "").replace("Lahir", " ").split(",")[1].replace(/[^0-9\-\/]/g, " ").trim();
+                }
                 this.setGroupingLabel.birth_date.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_DATE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.birth_date.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BIRTH_DATE}`;
                 this.setGroupingLabel.birth_date.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
