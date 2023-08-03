@@ -417,7 +417,7 @@ export class OcrLabelingService {
     }
 
     removeFirstChar(str: string) {
-        return str.charAt(0).substr(0, 1) + str
+        return str.charAt(0).substring(0, 1) + str
     }
 
 }
