@@ -8,7 +8,7 @@ import {OcrUploaderModule} from "@app/shared/sabi-components/ocr-uploader/ocr-up
 import {SkeletonModule} from "primeng/skeleton";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {BreadcrumbsModule} from "@app/shared/sabi-components/breadcrumb/breadcrumbs.module";
 import {ToastService} from "@app/shared/sabi-components/toast/toast.service";
@@ -43,7 +43,8 @@ import {ProgressBarModule} from "primeng/progressbar";
         CardModule,
         DropdownModule,
         DragAndDropModule,
-        ProgressBarModule
+        ProgressBarModule,
+        ReactiveFormsModule
     ],
     providers: [
         ToastService

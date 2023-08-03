@@ -20,6 +20,7 @@ import {KonvaComponent} from "ng2-konva";
 import {Message} from 'primeng/api';
 import {FileBase64Model} from "@app/module/ocr/models/File-Base64.model";
 import {OcrLabelingService} from "@app/shared/sabi-components/ocr-uploader/services/ocr-labeling.service";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-sabi-ocr',
@@ -37,6 +38,7 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     @Input() inputName = 'file-transfer'
     @Input() imgPath = "./assets/icon/";
 
+    formGroupOcr!: UntypedFormGroup;
     loggerStats: LoggerStatusModel = new LoggerStatusModel();
     identityModel: IdentityKtpModel = new IdentityKtpModel();
     uploadedFiles: File[] = [];
@@ -86,16 +88,38 @@ export class SabiOcrComponent implements OnInit, DoCheck {
         private ocrService: OcrUploaderService,
         private ocrLabelingService: OcrLabelingService,
         private el: ElementRef,
+        private formBuilder: UntypedFormBuilder,
     ) {
     }
 
     ngOnInit() {
         this.iniStageCanvas()
         this.initTheRatios()
+        this.initForm()
     }
 
     ngDoCheck() {
         this.runLoggerOcr()
+    }
+
+    private initForm() {
+        this.formGroupOcr = this.formBuilder.group({
+            nik: [null, Validators.required],
+            name: [null, Validators.required],
+            birth_place: [null, Validators.required],
+            birth_date: [null, Validators.required],
+            gender: [null, Validators.required],
+            blood_type: [null, Validators.required],
+            village: [null, Validators.required],
+            subdistrict: [null, Validators.required],
+            religion: [null, Validators.required],
+            martial_status: [null, Validators.required],
+            work: [null, Validators.required],
+            citizenship: [null, Validators.required],
+            valid_until: [null, Validators.required],
+            rw: [null, Validators.required],
+            rt: [null, Validators.required]
+        });
     }
 
     iniStageCanvas() {
@@ -188,8 +212,8 @@ export class SabiOcrComponent implements OnInit, DoCheck {
     mappingDataExtracted(value: OcrModel) {
         value.lines.forEach((words: OcrLinesModel, position: number) => {
             this.ocrLabelingService.labelingHeader(position, words).subscribe(value => this.identityModel.province = value.province.right_label)
-            this.ocrLabelingService.labelingHeaderSub(position, words).subscribe(value => this.identityModel.city = value.city.right_label)
-            this.ocrLabelingService.labelingNik(position, words).subscribe(value => this.identityModel.nik = value.nik.right_label)
+            this.ocrLabelingService.labelHeaderSub(position, words).subscribe(value => this.identityModel.city = value.city.right_label)
+            this.ocrLabelingService.labelNik(position, words).subscribe(value => this.identityModel.nik = value.nik.right_label)
             this.ocrLabelingService.labelNames(position, words).subscribe(value => this.identityModel.name = value.names.right_label)
             this.ocrLabelingService.labelBirthDate(position, words).subscribe(value => this.identityModel.birth_date = value.birth_date.right_label)
             this.ocrLabelingService.labelBirthPlace(position, words).subscribe(value => this.identityModel.birth_place = value.birth_place.right_label)
