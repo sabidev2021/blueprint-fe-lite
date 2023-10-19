@@ -15,12 +15,12 @@ export class OcrLabelingService {
     labelingHeader(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 0) {
-                // const groupWords = `${stringLabel.words[1].text} ${stringLabel.words[2].text}`;
-                // this.setGroupingLabel.header.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.PROVINCE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
-                // this.setGroupingLabel.header.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.PROVINCE}`;
-                // this.setGroupingLabel.header.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                // this.setGroupingLabel.header.right_label = `${groupWords}`;
-                // return of(this.setGroupingLabel)
+                const groupWords = `${stringLabel?.words[1]?.text} ${stringLabel?.words[2]?.text}`;
+                this.setGroupingLabel.header.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.PROVINCE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
+                this.setGroupingLabel.header.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.PROVINCE}`;
+                this.setGroupingLabel.header.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
+                this.setGroupingLabel.header.right_label = `${groupWords}`;
+                return of(this.setGroupingLabel)
             }
         }
         return of(this.setGroupingLabel)
@@ -29,13 +29,13 @@ export class OcrLabelingService {
     labelHeaderSub(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 1) {
-                // const groupWords = `${stringLabel.words[1].text}`;
-                // const capitalizeLetters = stringLabel.words[0].text.charAt(0) + stringLabel.words[0].text.slice(1).toLowerCase();
-                // this.setGroupingLabel.subheader.group_label = `${capitalizeLetters} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
-                // this.setGroupingLabel.subheader.left_label = `${capitalizeLetters}`;
-                // this.setGroupingLabel.subheader.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                // this.setGroupingLabel.subheader.right_label = `${stringLabel.words[1].text}`;
-                // return of(this.setGroupingLabel)
+                const groupWords = `${stringLabel?.words[1].text}`;
+                const capitalizeLetters = stringLabel?.words[0]?.text.charAt(0) + stringLabel?.words[0]?.text.slice(1).toLowerCase();
+                this.setGroupingLabel.subheader.group_label = `${capitalizeLetters} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
+                this.setGroupingLabel.subheader.left_label = `${capitalizeLetters}`;
+                this.setGroupingLabel.subheader.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
+                this.setGroupingLabel.subheader.right_label = `${stringLabel.words[1].text}`;
+                return of(this.setGroupingLabel)
             }
         }
         return of(this.setGroupingLabel)
@@ -118,9 +118,7 @@ export class OcrLabelingService {
             if (position === 5) {
                 // const groupWords = this.suffixLabeling(stringLabel).replace(/[^A-Z\-\/]/g, " ").trim();
                 const groupWords = this.suffixLabeling(stringLabel);
-                console.log(groupWords)
-                this.splitSingleLines(groupWords);
-                console.log(this.splitSingleLines(groupWords));
+                console.log(groupWords);
                 this.setGroupingLabel.blood_type.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BLOOD_TYPE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${this.labelReplaceBloodTypeStats(groupWords)}`;
                 this.setGroupingLabel.blood_type.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.BLOOD_TYPE}`;
                 this.setGroupingLabel.blood_type.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
@@ -208,7 +206,8 @@ export class OcrLabelingService {
                 this.setGroupingLabel.village.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.VILLAGE} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.village.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.VILLAGE}`;
                 this.setGroupingLabel.village.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                this.setGroupingLabel.village.right_label = groupWords;
+                this.setGroupingLabel.village.right_label = groupWords.slice(groupWords.indexOf(" ") + 1).slice(groupWords.indexOf(" ") + 1).trim()
+                console.log(groupWords.slice(groupWords.indexOf(" ") + 1).slice(groupWords.indexOf(" ") + 1))
                 return of(this.setGroupingLabel)
             }
         }
@@ -260,11 +259,11 @@ export class OcrLabelingService {
     labelWork(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 12) {
-                const groupWords = this.suffixLabeling(stringLabel).replace(/[^A-Z]/gm, " ").trimStart();
+                const groupWords = this.suffixLabeling(stringLabel).replace(/[^A-Z]/gm, " ")
                 this.setGroupingLabel.work.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.WORK} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.work.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.WORK}`;
                 this.setGroupingLabel.work.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                this.setGroupingLabel.work.right_label = this.removeFirstChar(groupWords);
+                this.setGroupingLabel.work.right_label = this.splitSingleLines(groupWords);
             }
             return of(this.setGroupingLabel)
         }
@@ -288,11 +287,14 @@ export class OcrLabelingService {
     labelValidUntil(position: number, stringLabel: OcrLinesModel): Observable<OcrGroupLabelingModel> {
         if (stringLabel !== undefined) {
             if (position === 14) {
-                const groupWords = this.suffixLabeling(stringLabel).replace(/[^A-Z]/gm, " ").trim();
+                // const groupWords = this.suffixLabeling(stringLabel).replace(/[^A-Z]/gm, " ")
+                const groupWords = this.suffixLabeling(stringLabel)
+                // console.log(stringLabel.text)
+                // console.log(groupWords)
                 this.setGroupingLabel.valid_until.group_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.VALID_UNTIL} ${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS} ${groupWords}`;
                 this.setGroupingLabel.valid_until.left_label = `${OCR_CONFIG.LABELING_CLASSIFICATION.VALID_UNTIL}`;
                 this.setGroupingLabel.valid_until.separator = `${OCR_CONFIG.LABELING_CLASSIFICATION.SEPARATOR_CLASSIFICATION.DOTS}`;
-                this.setGroupingLabel.valid_until.right_label = groupWords;
+                this.setGroupingLabel.valid_until.right_label = this.labelReplaceValidUntil(groupWords);
                 return of(this.setGroupingLabel)
             }
         }
@@ -341,9 +343,10 @@ export class OcrLabelingService {
     labelReplaceGenderStats(isWords: string) {
         if (isWords.includes('LAK')) {
             isWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.LK
-        }
-        if (isWords.includes('PER')) {
+        }else if (isWords.includes('PER')) {
             isWords = OCR_CONFIG.GENDER_TYPE_CLASSIFICATION.PM
+        } else {
+            isWords = '-'
         }
         return isWords
     }
@@ -378,6 +381,13 @@ export class OcrLabelingService {
         return isWords
     }
 
+    labelReplaceValidUntil(isWords: string) {
+        if (isWords.includes('SEU')) {
+            isWords = OCR_CONFIG.VALID_UNTIL_TYPE_CLASSIFICATION.LIFE_TIME
+        }
+        return isWords
+    }
+
     suffixLabeling(isLabeling: OcrLinesModel, isPrefixer?: string) {
         let array = isLabeling.words;
         let newLabeling: any = [];
@@ -403,9 +413,7 @@ export class OcrLabelingService {
     }
 
     splitSingleLines(strLine: string) {
-        const splitLine = strLine.split("Go");
-        console.log(splitLine);
-        return strLine
+        return strLine.slice(strLine.indexOf(" ") + 1).trim();
     }
 
     splitTrailingSpace(stringSlash: string) {
@@ -417,8 +425,7 @@ export class OcrLabelingService {
     }
 
     removeFirstChar(str: string) {
-        return str.charAt(0).substr(0, 1) + str
+        return str.charAt(0).substring(0, 1) + str;
     }
-
 }
 
