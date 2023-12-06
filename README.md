@@ -1,4 +1,4 @@
-![Scheme](src/assets/logo/logo-sabi.svg)
+![Scheme](src/assets/logo/logo.svg)
 
 # BLUEPRINT-FE ( LITE VERSION )
 
@@ -6,8 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### What is this repository for? ###
 
-* As a reference in making multiple applications example (sahabatbisnis.core, sahabatbisnis.warehouse, sahabatbisnis.bookkeeper).
+* As a reference in making multiple applications idea build with Angular + PrimeNg UI Framework + Firebase Starter Kit.
 * As a basis for the design of new applications
+* Ehance your project development speed.
+* Sample Working with Authentication Service Token (JWT) using Angular Http Client.
 
 **How to Running:**
 ```sh
