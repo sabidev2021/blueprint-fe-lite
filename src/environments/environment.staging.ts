@@ -5,58 +5,29 @@
 export const environment = {
   name: 'staging',
   production: false,
-  appName: 'Sahabat Bisnis',
-  keycloakUrl: 'https://user.stag.sabienv.xyz/auth',
-  keycloakRealm: 'SBI',
-  keycloakClientId: 'sahabatbisnis-web',
+  appName: '',
+  keycloakUrl: '',
+  keycloakRealm: '',
+  keycloakClientId: '',
   tracker: true,
   analytics: {
     gtm: {
-      code: 'GTM-K2J2N7W'
+      code: ''
     }
   },
   log: {
     sabiLog: true
   },
-  endpoint: 'stag.sabienv.xyz',
-  services_name: {
-    inventoryService: {
-      title: 'inventory-service',
-      baseUrl: 'https://api.stag.sabienv.xyz/inventory',
-    },
-    companyService: {
-      title: 'company-service',
-      baseUrl: 'https://api.stag.sabienv.xyz/company',
-    },
-    userAdminService: {
-      title: 'user-admin-service',
-      baseUrl: 'https://api.stag.sabienv.xyz/user-admin',
-    },
-    salesService: {
-      title: 'sales-service',
-      baseUrl: 'https://api.stag.sabienv.xyz/sales',
-    },
-    notificationService: {
-      title: 'notification-service',
-      baseUrl: 'https://api.stag.sabienv.xyz/notification',
-    },
-    salesDashboardService: {
-      title: 'sales-dashboard-service',
-      baseUrl: 'https://api.stag.sabienv.xyz/sales-dashboard',
-    },
-    landingService: {
-      title: 'landing-service',
-      baseUrl: 'https://stag.sabienv.xyz',
-    }
-  },
+  endpoint: '',
+  services_name: { },
   firebaseConfig: {
-    apiKey: "AIzaSyCd2BPoMP9EnO37M8x22e7q5FrrBfPDIbM",
-    authDomain: "sabi-dev-test.firebaseapp.com",
-    projectId: "sabi-dev-test",
-    storageBucket: "sabi-dev-test.appspot.com",
-    messagingSenderId: "138002012724",
-    appId: "1:138002012724:web:f3ba94552a54f616908861",
-    measurementId: "G-JPFS2B2W47"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
   }
 };
 
