@@ -18,46 +18,11 @@ export const environment = {
   log: {
     sabiLog: false
   },
-  endpoint: '',
-  services_name: {
-    inventoryService: {
-      title: '',
-      baseUrl: '',
-    },
-    companyService: {
-      title: '',
-      baseUrl: '',
-    },
-    userAdminService: {
-      title: '',
-      baseUrl: '',
-    },
-    salesService: {
-      title: '',
-      baseUrl: '',
-    },
-    notificationService: {
-      title: '',
-      baseUrl: '',
-    },
-    salesDashboardService: {
-      title: '',
-      baseUrl: '',
-    },
-    landingService: {
-      title: '',
-      baseUrl: '',
-    }
-  },
-  firebaseConfig: {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: ""
-  }
+  services_name: { },
+  module_name: { },
+  design_systems: { },
+  mockoonService: { },
+  firebaseConfig: { }
 };
 
 /*
