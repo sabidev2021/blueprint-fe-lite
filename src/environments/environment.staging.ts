@@ -20,15 +20,10 @@ export const environment = {
   },
   endpoint: '',
   services_name: { },
-  firebaseConfig: {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: ""
-  }
+  module_name: { },
+  design_systems: { },
+  mockoonService: { },
+  firebaseConfig: { }
 };
 
 /*

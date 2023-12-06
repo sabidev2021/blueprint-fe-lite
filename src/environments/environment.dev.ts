@@ -19,9 +19,30 @@ export const environment = {
     sabiLog: true
   },
   endpoint: '',
-  services_name: { },
+  services_name: {
+    YOUR_SERVICE_NAME: {
+        title: '',
+        baseUrl: '',
+    }
+  },
   module_name: { },
-  design_systems: { },
+  design_systems: {
+    accordion: '',
+    alert: '',
+    avatar: '',
+    badge: '',
+    button: '',
+    breadcrumb: '',
+    checkbox: '',
+    dialog: '',
+    radioButton: '',
+    table: '',
+    tag: '',
+    textField: '',
+    textArea: '',
+    toast: '',
+    divider: ''
+  },
   firebaseConfig: {
     apiKey: "",
     authDomain: "",

@@ -23,15 +23,7 @@ export const environment = {
   module_name: { },
   design_systems: { },
   mockoonService: { },
-  firebaseConfig: {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: ""
-  }
+  firebaseConfig: { }
 };
 
 /*
