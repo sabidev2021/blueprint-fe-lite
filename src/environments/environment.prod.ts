@@ -18,46 +18,11 @@ export const environment = {
   log: {
     sabiLog: false
   },
-  endpoint: '',
-  services_name: {
-    inventoryService: {
-      title: '',
-      baseUrl: '',
-    },
-    companyService: {
-      title: '',
-      baseUrl: '',
-    },
-    userAdminService: {
-      title: '',
-      baseUrl: '',
-    },
-    salesService: {
-      title: '',
-      baseUrl: '',
-    },
-    notificationService: {
-      title: '',
-      baseUrl: '',
-    },
-    salesDashboardService: {
-      title: '',
-      baseUrl: '',
-    },
-    landingService: {
-      title: '',
-      baseUrl: '',
-    }
-  },
-  firebaseConfig: {
-    apiKey: "AIzaSyCd2BPoMP9EnO37M8x22e7q5FrrBfPDIbM",
-    authDomain: "sabi-dev-test.firebaseapp.com",
-    projectId: "sabi-dev-test",
-    storageBucket: "sabi-dev-test.appspot.com",
-    messagingSenderId: "138002012724",
-    appId: "1:138002012724:web:f3ba94552a54f616908861",
-    measurementId: "G-JPFS2B2W47"
-  }
+  services_name: { },
+  module_name: { },
+  design_systems: { },
+  mockoonService: { },
+  firebaseConfig: { }
 };
 
 /*

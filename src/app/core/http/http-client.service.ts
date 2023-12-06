@@ -6,6 +6,7 @@ import {environment as env} from "@env/environment.dev";
 import {SabiResponse} from "@core/handler/sabi-response";
 import {AuthService} from "@core/auth/auth.service";
 import {HttpHeaderService} from "@core/http/http-header.service";
+import { object } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -32,23 +33,8 @@ export class HttpClientService {
 
   setDomainUrl(service: string) {
     switch (service) {
-      case env.services_name.companyService.title:
-        this.domainUrl = env.services_name.companyService.baseUrl;
-        break;
-      case env.services_name.userAdminService.title:
-        this.domainUrl = env.services_name.userAdminService.baseUrl;
-        break;
-      case env.services_name.inventoryService.title:
-        this.domainUrl = env.services_name.inventoryService.baseUrl;
-        break;
-      case env.services_name.salesService.title:
-        this.domainUrl = env.services_name.salesService.baseUrl;
-        break;
-      case env.services_name.notificationService.title:
-        this.domainUrl = env.services_name.notificationService.baseUrl;
-        break;
-      case env.services_name.salesDashboardService.title:
-        this.domainUrl = env.services_name.salesDashboardService.baseUrl;
+    case env.services_name.YOUR_SERVICE_NAME.title:
+        this.domainUrl = env.services_name.YOUR_SERVICE_NAME.baseUrl;
         break;
     }
   }
